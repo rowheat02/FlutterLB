@@ -3,12 +3,23 @@ import 'package:langurb/Provider_data/providers_data.dart';
 import 'package:langurb/Widgets/Currencycard.dart';
 import 'package:provider/provider.dart';
 
+
+//  playsound() async {
+  
+  
+
+// }
 class BettingControl extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var provar = Provider.of<Providersdata>(context);
     var activebals = provar.betdata[provar.active];
     var active = provar.active;
+    var balance=provar.Balance;
+
+
+
+
     return Container(
       width: MediaQuery.of(context).size.width * 0.3,
       height: MediaQuery.of(context).size.height * 0.8,
@@ -27,7 +38,7 @@ class BettingControl extends StatelessWidget {
           children: <Widget>[
             Padding(
               padding: const EdgeInsets.only(left: 5, top: 5),
-              child: Text("Balance: ", style: TextStyle(color: Colors.white)),
+              child: Text("Balance: RS $balance", style: TextStyle(color: Colors.white)),
             )
           ],
         ),
@@ -103,18 +114,21 @@ class BettingControl extends StatelessWidget {
           children: <Widget>[
             // Container(margin: EdgeInsets.all(10),),
             InkWell(
-              onTap: () => provar.btctrlresult(),
+              onTap: ()=>{print("hello"),
+                provar.btctrlresult()},
               child: Container(
                 margin: EdgeInsets.only(bottom: 6),
                 width: MediaQuery.of(context).size.width * 0.15,
                 height: MediaQuery.of(context).size.height * 0.15,
-                decoration: BoxDecoration(color: Colors.tealAccent),
+                decoration: BoxDecoration(
+                  // color: Colors.tealAccent.withOpacity(0.3)
+                  ),
                 // padding: EdgeInsets.all(15),
                 child: FittedBox(
                   fit: BoxFit.fitHeight,
                   child: Text(
                     "Roll",
-                    style: TextStyle(color: Colors.red),
+                    style: TextStyle(color: Colors.white),
                     textAlign: TextAlign.center,
                   ),
                 ),

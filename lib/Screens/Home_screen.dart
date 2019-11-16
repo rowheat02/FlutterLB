@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:langurb/Provider_data/providers_data.dart';
 import 'package:langurb/Widgets/Betting_control.dart';
 import 'package:langurb/Widgets/Result.dart';
+import 'package:langurb/Widgets/Rolling.dart';
 import 'package:langurb/Widgets/Symbolcarddecoration.dart';
 import 'package:provider/provider.dart';
 import 'package:langurb/Functions/Allfunc.dart';
@@ -13,6 +14,9 @@ class Home_screen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final provdat = Provider.of<Providersdata>(context, listen: true);
+    provdat.load();
+    provdat.setBalanceeinitial();
+
     // var Bls=SetBalancee();
     // provdat.setBalance(Bls);
     var bls = provdat.Balance;
@@ -41,6 +45,13 @@ class Home_screen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Symbolcarddecoration(),
+                   Column(
+                  children: <Widget>[
+                    // Text("Balance:$bls",style: TextStyle(color: Colors.red)),
+                    ctrl_rslt == 0 ? BettingControl() :ctrl_rslt == 2 ?  Rolling():Result()
+                    // BettingControl()
+                  ],
+                ),
                 Container(
                   // width: MediaQuery.of(context).size.width * 0.60,
                   height: MediaQuery.of(context).size.height * 0.8,
@@ -97,13 +108,7 @@ class Home_screen extends StatelessWidget {
                     ],
                   ),
                 ),
-                Column(
-                  children: <Widget>[
-                    // Text("Balance:$bls",style: TextStyle(color: Colors.red)),
-                    ctrl_rslt == 0 ? BettingControl() : Result()
-                    // BettingControl()
-                  ],
-                )
+             
               ],
             ),
           ],

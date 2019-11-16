@@ -11,7 +11,6 @@ class Symbolcard extends StatelessWidget {
     var Provid = Provider.of<Providersdata>(context);
     var valuetoshow = Provid.getbetvalue(id);
     var b = Provid.Balance;
-    Provid.setBalanceeinitial();
 
     return
         // Text("From Symbolcard $id");
@@ -60,6 +59,7 @@ class Symbolcard extends StatelessWidget {
                         child: Text("Betting: RS $valuetoshow",
                             textAlign: TextAlign.center,
                             style: TextStyle(
+                              // fontFamily: 'jos',
                               color: Provid.active == id
                                   ? Colors.green
                                   : Colors.red,

@@ -7,6 +7,8 @@ class Result extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var provdat = Provider.of<Providersdata>(context);
+    var balance=provdat.Balance;
+    var wonlost=provdat.wonlost;
     return  Container(
        width: MediaQuery.of(context).size.width * 0.3,
       height: MediaQuery.of(context).size.height * 0.8,
@@ -27,7 +29,7 @@ class Result extends StatelessWidget {
           children: <Widget>[
             Padding(
               padding: const EdgeInsets.only(left: 5, top: 5),
-              child: Text("Balance: ", style: TextStyle(color: Colors.white)),
+              child: Text("Balance: RS $balance ", style: TextStyle(color: Colors.white)),
             )
           ],
         ),
@@ -47,11 +49,13 @@ class Result extends StatelessWidget {
               Resultcard(provdat.resultdata[6],0.8),
             ],
           ),
+          Text("Won: RS $wonlost",style: TextStyle(color: provdat.won? Colors.green:Colors.red),),
+
           FlatButton(
             onPressed: () => provdat.btctrlresult(),
             child: Text(
               "Play Again",
-              style: TextStyle(fontSize: 30),
+              style: TextStyle(fontSize: 30,color: Colors.white),
               textAlign: TextAlign.center,
             ),
           )
