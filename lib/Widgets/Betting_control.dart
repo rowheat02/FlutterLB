@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:langurb/Provider_data/providers_data.dart';
 import 'package:langurb/Widgets/Currencycard.dart';
+import 'package:langurb/Widgets/Currencyslider.dart';
 import 'package:provider/provider.dart';
 
 
@@ -65,16 +66,28 @@ class BettingControl extends StatelessWidget {
                   )
           ],
         ),
+          Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: <Widget>[
+            // new Currencycard(id: 1),
+            // new Currencycard(id: 5),
+            // new Currencycard(id: 10),
+            // new Currencycard(id: 50),
+            // new Currencycard(id: 100),
+         CurrencySlider()
+          ],
+        ),
+
         Container(
           // margin: EdgeInsets.only(top: 12),
           child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
             crossAxisAlignment: CrossAxisAlignment.end,
             children: <Widget>[
               Container(
                 decoration: BoxDecoration(
                     color: provar.add_subtract == 0 ? Colors.red : Colors.white,
-                    borderRadius: BorderRadius.all(Radius.circular(10))),
+                    borderRadius: BorderRadius.all(Radius.circular(100))),
                 child: FlatButton(
                   child: Icon(
                     Icons.remove,
@@ -86,7 +99,7 @@ class BettingControl extends StatelessWidget {
               Container(
                 decoration: BoxDecoration(
                     color: provar.add_subtract == 1 ? Colors.red : Colors.white,
-                    borderRadius: BorderRadius.all(Radius.circular(10))),
+                    borderRadius: BorderRadius.all(Radius.circular(100))),
                 child: FlatButton(
                   child: Icon(Icons.add,
                       color:
@@ -98,16 +111,7 @@ class BettingControl extends StatelessWidget {
             ],
           ),
         ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: <Widget>[
-            new Currencycard(id: 1),
-            new Currencycard(id: 5),
-            new Currencycard(id: 10),
-            new Currencycard(id: 50),
-            // new Currencycard(id: 100),
-          ],
-        ),
+      
         Column(
           mainAxisAlignment: MainAxisAlignment.end,
           crossAxisAlignment: CrossAxisAlignment.center,
