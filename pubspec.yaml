@@ -26,6 +26,7 @@ dependencies:
   provider: ^3.0.0+1
   shared_preferences:
   audioplayers: ^0.13.2
+  flutter_svg:
 
 dev_dependencies:
   flutter_test:

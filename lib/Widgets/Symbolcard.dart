@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:langurb/Provider_data/providers_data.dart';
-
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 
 class Symbolcard extends StatelessWidget {
+
+  
   final int id;
   Symbolcard(this.id);
   @override
@@ -11,6 +13,7 @@ class Symbolcard extends StatelessWidget {
     var Provid = Provider.of<Providersdata>(context);
     var valuetoshow = Provid.getbetvalue(id);
     var b = Provid.Balance;
+    
 
     return
         // Text("From Symbolcard $id");
@@ -18,15 +21,19 @@ class Symbolcard extends StatelessWidget {
       onTap: () => Provid.setactive(id),
       child: Container(
           decoration: BoxDecoration(
+          color: Provid.active == id
+                                  ? Colors.white
+                                  : Colors.amber[300],
+
               // border: new Border.all(color:id==Provid.active? Colors.green:Colors.white70, width: 1),
-              // borderRadius: BorderRadius.all(Radius.circular(12)),
+              borderRadius: BorderRadius.all(Radius.circular(12)),
               ),
-          margin: new EdgeInsets.only(right: 0, bottom: 0,left: 6,top: 0),
+          margin: new EdgeInsets.only(right: 0, bottom: 0, left: 6, top: 0),
           // width: MediaQuery.of(context).size.width * 0.2,
           // height: MediaQuery.of(context).size.height * 0.4,
-           width: MediaQuery.of(context).size.width * 0.18,
+          width: MediaQuery.of(context).size.width * 0.18,
           height: MediaQuery.of(context).size.height * 0.34,
-          
+
           // width:  Provid.active == id
           //                         ? MediaQuery.of(context).size.width * 0.20
           //                         : MediaQuery.of(context).size.width * 0.18,
@@ -34,16 +41,19 @@ class Symbolcard extends StatelessWidget {
           //                         ? MediaQuery.of(context).size.height * 0.36
           //                         : MediaQuery.of(context).size.height * 0.34,
           child: Stack(
-            alignment: Alignment.bottomCenter,
+            alignment: Alignment.topCenter,
             children: <Widget>[
               new ClipRRect(
-                borderRadius: new BorderRadius.all(Radius.circular(12)),
-                
-                child: Image.asset(
-                  Provid.active == id?"Jpg/$id-.jpg":"Jpg/$id.jpg",
-                  fit: BoxFit.cover,
-                ),
-              ),
+                  borderRadius: new BorderRadius.all(Radius.circular(12)),
+                  child: Container(
+                    margin: EdgeInsets.only(top: 10),
+                    width: 90,
+                    height: 90,
+                    child: SvgPicture.asset(
+                      'Jpg/$id.svg',
+                      fit: BoxFit.contain,
+                    ),
+                  )),
               Column(
                 mainAxisAlignment: MainAxisAlignment.end,
                 crossAxisAlignment: CrossAxisAlignment.center,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:langurb/Provider_data/providers_data.dart';
 import 'package:langurb/Widgets/Currencycard.dart';
 import 'package:langurb/Widgets/Currencyslider.dart';
@@ -46,9 +47,18 @@ class BettingControl extends StatelessWidget {
         provar.active != null
             ? Card(
                 child: Container(
+                  decoration: BoxDecoration(color: Colors.white),
                   width: MediaQuery.of(context).size.width * 0.08,
                   height: MediaQuery.of(context).size.width * 0.08,
-                  child: Image.asset("Jpg/$active.jpg"),
+                  child: Container(
+                    margin: EdgeInsets.all(4),
+                    width: 90,
+                    height: 90,
+                    child: SvgPicture.asset(
+                      'Jpg/$active.svg',
+                      fit: BoxFit.contain,
+                    ),
+                  ),
                 ),
               )
             : Container(),
@@ -86,25 +96,25 @@ class BettingControl extends StatelessWidget {
             children: <Widget>[
               Container(
                 decoration: BoxDecoration(
-                    color: provar.add_subtract == 0 ? Colors.red : Colors.white,
+                    color: Colors.white,
                     borderRadius: BorderRadius.all(Radius.circular(100))),
                 child: FlatButton(
                   child: Icon(
                     Icons.remove,
-                    color: provar.add_subtract == 0 ? Colors.white : Colors.red,
+                    color: Colors.red
                   ),
-                  onPressed: () => provar.addsub(0),
+                  onPressed: () => provar.addsub(1,context),
                 ),
               ),
               Container(
                 decoration: BoxDecoration(
-                    color: provar.add_subtract == 1 ? Colors.red : Colors.white,
+                    color:Colors.red,
                     borderRadius: BorderRadius.all(Radius.circular(100))),
                 child: FlatButton(
                   child: Icon(Icons.add,
                       color:
-                          provar.add_subtract == 1 ? Colors.white : Colors.red),
-                  onPressed: () => provar.addsub(1),
+                          Colors.white),
+                  onPressed: () => provar.addsub(0,context),
                 ),
                 // FlatButton(child: Icon(Icons.remove_circle,color: Colors.orange),onPressed: ()=>{}),
               )

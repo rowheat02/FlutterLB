@@ -51,7 +51,7 @@ class Betcontrol_right extends StatelessWidget {
                     Icons.remove,
                     color: provar.add_subtract == 0 ? Colors.white : Colors.red,
                   ),
-                  onPressed: () => provar.addsub(0),
+                  onPressed: () => provar.addsub(0,context),
                 ),
               ),
               Container(
@@ -62,7 +62,7 @@ class Betcontrol_right extends StatelessWidget {
                   child: Icon(Icons.add,
                       color:
                           provar.add_subtract == 1 ? Colors.white : Colors.red),
-                  onPressed: () => provar.addsub(1),
+                  onPressed: () => provar.addsub(1,context),
                 ),
                 // FlatButton(child: Icon(Icons.remove_circle,color: Colors.orange),onPressed: ()=>{}),
               )

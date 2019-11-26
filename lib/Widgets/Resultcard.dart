@@ -1,6 +1,7 @@
 import 'dart:ffi';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 // import 'package:langurb/Widgets/Result.dart';
 
 class Resultcard extends StatelessWidget {
@@ -16,11 +17,17 @@ class Resultcard extends StatelessWidget {
       child: Container(
         width: MediaQuery.of(context).size.width * 0.05,
         height: MediaQuery.of(context).size.width * 0.05,
-        color: Colors.yellow,
+        color: Colors.white.withOpacity(0.9),
         alignment: Alignment.center,
-        child: Image.asset("Jpg/$symbol.jpg",
-        fit: BoxFit.cover,
-        )
+        child: Container(
+                    margin: EdgeInsets.all(2),
+                    width: 90,
+                    height: 90,
+                    child: SvgPicture.asset(
+                      'Jpg/$symbol.svg',
+                      fit: BoxFit.contain,
+                    ),
+                  ),
         
         // Text(
         //   symbol.toString(),

@@ -17,6 +17,8 @@ class Providersdata with ChangeNotifier {
   var betdata = {1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0};
   var resultdata = {1: 1, 2: 2, 3: 3, 4: 4, 5: 5, 6: 1};
   var wonlost = 0;
+  var slidervalue=50.0;
+  // var sliderint=slidervalue.round();
 
   var active = null;
   int add_subtract = 1;
@@ -45,6 +47,12 @@ class Providersdata with ChangeNotifier {
   stop() async {
     played.stop();
     print("stop");
+  }
+  
+  setslidervalue(val){
+    slidervalue=val;
+    notifyListeners();
+
   }
 
   setwonlost() {
@@ -202,8 +210,24 @@ class Providersdata with ChangeNotifier {
     return betdata[id];
   }
 
-  addsub(int val) {
-    add_subtract = val;
+  addsub( val,context) async {
+    
+       if (active != null) {
+      betdata[active] = val==0? betdata[active] + slidervalue.round():betdata[active] - slidervalue.round();
+      await val==0? setBalancee2(slidervalue.round()):setBalancee1(slidervalue.round());
+      //  int Bls = await (prefs.getInt('Balance'))-val;
+      // await prefs.setInt('Balance', Bls);
+      // print("aaaaaadcccsc"+Bls.toString());
+      // notifyListeners();
+    } else {
+      Scaffold.of(context).showSnackBar(SnackBar(
+        content: Text(
+          "No symbols Selected",
+          textAlign: TextAlign.center,
+        ),
+        duration: Duration(milliseconds: 800),
+      ));
+    }
     notifyListeners();
   }
 
