@@ -84,7 +84,8 @@ class BettingControl extends StatelessWidget {
             // new Currencycard(id: 10),
             // new Currencycard(id: 50),
             // new Currencycard(id: 100),
-         CurrencySlider()
+         CurrencySlider(),
+         
           ],
         ),
 

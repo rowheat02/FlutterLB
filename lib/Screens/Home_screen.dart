@@ -29,16 +29,10 @@ class Home_screen extends StatelessWidget {
       child: Container(
         padding: EdgeInsets.only(top: 15),
         decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topLeft,
-            end: Alignment.bottomLeft,
-            stops: [.1, .9],
-            colors: [
-              //  Colors.black12,Colors.blueGrey,
-              Color.fromRGBO(12, 68, 158, 1), Color.fromRGBO(7, 34, 77, 1)
-            ], // whitish to gray
-          ),
-        ),
+            gradient: LinearGradient(
+                begin: Alignment.topRight,
+                end: Alignment.bottomLeft,
+                colors: [Colors.blue[900], Colors.lightBlue[900]])),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[

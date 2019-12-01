@@ -40,7 +40,7 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         title: 'Flutter Demo',
         theme: ThemeData(
-          fontFamily: 'mansalv',
+          fontFamily: 'jos',
         ),
         initialRoute: '/',
         routes: {
