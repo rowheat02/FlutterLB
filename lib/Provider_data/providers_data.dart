@@ -19,7 +19,7 @@ class Providersdata with ChangeNotifier {
   var wonlost = 0;
   var slidervalue=50.0;
   // var sliderint=slidervalue.round();
-
+  var animatedswitcherkey=1;
   var active = null;
   int add_subtract = 1;
   int btctrl_result = 0;
@@ -47,6 +47,10 @@ class Providersdata with ChangeNotifier {
   stop() async {
     played.stop();
     print("stop");
+  }
+  changeanimatedswitcherkey(a){
+    animatedswitcherkey=a;
+    notifyListeners();
   }
   
   setslidervalue(val){

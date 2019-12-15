@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:langurb/Screens/Home_screen.dart' as prefix0;
 import 'package:langurb/Screens/Initial_screnn.dart';
@@ -9,10 +8,14 @@ import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import './Provider_data/providers_data.dart';
 
+
 Future main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   await SystemChrome.setPreferredOrientations(
       [DeviceOrientation.landscapeLeft]);
   SystemChrome.setEnabledSystemUIOverlays([]);
+  // Admob.initialize("ca-app-pub-3940256099942544~3347511713");
+
 
   // SharedPreferences prefs = await SharedPreferences.getInstance();
   // int Balance = (prefs.getInt('Balance') ?? 1000);
