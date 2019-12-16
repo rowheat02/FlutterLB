@@ -9,7 +9,7 @@ class _AboutState extends State<About> {
   @override
   Widget build(BuildContext context) {
     return Container(
-        decoration: BoxDecoration(color: Colors.red),
+        decoration: BoxDecoration(color: Colors.transparent),
         height: MediaQuery.of(context).size.height * 0.98,
         width: 400,
         child: Text(

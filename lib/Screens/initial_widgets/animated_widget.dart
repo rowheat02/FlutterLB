@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:langurb/Screens/initial_widgets/About.dart';
+import 'package:langurb/Screens/initial_widgets/Instruction.dart';
 import 'package:langurb/Screens/initial_widgets/Money.dart';
 import 'package:langurb/Screens/test.dart';
 import 'package:provider/provider.dart';
@@ -32,6 +33,13 @@ class _animatedWidgetState extends State<animatedWidget> {
         setState(
           () {
             calledWidget = About();
+          },
+        );
+      }
+      else if (newNumber == 3) {
+        setState(
+          () {
+            calledWidget = Instruction();
           },
         );
       }

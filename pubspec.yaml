@@ -29,6 +29,7 @@ dependencies:
   flutter_svg:
   flutter_fluid_slider: ^1.0.2
   flutter_particles:
+  wave:
  
   
 

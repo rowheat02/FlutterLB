@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 // import 'package:langurb/Screens/Home_screen.dart';
 // import 'package:langurb/Screens/test.dart';
@@ -10,7 +9,7 @@ import '../Provider_data/providers_data.dart';
 class Initial extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-final provdat = Provider.of<Providersdata>(context, listen: true);
+    final provdat = Provider.of<Providersdata>(context, listen: true);
 
     return Scaffold(
       body: Container(
@@ -27,7 +26,6 @@ final provdat = Provider.of<Providersdata>(context, listen: true);
               15, // Number of Particles
               Colors.redAccent, // Color of Particles
             ),
-      
             Container(
               width: MediaQuery.of(context).size.width,
               height: MediaQuery.of(context).size.height,
@@ -72,13 +70,14 @@ final provdat = Provider.of<Providersdata>(context, listen: true);
                               color: Colors.red,
                               borderRadius:
                                   BorderRadius.all(Radius.circular(10)),
-                              boxShadow: [
-                                BoxShadow(
-                                  offset: Offset(4.0, 4.0),
-                                  color: Colors.grey.withOpacity(0.2),
-                                  blurRadius: 2.0,
-                                ),
-                              ]),
+                              // boxShadow: [
+                              //   BoxShadow(
+                              //     offset: Offset(4.0, 4.0),
+                              //     color: Colors.grey.withOpacity(0.2),
+                              //     blurRadius: 2.0,
+                              //   ),
+                              // ]
+                              ),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             crossAxisAlignment: CrossAxisAlignment.center,
@@ -101,31 +100,33 @@ final provdat = Provider.of<Providersdata>(context, listen: true);
                       InkWell(
                         onTap: () => provdat.changeanimatedswitcherkey(1),
                         child: Container(
-                          width: provdat.animatedswitcherkey==1?200: 150,
+                          width: 140,
                           height: 50,
                           padding: EdgeInsets.only(left: 2, right: 2),
                           decoration: BoxDecoration(
-                              color: Colors.red,
+                              // color: Colors.transparent,
                               borderRadius:
                                   BorderRadius.all(Radius.circular(10)),
-                              boxShadow: [
-                                BoxShadow(
-                                  offset: Offset(4.0, 4.0),
-                                  color: Colors.grey.withOpacity(0.2),
-                                  blurRadius: 2.0,
-                                ),
-                              ]),
+                                border: Border.all(width: 1,color: provdat.animatedswitcherkey==1?Colors.red: Colors.white)
+                              // boxShadow: [
+                              //   BoxShadow(
+                              //     offset: Offset(4.0, 4.0),
+                              //     color: Colors.red.withOpacity(0.2),
+                              //     blurRadius: 2.0,
+                              //   ),
+                              // ]
+                              ),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: <Widget>[
-                              Icon(
-                                Icons.attach_money,
-                                color: Colors.white,
-                                size: 30,
-                              ),
+                              // Icon(
+                              //   Icons.attach_money,
+                              //   color:provdat.animatedswitcherkey==1?Colors.red: Colors.white,
+                              //   size: 30,
+                              // ),
                               Text(
-                                "Money",
+                                "Balance",
                                 style: TextStyle(
                                     color: Colors.white.withOpacity(0.8),
                                     fontSize: 20),
@@ -135,35 +136,36 @@ final provdat = Provider.of<Providersdata>(context, listen: true);
                         ),
                       ),
                       InkWell(
-                        onTap: () =>  provdat.changeanimatedswitcherkey(2),
+                        onTap: () => provdat.changeanimatedswitcherkey(2),
                         child: Container(
-                          width: provdat.animatedswitcherkey==2?200: 150,
+                          width: 140,
                           height: 50,
                           padding: EdgeInsets.only(left: 10, right: 8),
                           decoration: BoxDecoration(
-                              color: Colors.red,
+                              // color: Colors.red,
                               borderRadius:
                                   BorderRadius.all(Radius.circular(10)),
+                              border: Border.all(width: 1,color:provdat.animatedswitcherkey==2?Colors.red: Colors.white),
                               boxShadow: [
-                                BoxShadow(
-                                  offset: Offset(4.0, 4.0),
-                                  color: Colors.grey.withOpacity(0.2),
-                                  blurRadius: 2.0,
-                                ),
+                                // BoxShadow(
+                                //   offset: Offset(4.0, 4.0),
+                                //   color: Colors.red.withOpacity(0.2),
+                                //   blurRadius: 2.0,
+                                // ),
                               ]),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: <Widget>[
-                              Icon(
-                                Icons.person,
-                                color: Colors.white,
-                                size: 30,
-                              ),
+                              // Icon(
+                              //   Icons.person,
+                              //   color: provdat.animatedswitcherkey==2?Colors.red: Colors.white,
+                              //   size: 30,
+                              // ),
                               Text(
                                 "About",
                                 style: TextStyle(
-                                    color: Colors.white.withOpacity(0.8),
+                                    color: Colors.white,
                                     fontSize: 20),
                               )
                             ],
@@ -171,31 +173,33 @@ final provdat = Provider.of<Providersdata>(context, listen: true);
                         ),
                       ),
                       InkWell(
-                        onTap: () => Navigator.pushNamed(context, '/play'),
+                        onTap: () =>provdat.changeanimatedswitcherkey(3) ,
                         child: Container(
-                          width: 150,
+                          width: 140,
                           height: 50,
                           padding: EdgeInsets.only(left: 10, right: 8),
                           decoration: BoxDecoration(
-                              color: Colors.red,
+                              // color: Colors.red,
                               borderRadius:
                                   BorderRadius.all(Radius.circular(10)),
+                              
+                              border: Border.all(width: 1,color:provdat.animatedswitcherkey==3?Colors.red: Colors.white),
                               boxShadow: [
-                                BoxShadow(
-                                  offset: Offset(4.0, 4.0),
-                                  color: Colors.grey.withOpacity(0.2),
-                                  blurRadius: 2.0,
-                                ),
+                                // BoxShadow(
+                                //   offset: Offset(4.0, 4.0),
+                                //   color: Colors.red.withOpacity(0.2),
+                                //   blurRadius: 2.0,
+                                // ),
                               ]),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: <Widget>[
-                              Icon(
-                                Icons.person,
-                                color: Colors.white,
-                                size: 30,
-                              ),
+                              // Icon(
+                              //   Icons.help_outline,
+                              //   color:provdat.animatedswitcherkey==3?Colors.red: Colors.white,
+                              //   size: 25,
+                              // ),
                               Text(
                                 "Instruction",
                                 style: TextStyle(
