@@ -7,6 +7,8 @@ import './Screens//Home_screen.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import './Provider_data/providers_data.dart';
+// import 'package:admob_flutter/admob_flutter.dart';
+import 'package:firebase_admob/firebase_admob.dart';
 
 
 Future main() async {
@@ -29,8 +31,41 @@ Future main() async {
   });
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   // This widget is the root of your application.
+
+  @override
+  _MyAppState createState() => _MyAppState();
+}
+
+
+class _MyAppState extends State<MyApp> {
+  static const MobileAdTargetingInfo targetinginfo=MobileAdTargetingInfo(
+    // testDevices:["869906033918754"] ,
+    
+
+
+  );
+  BannerAd _bannerAd;
+  BannerAd createbannerad(){
+    return BannerAd(adUnitId: BannerAd.testAdUnitId,size: AdSize.banner ,targetingInfo: targetinginfo,);
+  }
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    FirebaseAdMob.instance.initialize(
+      appId: BannerAd.testAdUnitId
+    );
+    _bannerAd=createbannerad()..load()..show();
+
+  }
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    _bannerAd.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {

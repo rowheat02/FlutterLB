@@ -10,7 +10,7 @@ class _MoneyState extends State<Money> {
   Widget build(BuildContext context) {
     return Container(
         decoration: BoxDecoration(color: Colors.transparent),
-        height: MediaQuery.of(context).size.height * 0.98,
+        height: MediaQuery.of(context).size.height * 0.90,
         width: 400,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,

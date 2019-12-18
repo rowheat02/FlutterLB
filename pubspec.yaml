@@ -29,7 +29,9 @@ dependencies:
   flutter_svg:
   flutter_fluid_slider: ^1.0.2
   flutter_particles:
-  wave:
+  font_awesome_flutter:
+  firebase_admob: ^0.5.5
+  
  
   
 

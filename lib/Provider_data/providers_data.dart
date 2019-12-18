@@ -17,9 +17,9 @@ class Providersdata with ChangeNotifier {
   var betdata = {1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0};
   var resultdata = {1: 1, 2: 2, 3: 3, 4: 4, 5: 5, 6: 1};
   var wonlost = 0;
-  var slidervalue=50.0;
+  var slidervalue=15.0;
   // var sliderint=slidervalue.round();
-  var animatedswitcherkey=1;
+  var animatedswitcherkey=2;
   var active = null;
   int add_subtract = 1;
   int btctrl_result = 0;

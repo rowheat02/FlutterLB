@@ -50,14 +50,15 @@ class _animatedWidgetState extends State<animatedWidget> {
     return Column(
       children: <Widget>[
         AnimatedSwitcher(
-          duration: Duration(milliseconds: 600),
+          duration: Duration(milliseconds: 500),
           child: calledWidget,
           transitionBuilder: (Widget child, Animation<double> animation) {
             final offsetAnimation =
-                Tween<Offset>(begin: Offset(-5, 0.0), end: Offset(0.1,0.0))
+                Tween<Offset>(begin: Offset(-5, 0.0), end: Offset(0.0,0.0))
                     .animate(animation);
             // return RotationTransition(child: child, turns: animation);
             return SlideTransition(
+              
               child: child,
               position: offsetAnimation,
             );
