@@ -31,6 +31,8 @@ dependencies:
   flutter_particles:
   font_awesome_flutter:
   firebase_admob: ^0.5.5
+  flushbar: 1.9.1
+  webview_flutter: 
   
  
   

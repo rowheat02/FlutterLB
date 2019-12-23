@@ -55,10 +55,10 @@ class Home_screen extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: <Widget>[
                       Container(
-                        padding: EdgeInsets.all(10),
+                        padding: EdgeInsets.all(3),
                         margin: EdgeInsets.only(bottom: 10),
-                        width: MediaQuery.of(context).size.width * 0.065,
-                        height: MediaQuery.of(context).size.width * 0.065,
+                        width: MediaQuery.of(context).size.width * 0.045,
+                        height: MediaQuery.of(context).size.width * 0.045,
                         decoration: BoxDecoration(
                           color: Colors.white,
                           borderRadius: new BorderRadius.only(
@@ -79,28 +79,7 @@ class Home_screen extends StatelessWidget {
                               ),
                         ),
                       ),
-                      Container(
-                        padding: EdgeInsets.all(10),
-                        margin: EdgeInsets.only(bottom: 10),
-                        width: MediaQuery.of(context).size.width * 0.065,
-                        height: MediaQuery.of(context).size.width * 0.065,
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: new BorderRadius.only(
-                              bottomRight: Radius.circular(15),
-                              topLeft: Radius.circular(15)),
-                        ),
-                        child: FittedBox(
-                            fit: BoxFit.scaleDown,
-                            child: Image.asset("Jpg/currency.png")
-                            // Text(
-                            //   "HOME",
-                            //   style: TextStyle(
-                            //     color: Colors.black,
-                            //   ),
-                            // )
-                            ),
-                      ),
+                     
                     ],
                   ),
                 ),

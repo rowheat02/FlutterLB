@@ -4,8 +4,6 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 
 class Symbolcard extends StatelessWidget {
-
-  
   final int id;
   Symbolcard(this.id);
   @override
@@ -13,7 +11,6 @@ class Symbolcard extends StatelessWidget {
     var Provid = Provider.of<Providersdata>(context);
     var valuetoshow = Provid.getbetvalue(id);
     var b = Provid.Balance;
-    
 
     return
         // Text("From Symbolcard $id");
@@ -21,13 +18,11 @@ class Symbolcard extends StatelessWidget {
       onTap: () => Provid.setactive(id),
       child: Container(
           decoration: BoxDecoration(
-          color: Provid.active == id
-                                  ? Colors.white
-                                  : Colors.amber[300],
+            color: Provid.active == id ? Colors.white : Colors.amber[300],
 
-              // border: new Border.all(color:id==Provid.active? Colors.green:Colors.white70, width: 1),
-              borderRadius: BorderRadius.all(Radius.circular(12)),
-              ),
+            // border: new Border.all(color:id==Provid.active? Colors.green:Colors.white70, width: 1),
+            borderRadius: BorderRadius.all(Radius.circular(12)),
+          ),
           margin: new EdgeInsets.only(right: 0, bottom: 0, left: 6, top: 0),
           // width: MediaQuery.of(context).size.width * 0.2,
           // height: MediaQuery.of(context).size.height * 0.4,
@@ -66,14 +61,24 @@ class Symbolcard extends StatelessWidget {
                       //         : Colors.white.withOpacity(1),
                       //     borderRadius: BorderRadius.circular(12)),
                       child: FittedBox(
-                        child: Text("Betting: RS $valuetoshow",
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              // fontFamily: 'jos',
-                              color: Provid.active == id
-                                  ? Colors.green
-                                  : Colors.red,
-                            )),
+                        child: AnimatedSwitcher(
+                        duration: const Duration(milliseconds: 500),
+                        transitionBuilder:(Widget child, Animation<double> animation) {
+                          return ScaleTransition(
+                              child: child, scale: animation);
+                        },
+                        
+                  
+                          child: Text("RS $valuetoshow",
+                          key: ValueKey<int>(valuetoshow),
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                // fontFamily: 'jos',
+                                color: Provid.active == id
+                                    ? Colors.red
+                                    : Colors.red,
+                              )),
+                        ),
                       ))
                 ],
               ),

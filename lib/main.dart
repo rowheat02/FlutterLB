@@ -1,7 +1,9 @@
 import 'dart:async';
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:langurb/Screens/Home_screen.dart' as prefix0;
 import 'package:langurb/Screens/Initial_screnn.dart';
+import 'package:langurb/Screens/Licence.dart';
 import 'package:langurb/Screens/test.dart';
 import './Screens//Home_screen.dart';
 import 'package:flutter/services.dart';
@@ -40,19 +42,42 @@ class MyApp extends StatefulWidget {
 
 
 class _MyAppState extends State<MyApp> {
+
+  double getSmartBannerHeight(MediaQueryData mediaQuery) {
+  // https://developers.google.com/admob/android/banner#smart_banners
+  if (Platform.isAndroid) {
+    if (mediaQuery.size.height > 720) return 90.0;
+    if (mediaQuery.size.height > 400) return 50.0;
+    return 32.0;
+  }
+  // https://developers.google.com/admob/ios/banner#smart_banners
+  // Smart Banners on iPhones have a height of 50 points in portrait and 32 points in landscape.
+  // On iPads, height is 90 points in both portrait and landscape.
+  if (Platform.isIOS) {
+    // TODO use https://pub.dartlang.org/packages/device_info to detect iPhone/iPad?
+    // if (iPad) return 90.0;
+    if (mediaQuery.orientation == Orientation.portrait) return 50.0;
+    return 32.0;
+  }
+  // No idea, just return a common value.
+  return 50.0;
+}
+
+
   static const MobileAdTargetingInfo targetinginfo=MobileAdTargetingInfo(
     // testDevices:["869906033918754"] ,
     
 
 
   );
+
   BannerAd _bannerAd;
   BannerAd createbannerad(){
-    return BannerAd(adUnitId: BannerAd.testAdUnitId,size: AdSize.banner ,targetingInfo: targetinginfo,);
+    return BannerAd(adUnitId: BannerAd.testAdUnitId,size: AdSize.smartBanner ,targetingInfo: targetinginfo,);
   }
   @override
   void initState() {
-    // TODO: implement initState
+    
     super.initState();
     FirebaseAdMob.instance.initialize(
       appId: BannerAd.testAdUnitId
@@ -62,7 +87,7 @@ class _MyAppState extends State<MyApp> {
   }
   @override
   void dispose() {
-    // TODO: implement dispose
+    
     super.dispose();
     _bannerAd.dispose();
   }
@@ -84,8 +109,11 @@ class _MyAppState extends State<MyApp> {
         routes: {
           '/': (ctx) => Initial(),
           '/play': (ctx) => Home_screen(),
-          '/test': (ctx) => Test()
+          '/test': (ctx) => Test(),
+          '/licence': (ctx) => Licence()
+
         },
+        
       ),
     );
   }

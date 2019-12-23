@@ -1,5 +1,7 @@
 import 'dart:async';
+import 'dart:developer';
 import 'dart:math';
+import 'package:flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../Functions/Allfunc.dart';
@@ -17,9 +19,9 @@ class Providersdata with ChangeNotifier {
   var betdata = {1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0};
   var resultdata = {1: 1, 2: 2, 3: 3, 4: 4, 5: 5, 6: 1};
   var wonlost = 0;
-  var slidervalue=15.0;
+  var slidervalue = 15.0;
   // var sliderint=slidervalue.round();
-  var animatedswitcherkey=2;
+  var animatedswitcherkey = 2;
   var active = null;
   int add_subtract = 1;
   int btctrl_result = 0;
@@ -41,22 +43,21 @@ class Providersdata with ChangeNotifier {
 
   play() async {
     played = await player.play('Dice1.mp3');
-  
   }
 
   stop() async {
     played.stop();
     print("stop");
   }
-  changeanimatedswitcherkey(a){
-    animatedswitcherkey=a;
+
+  changeanimatedswitcherkey(a) {
+    animatedswitcherkey = a;
     notifyListeners();
   }
-  
-  setslidervalue(val){
-    slidervalue=val;
-    notifyListeners();
 
+  setslidervalue(val) {
+    slidervalue = val;
+    notifyListeners();
   }
 
   setwonlost() {
@@ -214,25 +215,46 @@ class Providersdata with ChangeNotifier {
     return betdata[id];
   }
 
-  addsub( val,context) async {
-    
-       if (active != null) {
-      betdata[active] = val==0? betdata[active] + slidervalue.round():betdata[active] - slidervalue.round();
-      await val==0? setBalancee2(slidervalue.round()):setBalancee1(slidervalue.round());
+  addsub(val, context) async {
+    if (active != null) {
+      betdata[active] = val == 0
+          ? betdata[active] + slidervalue.round()
+          : betdata[active] - slidervalue.round();
+      await val == 0
+          ? setBalancee2(slidervalue.round())
+          : setBalancee1(slidervalue.round());
       //  int Bls = await (prefs.getInt('Balance'))-val;
       // await prefs.setInt('Balance', Bls);
       // print("aaaaaadcccsc"+Bls.toString());
       // notifyListeners();
     } else {
-      Scaffold.of(context).showSnackBar(SnackBar(
-        content: Text(
-          "No symbols Selected",
-          textAlign: TextAlign.center,
-        ),
-        duration: Duration(milliseconds: 800),
-      ));
+      Flushbar(
+        flushbarPosition: FlushbarPosition.TOP,
+        // title:  "No symbols Selected",
+        forwardAnimationCurve: Curves.fastLinearToSlowEaseIn,
+        messageText: new Text("No symbols Selected",textAlign: TextAlign.center,style: TextStyle(color: Colors.white),),
+        duration: Duration(milliseconds: 1000),
+        // overlayColor:Colors.red,
+        borderColor:Colors.white,
+        // borderRadius: 50,
+        // backgroundColor:Colors.black,
+        flushbarStyle: FlushbarStyle.GROUNDED,
+        boxShadows:[BoxShadow(color:Colors.white )]
+        
+      )..show(context);
+     
+
+      // Scaffold.of(context).showSnackBar(SnackBar(
+      //   content: Text(
+      //     "No symbols Selected",
+      //     textAlign: TextAlign.center,
+      //   ),
+      //   duration: Duration(milliseconds: 800),
+
+      // ));
     }
     notifyListeners();
+    //  debugger();
   }
 
   increaseval(val, context) async {
