@@ -1,5 +1,8 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:webview_flutter/webview_flutter.dart';
 // import 'package:webview_flutter/webview_flutter.dart';
 
 class About extends StatefulWidget {
@@ -9,6 +12,8 @@ class About extends StatefulWidget {
 
 class _AboutState extends State<About> {
   var selected = true;
+  final Completer<WebViewController> _controller =
+      Completer<WebViewController>();
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -20,14 +25,19 @@ class _AboutState extends State<About> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             AnimatedContainer(
-              width: 400,
-              height: selected ? 250 : 0,
+              margin: EdgeInsets.all(0),
+              padding:EdgeInsets.all(0) ,
+              
+              width: 370,
+              height: selected ? 220 : 0,
               color: Colors.transparent,
               alignment:
-                  selected ? Alignment.center : AlignmentDirectional.topCenter,
+                  selected ? Alignment.topCenter : AlignmentDirectional.topCenter,
               duration: Duration(seconds: 1),
               curve: Curves.fastOutSlowIn,
               child: SingleChildScrollView(
+                // reverse: true,
+                padding: EdgeInsets.all(0),
                 scrollDirection: Axis.vertical,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
@@ -76,7 +86,7 @@ class _AboutState extends State<About> {
                       ],
                     ),
                     SizedBox(
-                      height: 10,
+                      height: 5,
                     ),
                     Text("Developed In:",
                         style: TextStyle(color: Colors.white)),
@@ -101,7 +111,7 @@ class _AboutState extends State<About> {
                       ],
                     ),
                     SizedBox(
-                      height: 10,
+                      height: 5,
                     ),
                     Text("Special Thanks:",
                         style: TextStyle(color: Colors.white)),
@@ -208,7 +218,7 @@ class _AboutState extends State<About> {
                       ),
                     ),
                     SizedBox(
-                      height: 35,
+                      height: 15,
                     ),
                   ],
                 ),
@@ -216,14 +226,16 @@ class _AboutState extends State<About> {
             ),
             // Animatedcont(),
             Container(
-              child: Row(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   InkWell(
                       onTap: () {
-                        // setState(() {
-                        //   selected = !selected;
-                        // });
-                       Navigator.pushNamed(context, '/licence');
+                        setState(() {
+                          selected = !selected;
+                        });
+                        //  Navigator.pushNamed(context, '/licence');
                       },
                       child: Container(
                         height: 50,
@@ -238,10 +250,36 @@ class _AboutState extends State<About> {
                           ),
                         ),
                       )),
-                  //  WebView(
-                  //   initialUrl: 'https://flutter.io',
-                  //   javascriptMode: JavascriptMode.unrestricted,
-                  // )
+               
+               
+                
+                 Opacity(
+                   opacity: selected?0:1,
+                                    child: AnimatedContainer(
+                     duration: Duration(milliseconds: selected ?500:1200),
+                        padding: EdgeInsets.only(top: 5),
+                        width: !selected ? 370 : 20,
+                        height: !selected ? 240 : 20,
+                        color: Colors.transparent,
+                        
+                        
+                        // duration: Duration(seconds: 1),
+                        // curve: Curves.fastOutSlowIn,
+                        
+                        
+                              // padding: EdgeInsets.only(bottom: 30),
+                              child: WebView(
+                                
+                                initialUrl: 'https://google.com',
+                                javascriptMode: JavascriptMode.unrestricted,
+                                // onWebViewCreated:
+                                //     (WebViewController webViewController) {
+                                //   _controller.complete(webViewController);
+                                // },
+                              )),
+                 ),
+                      
+               
                 ],
               ),
             ),

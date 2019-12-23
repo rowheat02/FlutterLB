@@ -73,7 +73,7 @@ class _MyAppState extends State<MyApp> {
 
   BannerAd _bannerAd;
   BannerAd createbannerad(){
-    return BannerAd(adUnitId: BannerAd.testAdUnitId,size: AdSize.smartBanner ,targetingInfo: targetinginfo,);
+    return BannerAd(adUnitId: BannerAd.testAdUnitId,size: AdSize.banner ,targetingInfo: targetinginfo,);
   }
   @override
   void initState() {
