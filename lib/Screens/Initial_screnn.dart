@@ -1,3 +1,4 @@
+import 'package:firebase_admob/firebase_admob.dart';
 import 'package:flutter/material.dart';
 // import 'package:langurb/Screens/Home_screen.dart';
 // import 'package:langurb/Screens/test.dart';
@@ -7,7 +8,38 @@ import 'package:provider/provider.dart';
 import '../Provider_data/providers_data.dart';
 // import 'package:admob_flutter/admob_flutter.dart';
 
-class Initial extends StatelessWidget {
+class Initial extends StatefulWidget {
+  @override
+  _InitialState createState() => _InitialState();
+}
+
+class _InitialState extends State<Initial> {
+  static const MobileAdTargetingInfo targetinginfo = MobileAdTargetingInfo(
+      // testDevices:["869906033918754"] ,
+
+      );
+  InterstitialAd myInterstitial = InterstitialAd(
+    adUnitId: InterstitialAd.testAdUnitId,
+    targetingInfo: targetinginfo,
+    listener: (MobileAdEvent event) {
+      print("InterstitialAd event is $event");
+    },
+  );
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+
+// myInterstitial
+//   ..load()
+//   ..show(
+//     anchorType: AnchorType.bottom,
+//     anchorOffset: 0.0,
+//     // horizontalCenterOffset: 0.0,
+//   );
+  }
+
   @override
   Widget build(BuildContext context) {
     final provdat = Provider.of<Providersdata>(context, listen: true);
@@ -32,19 +64,17 @@ class Initial extends StatelessWidget {
 //   adSize: AdmobBannerSize.BANNER,
 // ),
 
-
             Container(
               width: MediaQuery.of(context).size.width,
               height: MediaQuery.of(context).size.height,
               // color: Colors.o,
-              
+
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
-                  
                   Container(
                     height: MediaQuery.of(context).size.height,
-                    padding: EdgeInsets.only(left: 20,top: 30),
+                    padding: EdgeInsets.only(left: 20, top: 30),
                     // child: Column(
                     //   mainAxisAlignment: MainAxisAlignment.center,
                     //   crossAxisAlignment: CrossAxisAlignment.center,
@@ -79,17 +109,17 @@ class Initial extends StatelessWidget {
                             height: 50,
                             padding: EdgeInsets.only(left: 10, right: 18),
                             decoration: BoxDecoration(
-                                color: Colors.red,
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(10)),
-                                // boxShadow: [
-                                //   BoxShadow(
-                                //     offset: Offset(4.0, 4.0),
-                                //     color: Colors.grey.withOpacity(0.2),
-                                //     blurRadius: 2.0,
-                                //   ),
-                                // ]
-                                ),
+                              color: Colors.red,
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(10)),
+                              // boxShadow: [
+                              //   BoxShadow(
+                              //     offset: Offset(4.0, 4.0),
+                              //     color: Colors.grey.withOpacity(0.2),
+                              //     blurRadius: 2.0,
+                              //   ),
+                              // ]
+                            ),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               crossAxisAlignment: CrossAxisAlignment.center,
@@ -110,7 +140,17 @@ class Initial extends StatelessWidget {
                           ),
                         ),
                         InkWell(
-                          onTap: () => provdat.changeanimatedswitcherkey(1),
+                          onTap: () => {
+                            provdat.changeanimatedswitcherkey(1),
+                            myInterstitial
+                              ..load()
+                              ..show(
+                                anchorType: AnchorType.bottom,
+                                anchorOffset: 0.0,
+                                // horizontalCenterOffset: 0.0,
+                              ),
+                              myInterstitial.dispose()
+                          },
                           child: Container(
                             width: 140,
                             height: 50,
@@ -119,7 +159,11 @@ class Initial extends StatelessWidget {
                                 // color: Colors.transparent,
                                 borderRadius:
                                     BorderRadius.all(Radius.circular(10)),
-                                  border: Border.all(width: 1,color: provdat.animatedswitcherkey==1?Colors.red: Colors.white)
+                                border: Border.all(
+                                    width: 1,
+                                    color: provdat.animatedswitcherkey == 1
+                                        ? Colors.red
+                                        : Colors.white)
                                 // boxShadow: [
                                 //   BoxShadow(
                                 //     offset: Offset(4.0, 4.0),
@@ -148,7 +192,16 @@ class Initial extends StatelessWidget {
                           ),
                         ),
                         InkWell(
-                          onTap: () => provdat.changeanimatedswitcherkey(2),
+                          onTap: () => {provdat.changeanimatedswitcherkey(2),
+                          myInterstitial
+                              ..load()
+                              ..show(
+                                anchorType: AnchorType.bottom,
+                                anchorOffset: 0.0,
+                                // horizontalCenterOffset: 0.0,
+                              ),
+                              myInterstitial.dispose()
+                          },
                           child: Container(
                             width: 140,
                             height: 50,
@@ -157,7 +210,11 @@ class Initial extends StatelessWidget {
                                 // color: Colors.red,
                                 borderRadius:
                                     BorderRadius.all(Radius.circular(10)),
-                                border: Border.all(width: 1,color:provdat.animatedswitcherkey==2?Colors.red: Colors.white),
+                                border: Border.all(
+                                    width: 1,
+                                    color: provdat.animatedswitcherkey == 2
+                                        ? Colors.red
+                                        : Colors.white),
                                 boxShadow: [
                                   // BoxShadow(
                                   //   offset: Offset(4.0, 4.0),
@@ -177,15 +234,23 @@ class Initial extends StatelessWidget {
                                 Text(
                                   "About",
                                   style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 20),
+                                      color: Colors.white, fontSize: 20),
                                 )
                               ],
                             ),
                           ),
                         ),
                         InkWell(
-                          onTap: () =>provdat.changeanimatedswitcherkey(3) ,
+                          onTap: () => {provdat.changeanimatedswitcherkey(3),
+                          myInterstitial
+                              ..load()
+                              ..show(
+                                anchorType: AnchorType.bottom,
+                                anchorOffset: 0.0,
+                                // horizontalCenterOffset: 0.0,
+                              ),
+                              myInterstitial.dispose()
+                          },
                           child: Container(
                             width: 140,
                             height: 50,
@@ -194,8 +259,11 @@ class Initial extends StatelessWidget {
                                 // color: Colors.red,
                                 borderRadius:
                                     BorderRadius.all(Radius.circular(10)),
-                                
-                                border: Border.all(width: 1,color:provdat.animatedswitcherkey==3?Colors.red: Colors.white),
+                                border: Border.all(
+                                    width: 1,
+                                    color: provdat.animatedswitcherkey == 3
+                                        ? Colors.red
+                                        : Colors.white),
                                 boxShadow: [
                                   // BoxShadow(
                                   //   offset: Offset(4.0, 4.0),

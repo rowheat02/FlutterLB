@@ -12,6 +12,9 @@ class About extends StatefulWidget {
 
 class _AboutState extends State<About> {
   var selected = true;
+  var licence = false;
+  var webwidth = 310.0;
+  var webheight = 220.0;
   final Completer<WebViewController> _controller =
       Completer<WebViewController>();
   @override
@@ -25,15 +28,20 @@ class _AboutState extends State<About> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             AnimatedContainer(
+              // onEnd: ()=>setState(() {
+              //   licence=!licence;
+              // }),
+
               margin: EdgeInsets.all(0),
-              padding:EdgeInsets.all(0) ,
-              
+              padding: EdgeInsets.all(0),
+
               width: 370,
               height: selected ? 220 : 0,
               color: Colors.transparent,
-              alignment:
-                  selected ? Alignment.topCenter : AlignmentDirectional.topCenter,
-              duration: Duration(seconds: 1),
+              alignment: selected
+                  ? Alignment.topCenter
+                  : AlignmentDirectional.topCenter,
+              duration: Duration(milliseconds:300),
               curve: Curves.fastOutSlowIn,
               child: SingleChildScrollView(
                 // reverse: true,
@@ -232,9 +240,40 @@ class _AboutState extends State<About> {
                 children: <Widget>[
                   InkWell(
                       onTap: () {
-                        setState(() {
-                          selected = !selected;
-                        });
+                       
+                        setState(
+                          () {
+                            selected = !selected;
+                            // licence = !licence;
+                            if(licence){
+                             licence=false;
+                             
+                            }
+                            else{
+                                Timer(Duration(seconds: 1), ()=>setState(() {
+                                licence=true;
+                              }));
+                            }
+                          
+                            // if (webheight == 10.0 && webwidth == 10.0) {
+                            //   Timer(Duration(milliseconds: 1000), () {
+                            //     setState(() {
+                            //       webwidth = 350.0;
+                            //     webheight = 220.0;
+                            //     });
+                                
+                            //   });
+                            // } else {
+                            //   setState(() {
+                            //   webwidth = 10.0;
+                            //   webheight = 10.0;
+                                
+                            //   });
+                            
+                            // }
+                          
+                          },
+                        );
                         //  Navigator.pushNamed(context, '/licence');
                       },
                       child: Container(
@@ -250,36 +289,26 @@ class _AboutState extends State<About> {
                           ),
                         ),
                       )),
-               
-               
-                
-                 Opacity(
-                   opacity: selected?0:1,
-                                    child: AnimatedContainer(
-                     duration: Duration(milliseconds: selected ?500:1200),
+                  licence?Container(
+                        //  duration: Duration(milliseconds: selected ?500:1200),
                         padding: EdgeInsets.only(top: 5),
-                        width: !selected ? 370 : 20,
-                        height: !selected ? 240 : 20,
+                        width: webwidth,
+                        height: webheight,
                         color: Colors.transparent,
-                        
-                        
+
                         // duration: Duration(seconds: 1),
                         // curve: Curves.fastOutSlowIn,
-                        
-                        
-                              // padding: EdgeInsets.only(bottom: 30),
-                              child: WebView(
-                                
-                                initialUrl: 'https://google.com',
-                                javascriptMode: JavascriptMode.unrestricted,
-                                // onWebViewCreated:
-                                //     (WebViewController webViewController) {
-                                //   _controller.complete(webViewController);
-                                // },
-                              )),
-                 ),
-                      
-               
+
+                        // padding: EdgeInsets.only(bottom: 30),
+                        child: WebView(
+                          initialUrl: 'https://rowheat02.github.io/AppPrivacyPolicy/',
+                          javascriptMode: JavascriptMode.unrestricted,
+                          // onWebViewCreated:
+                          //     (WebViewController webViewController) {
+                          //   _controller.complete(webViewController);
+                          // },
+                        )):Container(),
+                  
                 ],
               ),
             ),

@@ -17,7 +17,7 @@ import 'package:audioplayers/audioplayers.dart';
 
 class Providersdata with ChangeNotifier {
   var betdata = {1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0};
-  var resultdata = {1: 1, 2: 2, 3: 3, 4: 4, 5: 5, 6: 1};
+  var resultdata = {1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0};
   var wonlost = 0;
   var slidervalue = 15.0;
   // var sliderint=slidervalue.round();
@@ -32,7 +32,7 @@ class Providersdata with ChangeNotifier {
   var n5 = 0;
   var n6 = 0;
   var n7 = 0;
-  var won = false;
+  var won = 0;
   var nonzero_bet = [];
   AudioPlayer played;
   // var minbet=true;
@@ -72,22 +72,51 @@ class Providersdata with ChangeNotifier {
         nonzero_bet.add(i);
         bet = bet + betdata[i];
       }
+   
       result.add(resultdata[i]);
+    print("aloo"+result.toString());
+
     }
-    print("a");
 
     for (var e in nonzero_bet) {
       rcount = result.where((c) => c == e).toList().length;
       print("ccoo" + rcount.toString());
       if (rcount > 1) {
         wonlost = wonlost + betdata[e] * rcount;
-        setBalancee1(wonlost);
-        won = true;
+        won = 1;
       }
+      else{
+        wonlost=wonlost-betdata[e];
+      }
+           
     }
-    if (wonlost == 0) {
-      wonlost = bet;
+    if(wonlost<0){
+      wonlost=-wonlost;
+      won=0;
     }
+    else if(wonlost>0){
+    setBalancee1(wonlost);
+
+    }
+    else if(wonlost==0){
+      won=2;
+      
+    }
+
+
+    
+    // if (wonlost == 0&&won!=true) {
+    //   wonlost = bet;
+    // }
+    // else if(wonlost==0){
+    //   won =false;
+    // }
+   
+
+  }
+  setwonlost1(){
+     
+
   }
 
   setBalance(int val) {
@@ -182,7 +211,7 @@ class Providersdata with ChangeNotifier {
     if (btctrl_result == 1) {
       print('1aayo');
       wonlost = 0;
-      won = false;
+      won = 0;
       nonzero_bet = [];
       // minbet=false;
 
