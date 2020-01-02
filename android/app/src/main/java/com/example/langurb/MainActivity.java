@@ -1,4 +1,4 @@
-package com.example.langurb;
+package com.khorkhore.lb;
 
 import android.os.Bundle;
 import io.flutter.app.FlutterActivity;

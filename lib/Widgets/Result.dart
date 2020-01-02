@@ -31,8 +31,8 @@ class Result extends StatelessWidget {
                 padding: const EdgeInsets.only(left: 5, top: 5),
                 child: Row(
                   children: <Widget>[
-                    Text("Balance: RS ", style: TextStyle(color: Colors.red[300])),
-                    Text("$balance ",
+                    Text("Balance:", style: TextStyle(color: Colors.red[300])),
+                    Text(" RS $balance ",
                         style: TextStyle(color: Colors.white)),
                   ],
                 ),

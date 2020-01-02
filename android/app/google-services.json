@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "726629191827",
+    "firebase_url": "https://khorkhorefirebase.firebaseio.com",
+    "project_id": "khorkhorefirebase",
+    "storage_bucket": "khorkhorefirebase.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:726629191827:android:368d8748fab55dee997d66",
+        "android_client_info": {
+          "package_name": "com.khorkhore.lb"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "726629191827-oohf5odh8rm8lbjavdmfks244ubun3bb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDR_rpq4HBKfJvz1VLKBamkc5GoaA3Xm2U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "726629191827-oohf5odh8rm8lbjavdmfks244ubun3bb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

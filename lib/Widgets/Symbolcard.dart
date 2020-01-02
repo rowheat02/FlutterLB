@@ -15,7 +15,9 @@ class Symbolcard extends StatelessWidget {
     return
         // Text("From Symbolcard $id");
         InkWell(
-      onTap: () => Provid.setactive(id),
+      onTap: () => {
+        Provid.btctrl_result == 0 &&Provid.setactive(id)
+      },
       child: Container(
           decoration: BoxDecoration(
             color: Provid.active == id ? Colors.white : Colors.amber[300],

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:langurb/Screens/initial_widgets/About.dart';
+import 'package:langurb/Screens/initial_widgets/Brand.dart';
 import 'package:langurb/Screens/initial_widgets/Instruction.dart';
 import 'package:langurb/Screens/initial_widgets/Money.dart';
 import 'package:langurb/Screens/test.dart';
@@ -23,7 +24,14 @@ class _animatedWidgetState extends State<animatedWidget> {
     final provdat = Provider.of<Providersdata>(context, listen: true);
 
     void switchPage(int newNumber) {
-      if (newNumber == 1) {
+       if (newNumber == 0) {
+        setState(
+          () {
+            calledWidget = Brand();
+          },
+        );
+      }
+      else if (newNumber == 1) {
         setState(
           () {
             calledWidget = Money();

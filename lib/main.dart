@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:langurb/Screens/Home_screen.dart' as prefix0;
 import 'package:langurb/Screens/Initial_screnn.dart';
 import 'package:langurb/Screens/Licence.dart';
 import 'package:langurb/Screens/test.dart';
@@ -67,22 +66,24 @@ class _MyAppState extends State<MyApp> {
   static const MobileAdTargetingInfo targetinginfo=MobileAdTargetingInfo(
     // testDevices:["869906033918754"] ,
     
+    
 
 
   );
+  // "ca-app-pub-8724566557762547/8623211779"
 
   BannerAd _bannerAd;
   BannerAd createbannerad(){
-    return BannerAd(adUnitId: BannerAd.testAdUnitId,size: AdSize.banner ,targetingInfo: targetinginfo,);
+    return BannerAd(adUnitId:BannerAd.testAdUnitId ,size: AdSize.banner ,targetingInfo: targetinginfo,);
   }
   @override
   void initState() {
     
     super.initState();
     FirebaseAdMob.instance.initialize(
-      appId: BannerAd.testAdUnitId
+      appId: "ca-app-pub-8724566557762547~9880453125"
     );
-    _bannerAd=createbannerad()..load()..show();
+    // _bannerAd=createbannerad()..load()..show();
 
   }
   @override
@@ -94,6 +95,8 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
+
+
     return MultiProvider(
       providers: [
         ChangeNotifierProvider.value(

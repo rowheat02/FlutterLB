@@ -21,7 +21,7 @@ class Providersdata with ChangeNotifier {
   var wonlost = 0;
   var slidervalue = 15.0;
   // var sliderint=slidervalue.round();
-  var animatedswitcherkey = 2;
+  var animatedswitcherkey = 0;
   var active = null;
   int add_subtract = 1;
   int btctrl_result = 0;

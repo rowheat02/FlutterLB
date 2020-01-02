@@ -2,6 +2,8 @@ import 'package:firebase_admob/firebase_admob.dart';
 import 'package:flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:langurb/Provider_data/providers_data.dart';
+import 'package:provider/provider.dart';
 
 class Money extends StatefulWidget {
   @override
@@ -14,7 +16,8 @@ class _MoneyState extends State<Money> {
     int Balancee = (prefs.getInt('Balance')) + 100;
     await prefs.setInt('Balance', Balancee);
   }
-  bool _completed=false;
+
+  bool _completed = false;
   var snak;
 
   RewardedVideoAd rewarded;
@@ -25,23 +28,22 @@ class _MoneyState extends State<Money> {
     super.initState();
     RewardedVideoAd.instance
         .load(
-            adUnitId: RewardedVideoAd.testAdUnitId,
+            adUnitId: "ca-app-pub-8724566557762547/8488669777",
             targetingInfo: MobileAdTargetingInfo(
                 // testDevices:["869906033918754"] ,
                 ))
         .catchError((e) => print("error in loading again"));
-    RewardedVideoAd.instance.listener =
-        (RewardedVideoAdEvent event, {String rewardType, int rewardAmount}) async {
+    RewardedVideoAd.instance.listener = (RewardedVideoAdEvent event,
+        {String rewardType, int rewardAmount}) async {
       if (event == RewardedVideoAdEvent.rewarded) {
         // Here, apps should update state to reflect the reward.
         print("ADaklndlaknsdlkansdklasndklasRewarded   Rewarded");
         rewardMoney();
-        
       }
-      if(event==RewardedVideoAdEvent.completed){
-        _completed=true;
-
-      };
+      if (event == RewardedVideoAdEvent.completed) {
+        _completed = true;
+      }
+      ;
       if (event == RewardedVideoAdEvent.closed) {
         RewardedVideoAd.instance
             .load(
@@ -50,7 +52,7 @@ class _MoneyState extends State<Money> {
                     // testDevices:["869906033918754"] ,
                     ))
             .catchError((e) => print("error in loading again"));
-          snak= await Flushbar(
+        snak = await Flushbar(
             flushbarPosition: FlushbarPosition.TOP,
             isDismissible: true,
             // title:  "No symbols Selected",
@@ -67,14 +69,16 @@ class _MoneyState extends State<Money> {
             // backgroundColor:Colors.black,
             flushbarStyle: FlushbarStyle.GROUNDED,
             boxShadows: [BoxShadow(color: Colors.white)]);
-            if(_completed)snak.show(context);
-            _completed=false;
+        if (_completed) snak.show(context);
+        _completed = false;
       }
     };
   }
 
   @override
   Widget build(BuildContext context) {
+    var provdat = Provider.of<Providersdata>(context);
+    var balance = provdat.Balance;
     return Container(
         decoration: BoxDecoration(color: Colors.transparent),
         height: MediaQuery.of(context).size.height * 0.90,
@@ -103,7 +107,7 @@ class _MoneyState extends State<Money> {
                         color: Colors.white.withOpacity(0.8), fontSize: 20),
                   ),
                   Text(
-                    "RS 510",
+                    "RS $balance",
                     style: TextStyle(color: Colors.white, fontSize: 20),
                   )
                 ],

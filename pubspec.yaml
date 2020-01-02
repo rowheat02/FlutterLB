@@ -30,9 +30,11 @@ dependencies:
   flutter_fluid_slider: ^1.0.2
   flutter_particles:
   font_awesome_flutter:
-  firebase_admob: ^0.5.5
+  firebase_core: ^0.4.0
+  firebase_admob: 
   flushbar: 1.9.1
   webview_flutter: 
+  # ^0.5.2
   
  
   

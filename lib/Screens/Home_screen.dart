@@ -17,7 +17,7 @@ class Home_screen extends StatelessWidget {
   Widget build(BuildContext context) {
     final provdat = Provider.of<Providersdata>(context, listen: true);
     provdat.load();
-    provdat.setBalanceeinitial();
+    
 
     // var Bls=SetBalancee();
     // provdat.setBalance(Bls);
@@ -66,7 +66,9 @@ class Home_screen extends StatelessWidget {
                               topLeft: Radius.circular(15)),
                         ),
                         child: InkWell(
-                          onTap:()=> Navigator.pop(context),
+                          onTap:()=> {Navigator.pop(context),
+                          provdat.animatedswitcherkey=0
+                          },
                           child: FittedBox(
                               fit: BoxFit.scaleDown,
                               child: Image.asset("Jpg/home.png")
