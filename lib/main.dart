@@ -83,7 +83,7 @@ class _MyAppState extends State<MyApp> {
     FirebaseAdMob.instance.initialize(
       appId: "ca-app-pub-8724566557762547~9880453125"
     );
-    // _bannerAd=createbannerad()..load()..show();
+    _bannerAd=createbannerad()..load()..show();
 
   }
   @override

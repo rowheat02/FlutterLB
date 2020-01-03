@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 // import 'package:webview_flutter/webview_flutter.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class About extends StatefulWidget {
   @override
@@ -41,7 +42,7 @@ class _AboutState extends State<About> {
               alignment: selected
                   ? Alignment.topCenter
                   : AlignmentDirectional.topCenter,
-              duration: Duration(milliseconds:300),
+              duration: Duration(milliseconds: 300),
               curve: Curves.fastOutSlowIn,
               child: SingleChildScrollView(
                 // reverse: true,
@@ -71,6 +72,15 @@ class _AboutState extends State<About> {
                           width: 10,
                         ),
                         InkWell(
+                          onTap: () async {
+                            const url =
+                                'https://www.facebook.com/RowHeatGautam';
+                            if (await canLaunch(url)) {
+                              await launch(url);
+                            } else {
+                              throw 'Could not launch $url';
+                            }
+                          },
                           child: Icon(
                             FontAwesomeIcons.facebook,
                             color: Colors.blue[100],
@@ -81,6 +91,14 @@ class _AboutState extends State<About> {
                           width: 10,
                         ),
                         InkWell(
+                          onTap: () async {
+                            const url = 'https://www.instagram.com/row_heat02/';
+                            if (await canLaunch(url)) {
+                              await launch(url);
+                            } else {
+                              throw 'Could not launch $url';
+                            }
+                          },
                           child: Icon(FontAwesomeIcons.instagram,
                               color: Colors.blue[100], size: 30),
                         ),
@@ -88,6 +106,15 @@ class _AboutState extends State<About> {
                           width: 10,
                         ),
                         InkWell(
+                          onTap: () async {
+                            const url =
+                                'https://www.linkedin.com/in/rohit-gautam-b29a4613b/';
+                            if (await canLaunch(url)) {
+                              await launch(url);
+                            } else {
+                              throw 'Could not launch $url';
+                            }
+                          },
                           child: Icon(FontAwesomeIcons.linkedin,
                               color: Colors.blue[100], size: 30),
                         ),
@@ -148,6 +175,15 @@ class _AboutState extends State<About> {
                           Row(
                             children: <Widget>[
                               InkWell(
+                                onTap: () async {
+                                  const url =
+                                      'https://www.facebook.com/prashant8989';
+                                  if (await canLaunch(url)) {
+                                    await launch(url);
+                                  } else {
+                                    throw 'Could not launch $url';
+                                  }
+                                },
                                 child: Icon(
                                   FontAwesomeIcons.facebook,
                                   color: Colors.blue[100],
@@ -158,6 +194,15 @@ class _AboutState extends State<About> {
                                 width: 10,
                               ),
                               InkWell(
+                                onTap: () async {
+                                  const url =
+                                      'https://www.instagram.com/prashant_o5_24/';
+                                  if (await canLaunch(url)) {
+                                    await launch(url);
+                                  } else {
+                                    throw 'Could not launch $url';
+                                  }
+                                },
                                 child: Icon(FontAwesomeIcons.instagram,
                                     color: Colors.blue[100], size: 20),
                               ),
@@ -165,6 +210,15 @@ class _AboutState extends State<About> {
                                 width: 10,
                               ),
                               InkWell(
+                                onTap: () async {
+                                  const url =
+                                      'https://www.linkedin.com/in/prashantthapaliya8989/';
+                                  if (await canLaunch(url)) {
+                                    await launch(url);
+                                  } else {
+                                    throw 'Could not launch $url';
+                                  }
+                                },
                                 child: Icon(FontAwesomeIcons.linkedin,
                                     color: Colors.blue[100], size: 20),
                               ),
@@ -200,6 +254,15 @@ class _AboutState extends State<About> {
                           Row(
                             children: <Widget>[
                               InkWell(
+                                onTap: () async {
+                                  const url =
+                                      'https://www.facebook.com/ashmita.dhakal.9';
+                                  if (await canLaunch(url)) {
+                                    await launch(url);
+                                  } else {
+                                    throw 'Could not launch $url';
+                                  }
+                                },
                                 child: Icon(
                                   FontAwesomeIcons.facebook,
                                   color: Colors.blue[100],
@@ -210,6 +273,15 @@ class _AboutState extends State<About> {
                                 width: 10,
                               ),
                               InkWell(
+                                onTap: () async {
+                                  const url =
+                                      'https://www.instagram.com/ashmita__dhakal/';
+                                  if (await canLaunch(url)) {
+                                    await launch(url);
+                                  } else {
+                                    throw 'Could not launch $url';
+                                  }
+                                },
                                 child: Icon(FontAwesomeIcons.instagram,
                                     color: Colors.blue[100], size: 20),
                               ),
@@ -217,6 +289,15 @@ class _AboutState extends State<About> {
                                 width: 10,
                               ),
                               InkWell(
+                                onTap: () async {
+                                  const url =
+                                      'https://www.linkedin.com/in/ashmita-dhakal/';
+                                  if (await canLaunch(url)) {
+                                    await launch(url);
+                                  } else {
+                                    throw 'Could not launch $url';
+                                  }
+                                },
                                 child: Icon(FontAwesomeIcons.linkedin,
                                     color: Colors.blue[100], size: 20),
                               ),
@@ -240,75 +321,75 @@ class _AboutState extends State<About> {
                 children: <Widget>[
                   InkWell(
                       onTap: () {
-                       
                         setState(
                           () {
                             selected = !selected;
                             // licence = !licence;
-                            if(licence){
-                             licence=false;
-                             
+                            if (licence) {
+                              licence = false;
+                            } else {
+                              Timer(
+                                  Duration(seconds: 1),
+                                  () => setState(() {
+                                        licence = true;
+                                      }));
                             }
-                            else{
-                                Timer(Duration(seconds: 1), ()=>setState(() {
-                                licence=true;
-                              }));
-                            }
-                          
+
                             // if (webheight == 10.0 && webwidth == 10.0) {
                             //   Timer(Duration(milliseconds: 1000), () {
                             //     setState(() {
                             //       webwidth = 350.0;
                             //     webheight = 220.0;
                             //     });
-                                
+
                             //   });
                             // } else {
                             //   setState(() {
                             //   webwidth = 10.0;
                             //   webheight = 10.0;
-                                
+
                             //   });
-                            
+
                             // }
-                          
                           },
                         );
                         //  Navigator.pushNamed(context, '/licence');
                       },
                       child: Container(
                         height: 50,
-                        width: 150,
+                        width: 200,
                         decoration: BoxDecoration(
                             color: selected ? Colors.transparent : Colors.red,
                             border: Border.all(width: 1, color: Colors.white)),
                         child: Center(
                           child: Text(
-                            "Liscence",
-                            style: TextStyle(fontSize: 30, color: Colors.white),
+                            "Privacy Policy",
+                            style: TextStyle(fontSize: 25, color: Colors.white),
                           ),
                         ),
                       )),
-                  licence?Container(
-                        //  duration: Duration(milliseconds: selected ?500:1200),
-                        padding: EdgeInsets.only(top: 5),
-                        width: webwidth,
-                        height: webheight,
-                        color: Colors.transparent,
+                  licence
+                      ? Container(
+                          //  duration: Duration(milliseconds: selected ?500:1200),
+                          padding: EdgeInsets.only(top: 5),
+                          width: webwidth,
+                          height: webheight,
+                          color: Colors.transparent,
 
-                        // duration: Duration(seconds: 1),
-                        // curve: Curves.fastOutSlowIn,
+                          // duration: Duration(seconds: 1),
+                          // curve: Curves.fastOutSlowIn,
 
-                        // padding: EdgeInsets.only(bottom: 30),
-                        child: WebView(
-                          initialUrl: 'https://rowheat02.github.io/AppPrivacyPolicy/',
-                          javascriptMode: JavascriptMode.unrestricted,
-                          // onWebViewCreated:
-                          //     (WebViewController webViewController) {
-                          //   _controller.complete(webViewController);
-                          // },
-                        )):Container(),
-                  
+                          // padding: EdgeInsets.only(bottom: 30),
+                          child: WebView(
+                            initialUrl:
+                                'https://rowheat02.github.io/khorkhoreprivacypolicy/',
+                            javascriptMode: JavascriptMode.unrestricted,
+                            // onWebViewCreated:
+                            //     (WebViewController webViewController) {
+                            //   _controller.complete(webViewController);
+                            // },
+                          ))
+                      : Container(),
                 ],
               ),
             ),

@@ -152,14 +152,14 @@ class _InitialState extends State<Initial> {
                           onTap: () => {
                             provdat.animatedswitcherkey!=1? provdat.changeanimatedswitcherkey(1):provdat.changeanimatedswitcherkey(0),
 
-                            // myInterstitial
-                            //   ..load()
-                            //   ..show(
-                            //     anchorType: AnchorType.bottom,
-                            //     anchorOffset: 0.0,
-                            //     // horizontalCenterOffset: 0.0,
-                            //   ).catchError((e)=>print("error code"+e)),
-                            //   myInterstitial.dispose()
+                            myInterstitial
+                              ..load()
+                              ..show(
+                                anchorType: AnchorType.bottom,
+                                anchorOffset: 0.0,
+                                // horizontalCenterOffset: 0.0,
+                              ).catchError((e)=>print("error code"+e)),
+                              myInterstitial.dispose()
                           },
                           child: Container(
                             width: 140,
@@ -204,14 +204,14 @@ class _InitialState extends State<Initial> {
                         InkWell(
                           onTap: () => {
                             provdat.animatedswitcherkey!=2? provdat.changeanimatedswitcherkey(2):provdat.changeanimatedswitcherkey(0),
-                          // myInterstitial
-                          //     ..load()
-                          //     ..show(
-                          //       anchorType: AnchorType.bottom,
-                          //       anchorOffset: 0.0,
-                          //       // horizontalCenterOffset: 0.0,
-                          //     ).catchError((e)=>print("error code"+e)),
-                          //     myInterstitial.dispose()
+                          myInterstitial
+                              ..load()
+                              ..show(
+                                anchorType: AnchorType.bottom,
+                                anchorOffset: 0.0,
+                                // horizontalCenterOffset: 0.0,
+                              ).catchError((e)=>print("error code"+e)),
+                              myInterstitial.dispose()
                           },
                           child: Container(
                             width: 140,
@@ -254,14 +254,14 @@ class _InitialState extends State<Initial> {
                         InkWell(
                           onTap: () => {
                             provdat.animatedswitcherkey!=3? provdat.changeanimatedswitcherkey(3):provdat.changeanimatedswitcherkey(0),
-                          // myInterstitial
-                          //     ..load()
-                          //     ..show(
-                          //       anchorType: AnchorType.bottom,
-                          //       anchorOffset: 0.0,
-                          //       // horizontalCenterOffset: 0.0,
-                          //     ).catchError((e)=>print("error code"+e)),
-                          //     myInterstitial.dispose()
+                          myInterstitial
+                              ..load()
+                              ..show(
+                                anchorType: AnchorType.bottom,
+                                anchorOffset: 0.0,
+                                // horizontalCenterOffset: 0.0,
+                              ).catchError((e)=>print("error code"+e)),
+                              myInterstitial.dispose()
                           },
                           child: Container(
                             width: 140,
