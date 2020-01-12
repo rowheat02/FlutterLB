@@ -1,5 +1,7 @@
+import 'package:esys_flutter_share/esys_flutter_share.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class Brand extends StatefulWidget {
   @override
@@ -29,7 +31,7 @@ class _BrandState extends State<Brand> {
                   Container(
                     padding: EdgeInsets.all(2),
                     margin: EdgeInsets.only(top: 5),
-                    width: 500,
+                    width: 400,
                     decoration: BoxDecoration(
                         //     border: Border.all(
                         //   width: 0,
@@ -43,7 +45,7 @@ class _BrandState extends State<Brand> {
                         Text(
                           "KhorKhore",
                           style: TextStyle(color: Colors.white, fontSize: 50),
-                          textAlign:TextAlign.end,
+                          textAlign: TextAlign.end,
                         ),
                         Text(
                           " Try your Luck ",
@@ -60,9 +62,9 @@ class _BrandState extends State<Brand> {
                   ),
                   Container(
                     decoration: BoxDecoration(
-                        border: Border.all(color: Colors.white, width: 0.3),
-                        // color: Colors.white.withOpacity(0.9)
-                        ),
+                      border: Border.all(color: Colors.white, width: 0.3),
+                      // color: Colors.white.withOpacity(0.9)
+                    ),
                     padding: EdgeInsets.all(2),
                     // width: 200,
                     child: Column(
@@ -159,24 +161,65 @@ class _BrandState extends State<Brand> {
                 margin: EdgeInsets.only(bottom: 15),
                 child: Align(
                     alignment: Alignment.bottomLeft,
-                    child: RaisedButton(
-                      onPressed: () {},
-                      child: Container(
-                        width: 80,
-                        child: Row(
-                          children: <Widget>[
-                            Icon(
-                              Icons.star_border,
-                              color: Colors.black,
+                    child: Row(
+                      children: <Widget>[
+                        RaisedButton(
+                          onPressed: () {
+                            Share.text(
+                                'Langur Burja',
+                                'https://play.google.com/store/apps/details?id=com.khorkhore.lb&hl=en',
+                                'text/plain');
+                          },
+                          child: Container(
+                            width: 80,
+                            child: Row(
+                              children: <Widget>[
+                                Icon(
+                                  Icons.share,
+                                  color: Colors.black,
+                                ),
+                                Text(
+                                  "Share",
+                                  style: TextStyle(
+                                      color: Colors.black, fontSize: 12),
+                                ),
+                              ],
                             ),
-                            Text(
-                              "Rate Us",
-                              style: TextStyle(color: Colors.black),
-                            ),
-                          ],
+                          ),
+                          highlightColor: Colors.grey,
                         ),
-                      ),
-                      highlightColor: Colors.grey,
+                        Container(
+                          margin: EdgeInsets.only(left: 10),
+                          child: RaisedButton(
+                            onPressed: () async{
+                             const url =
+                                        'https://play.google.com/store/apps/details?id=com.khorkhore.lb&hl=en';
+                                    if (await canLaunch(url)) {
+                                      await launch(url);
+                                    } else {
+                                      throw 'Could not launch $url';
+                                    }
+                            },
+                            child: Container(
+                              width: 80,
+                              child: Row(
+                                children: <Widget>[
+                                  Icon(
+                                    Icons.star_border,
+                                    color: Colors.black,
+                                  ),
+                                  Text(
+                                    "Rate Us",
+                                    style: TextStyle(
+                                        color: Colors.black, fontSize: 12),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            highlightColor: Colors.grey,
+                          ),
+                        )
+                      ],
                     )),
               ),
             ],

@@ -185,7 +185,55 @@ class _BettingControlState extends State<BettingControl> {
                     borderRadius: BorderRadius.all(Radius.circular(100))),
                 child: FlatButton(
                   child: Icon(Icons.add, color: Colors.white),
-                  onPressed: () => provar.addsub(0, context),
+                  onPressed: () =>{
+                     if (provar.active == null)
+                      {
+                        Flushbar(
+                            flushbarPosition: FlushbarPosition.TOP,
+                            // title:  "No symbols Selected",
+                            forwardAnimationCurve:
+                                Curves.fastLinearToSlowEaseIn,
+                            messageText: new Text(
+                              "No symbols Selected",
+                              textAlign: TextAlign.center,
+                              style: TextStyle(color: Colors.white),
+                            ),
+                            duration: Duration(milliseconds: 1000),
+                            // overlayColor:Colors.red,
+                            borderColor: Colors.white,
+                            // borderRadius: 50,
+                            // backgroundColor:Colors.black,
+                            flushbarStyle: FlushbarStyle.GROUNDED,
+                            boxShadows: [BoxShadow(color: Colors.white)])
+                          ..show(context)
+                      },
+                    if (provar.Balance >= provar.slidervalue)
+                      {
+                        provar.addsub(0, context),
+                      }
+                    else
+                      {
+                        Flushbar(
+                            flushbarPosition: FlushbarPosition.TOP,
+                            // title:  "No symbols Selected",
+                            forwardAnimationCurve:
+                                Curves.fastLinearToSlowEaseIn,
+                            messageText: new Text(
+                              "Slider amount is greater than Balance",
+                              textAlign: TextAlign.center,
+                              style: TextStyle(color: Colors.white),
+                            ),
+                            duration: Duration(milliseconds: 1000),
+                            // overlayColor:Colors.red,
+                            borderColor: Colors.white,
+                            // borderRadius: 50,
+                            // backgroundColor:Colors.black,
+                            flushbarStyle: FlushbarStyle.GROUNDED,
+                            boxShadows: [BoxShadow(color: Colors.white)])
+                          ..show(context)
+                      }
+                  
+                  },
                 ),
                 // FlatButton(child: Icon(Icons.remove_circle,color: Colors.orange),onPressed: ()=>{}),
               )
@@ -198,7 +246,7 @@ class _BettingControlState extends State<BettingControl> {
           children: <Widget>[
             // Container(margin: EdgeInsets.all(10),),
             InkWell(
-              onTap: () => {print("hello"), provar.btctrlresult()},
+              onTap: () => { provar.btctrlresult()},
               child: Container(
                 margin: EdgeInsets.only(bottom: 6),
                 width: MediaQuery.of(context).size.width * 0.15,

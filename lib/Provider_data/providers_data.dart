@@ -80,7 +80,7 @@ class Providersdata with ChangeNotifier {
 
     for (var e in nonzero_bet) {
       rcount = result.where((c) => c == e).toList().length;
-      print("ccoo" + rcount.toString());
+      // print("ccoo" + rcount.toString());
       if (rcount > 1) {
         wonlost = wonlost + betdata[e] * rcount;
         won = 1;
@@ -90,18 +90,29 @@ class Providersdata with ChangeNotifier {
       }
            
     }
+
     if(wonlost<0){
       wonlost=-wonlost;
       won=0;
     }
     else if(wonlost>0){
-    setBalancee1(wonlost);
+    
 
     }
     else if(wonlost==0){
       won=2;
       
     }
+    var wononly=0;
+     for (var e in nonzero_bet) {
+      rcount = result.where((c) => c == e).toList().length;
+     
+      if (rcount > 1) {
+        wononly = wononly + betdata[e] * rcount;
+      
+      }
+      }
+      setBalancee1(wononly);
 
 
     

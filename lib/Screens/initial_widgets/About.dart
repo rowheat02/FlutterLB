@@ -22,7 +22,7 @@ class _AboutState extends State<About> {
   Widget build(BuildContext context) {
     return Container(
         decoration: BoxDecoration(color: Colors.transparent),
-        height: MediaQuery.of(context).size.height * 0.90,
+        // height: MediaQuery.of(context).size.height * 0.90,
         width: 400,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
@@ -37,123 +37,28 @@ class _AboutState extends State<About> {
               padding: EdgeInsets.all(0),
 
               width: 370,
-              height: selected ? 220 : 0,
+              height: selected ? 250 : 0,
               color: Colors.transparent,
               alignment: selected
                   ? Alignment.topCenter
                   : AlignmentDirectional.topCenter,
               duration: Duration(milliseconds: 300),
               curve: Curves.fastOutSlowIn,
-              child: SingleChildScrollView(
-                // reverse: true,
-                padding: EdgeInsets.all(0),
-                scrollDirection: Axis.vertical,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Text("Created By:", style: TextStyle(color: Colors.white)),
-                    Row(
-                      children: <Widget>[
-                        RichText(
-                          text: TextSpan(
-                            // text: 'Created By: ',
-                            style: TextStyle(color: Colors.white),
-                            children: <TextSpan>[
-                              TextSpan(
-                                  text: 'Rohit Gautam',
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 25)),
-                            ],
-                          ),
-                        ),
-                        SizedBox(
-                          width: 10,
-                        ),
-                        InkWell(
-                          onTap: () async {
-                            const url =
-                                'https://www.facebook.com/RowHeatGautam';
-                            if (await canLaunch(url)) {
-                              await launch(url);
-                            } else {
-                              throw 'Could not launch $url';
-                            }
-                          },
-                          child: Icon(
-                            FontAwesomeIcons.facebook,
-                            color: Colors.blue[100],
-                            size: 30,
-                          ),
-                        ),
-                        SizedBox(
-                          width: 10,
-                        ),
-                        InkWell(
-                          onTap: () async {
-                            const url = 'https://www.instagram.com/row_heat02/';
-                            if (await canLaunch(url)) {
-                              await launch(url);
-                            } else {
-                              throw 'Could not launch $url';
-                            }
-                          },
-                          child: Icon(FontAwesomeIcons.instagram,
-                              color: Colors.blue[100], size: 30),
-                        ),
-                        SizedBox(
-                          width: 10,
-                        ),
-                        InkWell(
-                          onTap: () async {
-                            const url =
-                                'https://www.linkedin.com/in/rohit-gautam-b29a4613b/';
-                            if (await canLaunch(url)) {
-                              await launch(url);
-                            } else {
-                              throw 'Could not launch $url';
-                            }
-                          },
-                          child: Icon(FontAwesomeIcons.linkedin,
-                              color: Colors.blue[100], size: 30),
-                        ),
-                      ],
-                    ),
-                    SizedBox(
-                      height: 5,
-                    ),
-                    Text("Developed In:",
-                        style: TextStyle(color: Colors.white)),
-                    Row(
-                      children: <Widget>[
-                        RichText(
-                          text: TextSpan(
-                            // text: 'Created By: ',
-                            style: TextStyle(color: Colors.white),
-                            children: <TextSpan>[
-                              TextSpan(
-                                  text: 'FLutter',
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 15)),
-                            ],
-                          ),
-                        ),
-                        SizedBox(
-                          width: 10,
-                        ),
-                      ],
-                    ),
-                    SizedBox(
-                      height: 5,
-                    ),
-                    Text("Special Thanks:",
-                        style: TextStyle(color: Colors.white)),
-                    Container(
-                      width: 270,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              child: Container(
+                margin: EdgeInsets.only(bottom: 10),
+                decoration: BoxDecoration(border: Border.all(width: 0.5,color: Colors.white)),
+                child: SingleChildScrollView(
+                  // reverse: true,
+                  padding: EdgeInsets.all(5),
+                  scrollDirection: Axis.vertical,
+
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Text("Created By:",
+                          style: TextStyle(color: Colors.white)),
+                      Row(
                         children: <Widget>[
                           RichText(
                             text: TextSpan(
@@ -161,155 +66,419 @@ class _AboutState extends State<About> {
                               style: TextStyle(color: Colors.white),
                               children: <TextSpan>[
                                 TextSpan(
-                                    text: 'Prashant Thapaliya',
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 15,
-                                    )),
-                              ],
-                            ),
-                          ),
-                          SizedBox(
-                            width: 10,
-                          ),
-                          Row(
-                            children: <Widget>[
-                              InkWell(
-                                onTap: () async {
-                                  const url =
-                                      'https://www.facebook.com/prashant8989';
-                                  if (await canLaunch(url)) {
-                                    await launch(url);
-                                  } else {
-                                    throw 'Could not launch $url';
-                                  }
-                                },
-                                child: Icon(
-                                  FontAwesomeIcons.facebook,
-                                  color: Colors.blue[100],
-                                  size: 20,
-                                ),
-                              ),
-                              SizedBox(
-                                width: 10,
-                              ),
-                              InkWell(
-                                onTap: () async {
-                                  const url =
-                                      'https://www.instagram.com/prashant_o5_24/';
-                                  if (await canLaunch(url)) {
-                                    await launch(url);
-                                  } else {
-                                    throw 'Could not launch $url';
-                                  }
-                                },
-                                child: Icon(FontAwesomeIcons.instagram,
-                                    color: Colors.blue[100], size: 20),
-                              ),
-                              SizedBox(
-                                width: 10,
-                              ),
-                              InkWell(
-                                onTap: () async {
-                                  const url =
-                                      'https://www.linkedin.com/in/prashantthapaliya8989/';
-                                  if (await canLaunch(url)) {
-                                    await launch(url);
-                                  } else {
-                                    throw 'Could not launch $url';
-                                  }
-                                },
-                                child: Icon(FontAwesomeIcons.linkedin,
-                                    color: Colors.blue[100], size: 20),
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                    ),
-                    SizedBox(
-                      height: 10,
-                    ),
-                    Container(
-                      width: 270,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: <Widget>[
-                          RichText(
-                            text: TextSpan(
-                              // text: 'Created By: ',
-                              style: TextStyle(color: Colors.white),
-                              children: <TextSpan>[
-                                TextSpan(
-                                    text: 'Ashmita Dhakal',
+                                    text: 'Rohit Gautam',
                                     style: TextStyle(
                                         fontWeight: FontWeight.bold,
-                                        fontSize: 15)),
+                                        fontSize: 25)),
                               ],
                             ),
                           ),
                           SizedBox(
                             width: 10,
                           ),
-                          Row(
-                            children: <Widget>[
-                              InkWell(
-                                onTap: () async {
-                                  const url =
-                                      'https://www.facebook.com/ashmita.dhakal.9';
-                                  if (await canLaunch(url)) {
-                                    await launch(url);
-                                  } else {
-                                    throw 'Could not launch $url';
-                                  }
-                                },
-                                child: Icon(
-                                  FontAwesomeIcons.facebook,
-                                  color: Colors.blue[100],
-                                  size: 20,
-                                ),
-                              ),
-                              SizedBox(
-                                width: 10,
-                              ),
-                              InkWell(
-                                onTap: () async {
-                                  const url =
-                                      'https://www.instagram.com/ashmita__dhakal/';
-                                  if (await canLaunch(url)) {
-                                    await launch(url);
-                                  } else {
-                                    throw 'Could not launch $url';
-                                  }
-                                },
-                                child: Icon(FontAwesomeIcons.instagram,
-                                    color: Colors.blue[100], size: 20),
-                              ),
-                              SizedBox(
-                                width: 10,
-                              ),
-                              InkWell(
-                                onTap: () async {
-                                  const url =
-                                      'https://www.linkedin.com/in/ashmita-dhakal/';
-                                  if (await canLaunch(url)) {
-                                    await launch(url);
-                                  } else {
-                                    throw 'Could not launch $url';
-                                  }
-                                },
-                                child: Icon(FontAwesomeIcons.linkedin,
-                                    color: Colors.blue[100], size: 20),
-                              ),
-                            ],
+                          InkWell(
+                            onTap: () async {
+                              const url =
+                                  'https://www.facebook.com/RowHeatGautam';
+                              if (await canLaunch(url)) {
+                                await launch(url);
+                              } else {
+                                throw 'Could not launch $url';
+                              }
+                            },
+                            child: Icon(
+                              FontAwesomeIcons.facebook,
+                              color: Colors.blue[100],
+                              size: 30,
+                            ),
+                          ),
+                          SizedBox(
+                            width: 10,
+                          ),
+                          InkWell(
+                            onTap: () async {
+                              const url =
+                                  'https://www.instagram.com/row_heat02/';
+                              if (await canLaunch(url)) {
+                                await launch(url);
+                              } else {
+                                throw 'Could not launch $url';
+                              }
+                            },
+                            child: Icon(FontAwesomeIcons.instagram,
+                                color: Colors.blue[100], size: 30),
+                          ),
+                          SizedBox(
+                            width: 10,
+                          ),
+                          InkWell(
+                            onTap: () async {
+                              const url =
+                                  'https://www.linkedin.com/in/rohit-gautam-b29a4613b/';
+                              if (await canLaunch(url)) {
+                                await launch(url);
+                              } else {
+                                throw 'Could not launch $url';
+                              }
+                            },
+                            child: Icon(FontAwesomeIcons.linkedin,
+                                color: Colors.blue[100], size: 30),
                           ),
                         ],
                       ),
-                    ),
-                    SizedBox(
-                      height: 15,
-                    ),
-                  ],
+                      SizedBox(
+                        height: 5,
+                      ),
+                      // Text("Developed In:",
+                      //     style: TextStyle(color: Colors.white)),
+                      // Row(
+                      //   children: <Widget>[
+                      //     RichText(
+                      //       text: TextSpan(
+                      //         // text: 'Created By: ',
+                      //         style: TextStyle(color: Colors.white),
+                      //         children: <TextSpan>[
+                      //           TextSpan(
+                      //               text: 'FLutter',
+                      //               style: TextStyle(
+                      //                   fontWeight: FontWeight.bold,
+                      //                   fontSize: 15)),
+                      //         ],
+                      //       ),
+                      //     ),
+                      //     SizedBox(
+                      //       width: 10,
+                      //     ),
+                      //   ],
+                      // ),
+                      SizedBox(
+                        height: 5,
+                      ),
+                      Text("Special Thanks:",
+                          style: TextStyle(color: Colors.white)),
+                      Container(
+                        width: 270,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: <Widget>[
+                            RichText(
+                              text: TextSpan(
+                                // text: 'Created By: ',
+                                style: TextStyle(color: Colors.white),
+                                children: <TextSpan>[
+                                  TextSpan(
+                                      text: 'Prashant Thapaliya',
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 15,
+                                      )),
+                                ],
+                              ),
+                            ),
+                            SizedBox(
+                              width: 10,
+                            ),
+                            Row(
+                              children: <Widget>[
+                                InkWell(
+                                  onTap: () async {
+                                    const url =
+                                        'https://www.facebook.com/prashant8989';
+                                    if (await canLaunch(url)) {
+                                      await launch(url);
+                                    } else {
+                                      throw 'Could not launch $url';
+                                    }
+                                  },
+                                  child: Icon(
+                                    FontAwesomeIcons.facebook,
+                                    color: Colors.blue[100],
+                                    size: 20,
+                                  ),
+                                ),
+                                SizedBox(
+                                  width: 10,
+                                ),
+                                InkWell(
+                                  onTap: () async {
+                                    const url =
+                                        'https://www.instagram.com/prashant_o5_24/';
+                                    if (await canLaunch(url)) {
+                                      await launch(url);
+                                    } else {
+                                      throw 'Could not launch $url';
+                                    }
+                                  },
+                                  child: Icon(FontAwesomeIcons.instagram,
+                                      color: Colors.blue[100], size: 20),
+                                ),
+                                SizedBox(
+                                  width: 10,
+                                ),
+                                InkWell(
+                                  onTap: () async {
+                                    const url =
+                                        'https://www.linkedin.com/in/prashantthapaliya8989/';
+                                    if (await canLaunch(url)) {
+                                      await launch(url);
+                                    } else {
+                                      throw 'Could not launch $url';
+                                    }
+                                  },
+                                  child: Icon(FontAwesomeIcons.linkedin,
+                                      color: Colors.blue[100], size: 20),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      Container(
+                        width: 270,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: <Widget>[
+                            RichText(
+                              text: TextSpan(
+                                // text: 'Created By: ',
+                                style: TextStyle(color: Colors.white),
+                                children: <TextSpan>[
+                                  TextSpan(
+                                      text: 'Ashmita Dhakal',
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 15)),
+                                ],
+                              ),
+                            ),
+                            SizedBox(
+                              width: 10,
+                            ),
+                            Row(
+                              children: <Widget>[
+                                InkWell(
+                                  onTap: () async {
+                                    const url =
+                                        'https://www.facebook.com/ashmita.dhakal.9';
+                                    if (await canLaunch(url)) {
+                                      await launch(url);
+                                    } else {
+                                      throw 'Could not launch $url';
+                                    }
+                                  },
+                                  child: Icon(
+                                    FontAwesomeIcons.facebook,
+                                    color: Colors.blue[100],
+                                    size: 20,
+                                  ),
+                                ),
+                                SizedBox(
+                                  width: 10,
+                                ),
+                                InkWell(
+                                  onTap: () async {
+                                    const url =
+                                        'https://www.instagram.com/ashmita__dhakal/';
+                                    if (await canLaunch(url)) {
+                                      await launch(url);
+                                    } else {
+                                      throw 'Could not launch $url';
+                                    }
+                                  },
+                                  child: Icon(FontAwesomeIcons.instagram,
+                                      color: Colors.blue[100], size: 20),
+                                ),
+                                SizedBox(
+                                  width: 10,
+                                ),
+                                InkWell(
+                                  onTap: () async {
+                                    const url =
+                                        'https://www.linkedin.com/in/ashmita-dhakal/';
+                                    if (await canLaunch(url)) {
+                                      await launch(url);
+                                    } else {
+                                      throw 'Could not launch $url';
+                                    }
+                                  },
+                                  child: Icon(FontAwesomeIcons.linkedin,
+                                      color: Colors.blue[100], size: 20),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                      SizedBox(
+                        height: 15,
+                      ),
+                      Text("Thanks for sharing flutter skills",
+                          style: TextStyle(color: Colors.white)),
+                      Container(
+                        width: 270,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: <Widget>[
+                            RichText(
+                              text: TextSpan(
+                                // text: 'Created By: ',
+                                style: TextStyle(color: Colors.white),
+                                children: <TextSpan>[
+                                  TextSpan(
+                                      text: 'Samir Dangal',
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 15,
+                                      )),
+                                ],
+                              ),
+                            ),
+                            SizedBox(
+                              width: 10,
+                            ),
+                            Row(
+                              children: <Widget>[
+                                InkWell(
+                                  onTap: () async {
+                                    const url =
+                                        'https://www.facebook.com/samir.dangal.201';
+                                    if (await canLaunch(url)) {
+                                      await launch(url);
+                                    } else {
+                                      throw 'Could not launch $url';
+                                    }
+                                  },
+                                  child: Icon(
+                                    FontAwesomeIcons.facebook,
+                                    color: Colors.blue[100],
+                                    size: 20,
+                                  ),
+                                ),
+                                SizedBox(
+                                  width: 10,
+                                ),
+                                InkWell(
+                                  onTap: () async {
+                                    const url =
+                                        'https://www.instagram.com/amias_samir/';
+                                    if (await canLaunch(url)) {
+                                      await launch(url);
+                                    } else {
+                                      throw 'Could not launch $url';
+                                    }
+                                  },
+                                  child: Icon(FontAwesomeIcons.instagram,
+                                      color: Colors.blue[100], size: 20),
+                                ),
+                                SizedBox(
+                                  width: 10,
+                                ),
+                                InkWell(
+                                  onTap: () async {
+                                    const url =
+                                        'https://www.linkedin.com/in/samir-dangal-a17a6b122/';
+                                    if (await canLaunch(url)) {
+                                      await launch(url);
+                                    } else {
+                                      throw 'Could not launch $url';
+                                    }
+                                  },
+                                  child: Icon(FontAwesomeIcons.linkedin,
+                                      color: Colors.blue[100], size: 20),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      Container(
+                        width: 270,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: <Widget>[
+                            RichText(
+                              text: TextSpan(
+                                // text: 'Created By: ',
+                                style: TextStyle(color: Colors.white),
+                                children: <TextSpan>[
+                                  TextSpan(
+                                      text: 'Nishon Tandukar',
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 15,
+                                      )),
+                                ],
+                              ),
+                            ),
+                            SizedBox(
+                              width: 10,
+                            ),
+                            Row(
+                              children: <Widget>[
+                                InkWell(
+                                  onTap: () async {
+                                    const url =
+                                        'https://www.facebook.com/nishon.tandukar';
+                                    if (await canLaunch(url)) {
+                                      await launch(url);
+                                    } else {
+                                      throw 'Could not launch $url';
+                                    }
+                                  },
+                                  child: Icon(
+                                    FontAwesomeIcons.facebook,
+                                    color: Colors.blue[100],
+                                    size: 20,
+                                  ),
+                                ),
+                                SizedBox(
+                                  width: 10,
+                                ),
+                                InkWell(
+                                  onTap: () async {
+                                    const url =
+                                        'https://www.instagram.com/nishon.tan/';
+                                    if (await canLaunch(url)) {
+                                      await launch(url);
+                                    } else {
+                                      throw 'Could not launch $url';
+                                    }
+                                  },
+                                  child: Icon(FontAwesomeIcons.instagram,
+                                      color: Colors.blue[100], size: 20),
+                                ),
+                                SizedBox(
+                                  width: 10,
+                                ),
+                                InkWell(
+                                  onTap: () async {
+                                    const url =
+                                        'https://www.linkedin.com/in/nishon-tan/';
+                                    if (await canLaunch(url)) {
+                                      await launch(url);
+                                    } else {
+                                      throw 'Could not launch $url';
+                                    }
+                                  },
+                                  child: Icon(FontAwesomeIcons.linkedin,
+                                      color: Colors.blue[100], size: 20),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),

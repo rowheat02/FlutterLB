@@ -27,7 +27,7 @@ Future main() async {
   runApp(MyApp());
 
   Timer.periodic(new Duration(seconds: 4), (timer) {
-    SystemChrome.setPreferredOrientations([DeviceOrientation.landscapeLeft]);
+    SystemChrome.setPreferredOrientations([DeviceOrientation.landscapeLeft,DeviceOrientation.landscapeRight]);
     SystemChrome.setEnabledSystemUIOverlays([]);
   });
 }
@@ -72,25 +72,15 @@ class _MyAppState extends State<MyApp> {
   );
   // "ca-app-pub-8724566557762547/8623211779"
 
-  BannerAd _bannerAd;
-  BannerAd createbannerad(){
-    return BannerAd(adUnitId:BannerAd.testAdUnitId ,size: AdSize.banner ,targetingInfo: targetinginfo,);
-  }
   @override
   void initState() {
-    
+    // TODO: implement initState
     super.initState();
+      super.initState();
     FirebaseAdMob.instance.initialize(
       appId: "ca-app-pub-8724566557762547~9880453125"
     );
-    _bannerAd=createbannerad()..load()..show();
-
-  }
-  @override
-  void dispose() {
     
-    super.dispose();
-    _bannerAd.dispose();
   }
 
   @override

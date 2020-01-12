@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:firebase_admob/firebase_admob.dart';
 import 'package:flutter/material.dart';
 import 'package:langurb/Provider_data/providers_data.dart';
 import 'package:langurb/Widgets/Betting_control.dart';
@@ -12,7 +13,31 @@ import 'package:langurb/Provider_data/providers_data.dart';
 
 
 
-class Home_screen extends StatelessWidget {
+class Home_screen extends StatefulWidget {
+  @override
+  _Home_screenState createState() => _Home_screenState();
+}
+
+// banneerid="ca-app-pub-8724566557762547/8623211779"
+
+class _Home_screenState extends State<Home_screen> {
+  BannerAd _bannerAd;
+  BannerAd createbannerad(){
+    return BannerAd(adUnitId:"ca-app-pub-8724566557762547/8623211779" ,size: AdSize.smartBanner ,);
+  }
+  @override
+  void initState() {
+    
+  
+    _bannerAd=createbannerad()..load()..show();
+
+  }
+  @override
+  void dispose() {
+    
+    super.dispose();
+    _bannerAd.dispose();
+  }
   @override
   Widget build(BuildContext context) {
     final provdat = Provider.of<Providersdata>(context, listen: true);
