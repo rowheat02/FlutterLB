@@ -123,8 +123,8 @@ class _MoneyState extends State<Money> {
                 ),
                 InkWell(
                   onTap: () async {
-                    RewardedVideoAd.instance.show().catchError(
-                        (e) => print("error in showing ad: ${e.toString()}"));
+                    // RewardedVideoAd.instance.show().catchError(
+                    //     (e) => print("error in showing ad: ${e.toString()}"));
                   },
                   child: Container(
                     width: 80,

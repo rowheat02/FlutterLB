@@ -8,15 +8,15 @@ settingResult7(resultdata) {
   var list = [];
   get3uniquevalue(list);
   get3uniquevalue(list);
-  print("a" + list.toString());
+  //"a" + list.toString());
   var array = new List<int>.generate(6, (int index) => index + 1);
   array.shuffle();
-  print(list + array);
+  //list + array);
   assignvalue7(numbers,resultdata,array,list);
 }
 
 get3uniquevalue(lis) {
-  print("hello");
+  //"hello");
   var rand = new Random();
   var r = 1 + rand.nextInt(6);
   if (lis.contains(r)) {
@@ -54,7 +54,7 @@ assignvalue7(numbers,resultdata,array,list){
 //     case 1:
 //       {
 //         for (int i = 1; i < 3; i++) {
-//           print(i.toString() + "1st loop");
+//           //i.toString() + "1st loop");
 //           var rand=new Random();
 //           var r=1 + rand.nextInt(6);
 //           lisposition.add(r);
@@ -62,7 +62,7 @@ assignvalue7(numbers,resultdata,array,list){
 //           while (lisposition.contains(r)) {
 //             var rand = new Random();
 //             r = 1 + rand.nextInt(6);
-//             print("Aaaaaa"+r.toString());
+//             //"Aaaaaa"+r.toString());
 
 //             if(!lisposition.contains(r)) {
 //               lisposition.add(r);
@@ -73,7 +73,7 @@ assignvalue7(numbers,resultdata,array,list){
 //         }
 
 //         for (int i = 1; i < 3; i++) {
-//           print(i.toString() + "2nd loop");
+//           //i.toString() + "2nd loop");
 //           var rand=new Random();
 //           var r=1 + rand.nextInt(6);
 //           lisposition.add(r);
@@ -81,7 +81,7 @@ assignvalue7(numbers,resultdata,array,list){
 //            while (lisposition.contains(r)) {
 //             var rand = new Random();
 //             r = 1 + rand.nextInt(6);
-//             print("Aaaaaa"+r.toString());
+//             //"Aaaaaa"+r.toString());
 //             if(!lisposition.contains(r)) lisposition.add(r);
 //           }
 //            assignval(r, list);
@@ -119,16 +119,16 @@ assignvalue7(numbers,resultdata,array,list){
 //   // await assignval(1, list);
 //   // await assignval(2, list);
 //   // await assignval(3, list);
-//   // print("ASDADDDA");
+//   // //"ASDADDDA");
 //   // await assignval(4, list);
-//   // print("ASDADDDA2");
+//   // //"ASDADDDA2");
 //   // await assignval(5, list);
-//   // print("ASDADDDA3");
+//   // //"ASDADDDA3");
 //   // await assignval(6, list);
-//   // await print("A"+lis.toString());
+//   // await //"A"+lis.toString());
 //   lisposition.clear();
 
-//   print(lis);
+//   //lis);
 //   lis.clear();
 // }
 
@@ -138,9 +138,9 @@ assignvalue7(numbers,resultdata,array,list){
 
 //   if (lis.contains(r)) {
 //     assignval(i, a);
-//     print("Again called");
+//     //"Again called");
 //   } else {
-//     print("AHHAHAHA");
+//     //"AHHAHAHA");
 //     a[i] = r;
 //     lis.add(r);
 //     // lis.add(r);

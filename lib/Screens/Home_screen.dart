@@ -23,13 +23,13 @@ class Home_screen extends StatefulWidget {
 class _Home_screenState extends State<Home_screen> {
   BannerAd _bannerAd;
   BannerAd createbannerad(){
-    return BannerAd(adUnitId:"ca-app-pub-8724566557762547/8623211779" ,size: AdSize.smartBanner ,);
+    return BannerAd(adUnitId:BannerAd.testAdUnitId ,size: AdSize.smartBanner ,);
   }
   @override
   void initState() {
     
   
-    _bannerAd=createbannerad()..load()..show();
+    // _bannerAd=createbannerad()..load()..show();
 
   }
   @override

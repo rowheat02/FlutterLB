@@ -21,6 +21,7 @@ class _InitialState extends State<Initial> {
       // "ca-app-pub-3650997257038005/7377492996"
   InterstitialAd myInterstitial = InterstitialAd(
     adUnitId: "ca-app-pub-8724566557762547/9688881433",
+    // adUnitId: InterstitialAd.testAdUnitId,
     targetingInfo: targetinginfo,
     listener: (MobileAdEvent event) {
       print("InterstitialAd event is $event");
@@ -110,6 +111,14 @@ class _InitialState extends State<Initial> {
                             provdat.active=null,
                             provdat.betdata={1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0},
                             provdat.btctrl_result=0,
+                             myInterstitial
+                              ..load()
+                              ..show(
+                                anchorType: AnchorType.bottom,
+                                anchorOffset: 0.0,
+                                // horizontalCenterOffset: 0.0,
+                              ).catchError((e)=>print("error code"+e)),
+                              myInterstitial.dispose(),
                             Navigator.pushNamed(context, '/play')
                           
                           },
@@ -152,14 +161,14 @@ class _InitialState extends State<Initial> {
                           onTap: () => {
                             provdat.animatedswitcherkey!=1? provdat.changeanimatedswitcherkey(1):provdat.changeanimatedswitcherkey(0),
 
-                            myInterstitial
-                              ..load()
-                              ..show(
-                                anchorType: AnchorType.bottom,
-                                anchorOffset: 0.0,
-                                // horizontalCenterOffset: 0.0,
-                              ).catchError((e)=>print("error code"+e)),
-                              myInterstitial.dispose()
+                            // myInterstitial
+                            //   ..load()
+                            //   ..show(
+                            //     anchorType: AnchorType.bottom,
+                            //     anchorOffset: 0.0,
+                            //     // horizontalCenterOffset: 0.0,
+                            //   ).catchError((e)=>print("error code"+e)),
+                            //   myInterstitial.dispose()
                           },
                           child: Container(
                             width: 140,
@@ -204,14 +213,14 @@ class _InitialState extends State<Initial> {
                         InkWell(
                           onTap: () => {
                             provdat.animatedswitcherkey!=2? provdat.changeanimatedswitcherkey(2):provdat.changeanimatedswitcherkey(0),
-                          myInterstitial
-                              ..load()
-                              ..show(
-                                anchorType: AnchorType.bottom,
-                                anchorOffset: 0.0,
-                                // horizontalCenterOffset: 0.0,
-                              ).catchError((e)=>print("error code"+e)),
-                              myInterstitial.dispose()
+                          // myInterstitial
+                          //     ..load()
+                          //     ..show(
+                          //       anchorType: AnchorType.bottom,
+                          //       anchorOffset: 0.0,
+                          //       // horizontalCenterOffset: 0.0,
+                          //     ).catchError((e)=>print("error code"+e)),
+                          //     myInterstitial.dispose()
                           },
                           child: Container(
                             width: 140,
@@ -254,14 +263,14 @@ class _InitialState extends State<Initial> {
                         InkWell(
                           onTap: () => {
                             provdat.animatedswitcherkey!=3? provdat.changeanimatedswitcherkey(3):provdat.changeanimatedswitcherkey(0),
-                          myInterstitial
-                              ..load()
-                              ..show(
-                                anchorType: AnchorType.bottom,
-                                anchorOffset: 0.0,
-                                // horizontalCenterOffset: 0.0,
-                              ).catchError((e)=>print("error code"+e)),
-                              myInterstitial.dispose()
+                          // myInterstitial
+                          //     ..load()
+                          //     ..show(
+                          //       anchorType: AnchorType.bottom,
+                          //       anchorOffset: 0.0,
+                          //       // horizontalCenterOffset: 0.0,
+                          //     ).catchError((e)=>print("error code"+e)),
+                          //     myInterstitial.dispose()
                           },
                           child: Container(
                             width: 140,

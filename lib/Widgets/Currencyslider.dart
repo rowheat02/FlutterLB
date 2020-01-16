@@ -42,7 +42,7 @@ class _CurrencySliderState extends State<CurrencySlider> {
 
                       label: "$val",
                       onChanged: (values) {
-                        print(values.round());
+                        //values.round());
                         provar.setslidervalue(values);
 
                       },
