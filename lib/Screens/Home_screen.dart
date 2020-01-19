@@ -1,6 +1,7 @@
 import 'dart:async';
 
-import 'package:firebase_admob/firebase_admob.dart';
+// import 'package:firebase_admob/firebase_admob.dart';
+import 'package:facebook_audience_network/facebook_audience_network.dart';
 import 'package:flutter/material.dart';
 import 'package:langurb/Provider_data/providers_data.dart';
 import 'package:langurb/Widgets/Betting_control.dart';
@@ -21,10 +22,11 @@ class Home_screen extends StatefulWidget {
 // banneerid="ca-app-pub-8724566557762547/8623211779"
 
 class _Home_screenState extends State<Home_screen> {
-  BannerAd _bannerAd;
-  BannerAd createbannerad(){
-    return BannerAd(adUnitId:BannerAd.testAdUnitId ,size: AdSize.smartBanner ,);
-  }
+  // BannerAd _bannerAd;
+  // BannerAd createbannerad(){
+  //   return BannerAd(adUnitId:BannerAd.testAdUnitId ,size: AdSize.smartBanner ,);
+  // }
+  bool _bannerloaded=false;
   @override
   void initState() {
     
@@ -36,12 +38,13 @@ class _Home_screenState extends State<Home_screen> {
   void dispose() {
     
     super.dispose();
-    _bannerAd.dispose();
+    // _bannerAd.dispose();
   }
   @override
   Widget build(BuildContext context) {
     final provdat = Provider.of<Providersdata>(context, listen: true);
     provdat.load();
+    
     
 
     // var Bls=SetBalancee();
@@ -52,7 +55,7 @@ class _Home_screenState extends State<Home_screen> {
     var scaffold = new Scaffold(
         body: Container(
       child: Container(
-        padding: EdgeInsets.only(top: 15),
+        padding: EdgeInsets.only(top: _bannerloaded?5:25),
         decoration: BoxDecoration(
             gradient: LinearGradient(
                 begin: Alignment.topRight,
@@ -113,7 +116,35 @@ class _Home_screenState extends State<Home_screen> {
              
               ],
             ),
+            Container(
+  alignment: Alignment(0.5, 1),
+  child: FacebookBannerAd(
+    placementId: "1042494426115109_1042552142776004",
+    bannerSize: BannerSize.STANDARD,
+    listener: (result, value) {
+      switch (result) {
+        case BannerAdResult.ERROR:
+          print("Error: $value");
+          break;
+        case BannerAdResult.LOADED:
+          print("Loaded: $value");
+         setState(() {
+
+      _bannerloaded=true;
+    });
+          break;
+        case BannerAdResult.CLICKED:
+          print("Clicked: $value");
+          break;
+        case BannerAdResult.LOGGING_IMPRESSION:
+          print("Logging Impression: $value");
+          break;
+      }
+    },
+  ),
+)
           ],
+          
         ),
       ),
     ));

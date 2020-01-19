@@ -43,8 +43,8 @@ class _BrandState extends State<Brand> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
                         Text(
-                          "KhorKhore",
-                          style: TextStyle(color: Colors.white, fontSize: 50),
+                          "LangurBurja",
+                          style: TextStyle(color: Colors.white, fontSize: 45),
                           textAlign: TextAlign.end,
                         ),
                         Text(

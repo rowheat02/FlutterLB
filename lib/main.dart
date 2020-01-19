@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:io';
+import 'package:facebook_audience_network/facebook_audience_network.dart';
 import 'package:flutter/material.dart';
 import 'package:langurb/Screens/Initial_screnn.dart';
 import 'package:langurb/Screens/Licence.dart';
@@ -9,7 +10,7 @@ import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import './Provider_data/providers_data.dart';
 // import 'package:admob_flutter/admob_flutter.dart';
-import 'package:firebase_admob/firebase_admob.dart';
+// import 'package:firebase_admob/firebase_admob.dart';
 
 
 Future main() async {
@@ -63,13 +64,13 @@ class _MyAppState extends State<MyApp> {
 }
 
 
-  static const MobileAdTargetingInfo targetinginfo=MobileAdTargetingInfo(
-    // testDevices:["869906033918754"] ,
+  // static const MobileAdTargetingInfo targetinginfo=MobileAdTargetingInfo(
+  //   // testDevices:["869906033918754"] ,
     
     
 
 
-  );
+  // );
   // "ca-app-pub-8724566557762547/8623211779"
 
   @override
@@ -77,9 +78,8 @@ class _MyAppState extends State<MyApp> {
     // TODO: implement initState
     super.initState();
       super.initState();
-    FirebaseAdMob.instance.initialize(
-      appId: "ca-app-pub-8724566557762547~9880453125"
-    );
+      FacebookAudienceNetwork.init(testingId: "5bbc3666-9023-4678-9217-2c3496b16da9");
+   
     
   }
 

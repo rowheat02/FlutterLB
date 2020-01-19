@@ -1,6 +1,8 @@
-import 'package:firebase_admob/firebase_admob.dart';
+// import 'package:firebase_admob/firebase_admob.dart';
+import 'package:facebook_audience_network/facebook_audience_network.dart';
 import 'package:flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
+
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:langurb/Provider_data/providers_data.dart';
 import 'package:provider/provider.dart';
@@ -17,62 +19,136 @@ class _MoneyState extends State<Money> {
     await prefs.setInt('Balance', Balancee);
   }
 
+  loadrewardedAd() {
+    FacebookRewardedVideoAd.loadRewardedVideoAd(
+      placementId: "1042494426115109_1042559516108600",
+      listener: (result, value) {
+        if (result == RewardedVideoAdResult.LOADED) {
+          // FacebookRewardedVideoAd.showRewardedVideoAd();
+          setState(() {
+            surveyloaded = true;
+          });
+        }
+        //   FacebookRewardedVideoAd.showRewardedVideoAd();
+        if (result == RewardedVideoAdResult.VIDEO_COMPLETE) {
+          rewardMoney();
+          Flushbar(
+              flushbarPosition: FlushbarPosition.TOP,
+              isDismissible: true,
+              // title:  "No symbols Selected",
+              forwardAnimationCurve: Curves.fastLinearToSlowEaseIn,
+              messageText: new Text(
+                "RS 100 Rewarded",
+                textAlign: TextAlign.center,
+                style: TextStyle(color: Colors.white),
+              ),
+              duration: Duration(milliseconds: 2000),
+              // overlayColor:Colors.red,
+              borderColor: Colors.white,
+              // borderRadius: 50,
+              // backgroundColor:Colors.black,
+              flushbarStyle: FlushbarStyle.GROUNDED,
+              boxShadows: [BoxShadow(color: Colors.white)]).show(context);
+        }
+      },
+    );
+  }
+
+  loadrewardedAd1() {
+    FacebookRewardedVideoAd.loadRewardedVideoAd(
+      placementId: "1042494426115109_1042559516108600",
+      listener: (result, value) {
+        if (result == RewardedVideoAdResult.LOADED) {
+          FacebookRewardedVideoAd.showRewardedVideoAd();
+        }
+        //   FacebookRewardedVideoAd.showRewardedVideoAd();
+        if (result == RewardedVideoAdResult.VIDEO_COMPLETE) {
+          rewardMoney();
+          Flushbar(
+              flushbarPosition: FlushbarPosition.TOP,
+              isDismissible: true,
+              // title:  "No symbols Selected",
+              forwardAnimationCurve: Curves.fastLinearToSlowEaseIn,
+              messageText: new Text(
+                "RS 100 Rewarded",
+                textAlign: TextAlign.center,
+                style: TextStyle(color: Colors.white),
+              ),
+              duration: Duration(milliseconds: 2000),
+              // overlayColor:Colors.red,
+              borderColor: Colors.white,
+              // borderRadius: 50,
+              // backgroundColor:Colors.black,
+              flushbarStyle: FlushbarStyle.GROUNDED,
+              boxShadows: [BoxShadow(color: Colors.white)]).show(context);
+        }
+      },
+    );
+  }
+
   bool _completed = false;
   var snak;
+  var surveyloaded = false;
 
-  RewardedVideoAd rewarded;
+  // RewardedVideoAd rewarded;
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    RewardedVideoAd.instance
-        .load(
-            adUnitId: "ca-app-pub-8724566557762547/8488669777",
-            targetingInfo: MobileAdTargetingInfo(
-                // testDevices:["869906033918754"] ,
-                ))
-        .catchError((e) => print("error in loading again"));
-    RewardedVideoAd.instance.listener = (RewardedVideoAdEvent event,
-        {String rewardType, int rewardAmount}) async {
-      if (event == RewardedVideoAdEvent.rewarded) {
-        // Here, apps should update state to reflect the reward.
-        print("ADaklndlaknsdlkansdklasndklasRewarded   Rewarded");
-        rewardMoney();
-      }
-      if (event == RewardedVideoAdEvent.completed) {
-        _completed = true;
-      }
-      ;
-      if (event == RewardedVideoAdEvent.closed) {
-        RewardedVideoAd.instance
-            .load(
-                adUnitId: RewardedVideoAd.testAdUnitId,
-                targetingInfo: MobileAdTargetingInfo(
-                    // testDevices:["869906033918754"] ,
-                    ))
-            .catchError((e) => print("error in loading again"));
-        snak = await Flushbar(
-            flushbarPosition: FlushbarPosition.TOP,
-            isDismissible: true,
-            // title:  "No symbols Selected",
-            forwardAnimationCurve: Curves.fastLinearToSlowEaseIn,
-            messageText: new Text(
-              "RS 100 Rewarded",
-              textAlign: TextAlign.center,
-              style: TextStyle(color: Colors.white),
-            ),
-            duration: Duration(milliseconds: 2000),
-            // overlayColor:Colors.red,
-            borderColor: Colors.white,
-            // borderRadius: 50,
-            // backgroundColor:Colors.black,
-            flushbarStyle: FlushbarStyle.GROUNDED,
-            boxShadows: [BoxShadow(color: Colors.white)]);
-        if (_completed) snak.show(context);
-        _completed = false;
-      }
-    };
+    // loadrewardedAd();
+
+    //     FirebaseAdMob.instance.initialize(
+    //   appId: "ca-app-pub-8724566557762547~9880453125"
+    // );
+    // RewardedVideoAd.instance
+    //     .load(
+    //         adUnitId: "ca-app-pub-8724566557762547/8488669777",
+    //         targetingInfo: MobileAdTargetingInfo(
+    //             // testDevices:["869906033918754"] ,
+    //             ))
+    //     .catchError((e) => print("error in loading again"));
+    // RewardedVideoAd.instance.listener = (RewardedVideoAdEvent event,
+    //     {String rewardType, int rewardAmount}) async {
+    //   if (event == RewardedVideoAdEvent.rewarded) {
+    //     // Here, apps should update state to reflect the reward.
+    //     print("ADaklndlaknsdlkansdklasndklasRewarded   Rewarded");
+    // rewardMoney();
+    //   }
+    //   if (event == RewardedVideoAdEvent.completed) {
+    //     _completed = true;
+    //   }
+    //   ;
+    //   if (event == RewardedVideoAdEvent.closed) {
+    //     RewardedVideoAd.instance
+    //         .load(
+    //             adUnitId: RewardedVideoAd.testAdUnitId,
+    //             targetingInfo: MobileAdTargetingInfo(
+    //                 // testDevices:["869906033918754"] ,
+    //                 ))
+    //         .catchError((e) => print("error in loading again"));
+    // snak = await Flushbar(
+    //     flushbarPosition: FlushbarPosition.TOP,
+    //     isDismissible: true,
+    //     // title:  "No symbols Selected",
+    //     forwardAnimationCurve: Curves.fastLinearToSlowEaseIn,
+    //     messageText: new Text(
+    //       "RS 100 Rewarded",
+    //       textAlign: TextAlign.center,
+    //       style: TextStyle(color: Colors.white),
+    //     ),
+    //     duration: Duration(milliseconds: 2000),
+    //     // overlayColor:Colors.red,
+    //     borderColor: Colors.white,
+    //     // borderRadius: 50,
+    //     // backgroundColor:Colors.black,
+    //     flushbarStyle: FlushbarStyle.GROUNDED,
+    //     boxShadows: [BoxShadow(color: Colors.white)]);
+    //     if (_completed) snak.show(context);
+    //     _completed = false;
+    //   }
+    // };
+    //  FlutterPollfish.instance.init(apiKey: '69939efa-7962-487c-ba0d-734b6669b074');
   }
 
   @override
@@ -118,13 +194,27 @@ class _MoneyState extends State<Money> {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
                 Text(
-                  "Get Rs 100",
+                  "Get Rs 100 ",
                   style: TextStyle(color: Colors.white, fontSize: 20),
                 ),
+                SizedBox(
+                  height: 20,
+                ),
                 InkWell(
-                  onTap: () async {
+                  
+                  onTap: () {
                     // RewardedVideoAd.instance.show().catchError(
                     //     (e) => print("error in showing ad: ${e.toString()}"));
+                    // if (surveyloaded) {
+                    //   FacebookRewardedVideoAd.showRewardedVideoAd();
+                    // }
+                    // else{
+                    //   loadrewardedAd();
+
+                    // }
+       
+                    loadrewardedAd1();
+                  
                   },
                   child: Container(
                     width: 80,

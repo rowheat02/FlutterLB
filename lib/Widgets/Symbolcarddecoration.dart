@@ -8,7 +8,7 @@ class Symbolcarddecoration extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new Container(
-      padding: EdgeInsets.only(bottom: 5,top: 0,left: 0,right: 0),
+      padding: EdgeInsets.only(bottom: 0,top: 0,left: 0,right: 0),
       // color: Colors.grey,
       decoration: BoxDecoration(
           // border: Border.all(color: Colors.white, width: 0.5),

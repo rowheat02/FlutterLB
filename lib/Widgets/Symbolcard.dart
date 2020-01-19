@@ -29,7 +29,9 @@ class Symbolcard extends StatelessWidget {
           // width: MediaQuery.of(context).size.width * 0.2,
           // height: MediaQuery.of(context).size.height * 0.4,
           width: MediaQuery.of(context).size.width * 0.18,
-          height: MediaQuery.of(context).size.height * 0.34,
+          // height: MediaQuery.of(context).size.height * 0.34,
+          height: MediaQuery.of(context).size.width * 0.18,
+          
 
           // width:  Provid.active == id
           //                         ? MediaQuery.of(context).size.width * 0.20
