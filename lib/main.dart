@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:io';
 import 'package:facebook_audience_network/facebook_audience_network.dart';
+import 'package:firebase_admob/firebase_admob.dart';
 import 'package:flutter/material.dart';
 import 'package:langurb/Screens/Initial_screnn.dart';
 import 'package:langurb/Screens/Licence.dart';
@@ -78,7 +79,9 @@ class _MyAppState extends State<MyApp> {
     // TODO: implement initState
     super.initState();
       super.initState();
-      FacebookAudienceNetwork.init(testingId: "5bbc3666-9023-4678-9217-2c3496b16da9");
+      // FacebookAudienceNetwork.init(testingId: "5bbc3666-9023-4678-9217-2c3496b16da9");
+      // Admob.initialize("ca-app-pub-8724566557762547~8743754402");
+      FirebaseAdMob.instance.initialize(appId: "ca-app-pub-8724566557762547~8743754402");
    
     
   }

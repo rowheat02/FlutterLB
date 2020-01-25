@@ -1,6 +1,7 @@
 // import 'package:firebase_admob/firebase_admob.dart';
 import 'package:facebook_audience_network/ad/ad_banner.dart';
 import 'package:facebook_audience_network/facebook_audience_network.dart';
+import 'package:firebase_admob/firebase_admob.dart';
 import 'package:flutter/material.dart';
 // import 'package:langurb/Screens/Home_screen.dart';
 // import 'package:langurb/Screens/test.dart';
@@ -29,11 +30,28 @@ class _InitialState extends State<Initial> {
   //     print("InterstitialAd event is $event");
   //   },
   // );
+InterstitialAd myInterstitial;
+ 
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
+      myInterstitial = InterstitialAd(
+    // Replace the testAdUnitId with an ad unit id from the AdMob dash.
+    // https://developers.google.com/admob/android/test-ads
+    // https://developers.google.com/admob/ios/test-ads
+    adUnitId: InterstitialAd.testAdUnitId,
+    // targetingInfo: targetingInfo,
+    listener: (MobileAdEvent event) {
+      print("InterstitialAd event is $event");
+      if(event==MobileAdEvent.closed){
+        myInterstitial.dispose();
+        
+
+      }
+    },
+  );
 
 // myInterstitial
 //   ..load()
@@ -142,6 +160,13 @@ class _InitialState extends State<Initial> {
                                       delay: 100);
                               },
                             ),
+                            myInterstitial
+                              ..load()
+                              ..show(
+                                anchorType: AnchorType.bottom,
+                                anchorOffset: 0.0,
+                                horizontalCenterOffset: 0.0,
+                              ),
                             Navigator.pushNamed(context, '/play')
                           },
                           child: Container(

@@ -86,6 +86,8 @@ class _MoneyState extends State<Money> {
     );
   }
 
+  
+
   bool _completed = false;
   var snak;
   var surveyloaded = false;
