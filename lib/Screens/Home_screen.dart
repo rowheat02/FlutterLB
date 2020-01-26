@@ -12,7 +12,7 @@ import 'package:provider/provider.dart';
 import 'package:langurb/Functions/Allfunc.dart';
 import 'package:langurb/Provider_data/providers_data.dart';
 
-
+import 'Home_screen/switchsymbolresult.dart';
 
 class Home_screen extends StatefulWidget {
   @override
@@ -26,26 +26,21 @@ class _Home_screenState extends State<Home_screen> {
   // BannerAd createbannerad(){
   //   return BannerAd(adUnitId:BannerAd.testAdUnitId ,size: AdSize.smartBanner ,);
   // }
-  bool _bannerloaded=false;
+  bool _bannerloaded = false;
   @override
   void initState() {
-    
-  
     // _bannerAd=createbannerad()..load()..show();
-
   }
   @override
   void dispose() {
-    
     super.dispose();
     // _bannerAd.dispose();
   }
+
   @override
   Widget build(BuildContext context) {
     final provdat = Provider.of<Providersdata>(context, listen: true);
     provdat.load();
-    
-    
 
     // var Bls=SetBalancee();
     // provdat.setBalance(Bls);
@@ -55,7 +50,7 @@ class _Home_screenState extends State<Home_screen> {
     var scaffold = new Scaffold(
         body: Container(
       child: Container(
-        padding: EdgeInsets.only(top: _bannerloaded?5:25),
+        padding: EdgeInsets.only(top: _bannerloaded ? 5 : 25),
         decoration: BoxDecoration(
             gradient: LinearGradient(
                 begin: Alignment.topRight,
@@ -68,11 +63,13 @@ class _Home_screenState extends State<Home_screen> {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                Symbolcarddecoration(),
-                   Column(
+                Switchresult(),
+                Column(
                   children: <Widget>[
                     // Text("Balance:$bls",style: TextStyle(color: Colors.red)),
-                    ctrl_rslt == 0 ? BettingControl() :ctrl_rslt == 2 ?  Rolling():Result()
+                    ctrl_rslt == 0
+                        ? BettingControl()
+                        : ctrl_rslt == 2 ? Rolling() : Result()
                     // BettingControl()
                   ],
                 ),
@@ -94,8 +91,9 @@ class _Home_screenState extends State<Home_screen> {
                               topLeft: Radius.circular(15)),
                         ),
                         child: InkWell(
-                          onTap:()=> {Navigator.pop(context),
-                          provdat.animatedswitcherkey=0
+                          onTap: () => {
+                            Navigator.pop(context),
+                            provdat.animatedswitcherkey = 0
                           },
                           child: FittedBox(
                               fit: BoxFit.scaleDown,
@@ -109,42 +107,38 @@ class _Home_screenState extends State<Home_screen> {
                               ),
                         ),
                       ),
-                     
                     ],
                   ),
                 ),
-             
               ],
             ),
             Container(
-  alignment: Alignment(0.5, 1),
-  child: FacebookBannerAd(
-    placementId: "1042494426115109_1042552142776004",
-    bannerSize: BannerSize.STANDARD,
-    listener: (result, value) {
-      switch (result) {
-        case BannerAdResult.ERROR:
-          print("Error: $value");
-          break;
-        case BannerAdResult.LOADED:
-          print("Loaded: $value");
-         setState(() {
-
-      _bannerloaded=true;
-    });
-          break;
-        case BannerAdResult.CLICKED:
-          print("Clicked: $value");
-          break;
-        case BannerAdResult.LOGGING_IMPRESSION:
-          print("Logging Impression: $value");
-          break;
-      }
-    },
-  ),
-)
+              alignment: Alignment(0.5, 1),
+              child: FacebookBannerAd(
+                placementId: "1042494426115109_1042552142776004",
+                bannerSize: BannerSize.STANDARD,
+                listener: (result, value) {
+                  switch (result) {
+                    case BannerAdResult.ERROR:
+                      print("Error: $value");
+                      break;
+                    case BannerAdResult.LOADED:
+                      print("Loaded: $value");
+                      setState(() {
+                        _bannerloaded = true;
+                      });
+                      break;
+                    case BannerAdResult.CLICKED:
+                      print("Clicked: $value");
+                      break;
+                    case BannerAdResult.LOGGING_IMPRESSION:
+                      print("Logging Impression: $value");
+                      break;
+                  }
+                },
+              ),
+            )
           ],
-          
         ),
       ),
     ));

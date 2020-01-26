@@ -31,7 +31,7 @@ class _RollingState extends State<Rolling> {
     double _height = 101.0;
     double _rot = 0.0;
     double _marginbotom = 10.0;
-    Color _color = Colors.grey.withOpacity(0.1);
+    Color _color = Colors.yellow.withOpacity(0.5);
     BorderRadiusGeometry _borderRadius = BorderRadius.circular(8);
     animate() {
       setState(() {
@@ -85,7 +85,7 @@ class _RollingState extends State<Rolling> {
                 child: Padding(
                   padding: EdgeInsets.all(5.0),
                   child: Text(
-                    'Rolling',
+                    '',
                     style: TextStyle(color: Colors.white),
                   ),
                 ),

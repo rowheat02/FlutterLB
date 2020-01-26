@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:langurb/Provider_data/providers_data.dart';
+import 'package:langurb/Screens/Home_screen/Playagain.dart';
 import 'package:langurb/Widgets/Resultcard.dart';
 import 'package:provider/provider.dart';
 
 class Result extends StatelessWidget {
+  
   @override
   Widget build(BuildContext context) {
     var provdat = Provider.of<Providersdata>(context);
@@ -63,13 +65,15 @@ class Result extends StatelessWidget {
                     : provdat.won == 1 ? Colors.green : Colors.white),
           ),
           FlatButton(
-            onPressed: () => provdat.btctrlresult(),
-            child: Text(
-              "Play Again",
-              style: TextStyle(fontSize: 30, color: Colors.white),
-              textAlign: TextAlign.center,
+              onPressed: () => provdat.btctrlresult(),
+              // child: Text(
+              //   "Play Again",
+              //   style: TextStyle(fontSize: 30, color: Colors.white),
+              //   textAlign: TextAlign.center,
+              // ),
+              child: Playagain(),
             ),
-          )
+            // Playagain()
         ],
       ),
     );
