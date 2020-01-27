@@ -286,7 +286,7 @@ class _BettingControlState extends State<BettingControl> {
                               // backgroundColor:Colors.black,
                               flushbarStyle: FlushbarStyle.GROUNDED,
                               boxShadows: [BoxShadow(color: Colors.white)])
-                            ..show(context)
+                            ..show(context) 
               
               },
               child: Container(
