@@ -1,6 +1,8 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:langurb/Provider_data/providers_data.dart';
+import 'package:provider/provider.dart';
 
 class Wonorloss extends StatefulWidget {
   @override
@@ -42,6 +44,9 @@ class _WonorlossState extends State<Wonorloss> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
+    var provdat = Provider.of<Providersdata>(context);
+    var wonloss=provdat.wononly-provdat.betonly;
+    wonloss<0?wonloss=-wonloss:wonloss=wonloss;
     return Center(
         child: Center(
             child: AnimatedBuilder(
@@ -53,10 +58,11 @@ class _WonorlossState extends State<Wonorloss> with TickerProviderStateMixin {
             // height: 90,
             decoration: BoxDecoration(
                 shape: BoxShape.rectangle,
-                border: Border.all(color: Colors.white, width: 1)),
+                // border: Border.all(color: Colors.white, width: 1)
+                ),
             child: Center(
               child: Text(
-                "RS 4000",
+                "RS $wonloss",
                 style: TextStyle(color: Colors.white, fontSize: animation.value),
               ),
             ));

@@ -1,16 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:langurb/Provider_data/providers_data.dart';
 import 'package:langurb/Screens/Home_screen/MyBlinkingButton.dart';
 import 'package:langurb/Screens/Home_screen/Wonorloss.dart';
+import 'package:langurb/Screens/Home_screen/resultrow.dart';
+
+import 'package:provider/provider.dart';
 
 class Resultleft extends StatefulWidget {
   @override
   _ResultleftState createState() => _ResultleftState();
 }
 
-class _ResultleftState extends State<Resultleft>   {
+class _ResultleftState extends State<Resultleft> {
   @override
   Widget build(BuildContext context) {
+    final provdat = Provider.of<Providersdata>(context, listen: true);
+    var totalbet=provdat.betonly;
+    var totalwon=provdat.wononly;
+    var wonloss=totalwon-totalbet;
+
     return Container(
       padding: EdgeInsets.only(bottom: 0, top: 0, left: 0, right: 0),
       // color: Colors.grey,
@@ -27,96 +36,101 @@ class _ResultleftState extends State<Resultleft>   {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
           Container(
-      width: MediaQuery.of(context).size.width * 0.60,
-
-
-            child: Container(
-              margin: EdgeInsets.all(2),
-              decoration: BoxDecoration(color: Colors.amber[300].withOpacity(1),border: Border.all(color: Colors.white,width: 1),borderRadius: BorderRadius.all(Radius.circular(15))),
+            padding: EdgeInsets.all(2),
+            decoration: BoxDecoration(color:Colors.yellow ),
+            width: MediaQuery.of(context).size.width * 0.60,
+            child: Column(
+              children: <Widget>[
+                Row(
+                  children: <Widget>[
+                    Flexible(
+                      flex: 1,
+                      fit: FlexFit.tight,
+                      child: Container(child: Text("")),
+                    ),
+                    Flexible(
+                      flex: 1,
+                      fit: FlexFit.tight,
+                      child: Text(
+                        "Bet",
+                        style: TextStyle(fontStyle: FontStyle.italic),
+                      ),
+                    ),
+                    Flexible(
+                      flex: 1,
+                      fit: FlexFit.tight,
+                      child: Text("Won",
+                          style: TextStyle(fontStyle: FontStyle.italic)),
+                    ),
+                  ],
+                ),
+                Container(height: 1,width:MediaQuery.of(context).size.width * 0.60,color: Colors.red,),
+                Column(
+                    children: provdat.resultlist.map((f) =>
+                    resultrow(f)
+                    
+                    ).toList()),
+                     Row(
+                  children: <Widget>[
+                    Flexible(
+                      flex: 1,
+                      fit: FlexFit.tight,
+                      child: Container(child: Text("Total",style: TextStyle(textBaseline: TextBaseline.alphabetic),textAlign: TextAlign.center,)),
+                    ),
+                    Flexible(
+                      flex: 1,
+                      fit: FlexFit.tight,
+                      child: Text(
+                        "$totalbet",
+                        style: TextStyle(color: Colors.red,fontSize: 16),
+                      ),
+                    ),
+                    Flexible(
+                      flex: 1,
+                      fit: FlexFit.tight,
+                      child: Text("$totalwon",
+                          style: TextStyle(color: Colors.red,fontSize: 16)),
+                    ),
+                  ],
+                ),
               
-              child: DataTable(
                 
-                dataRowHeight:20 ,
-                headingRowHeight: 20,
-                
-                columns: [DataColumn( label: Text("",style: TextStyle(color: Colors.white),)),DataColumn(label: Text("Bet",style: TextStyle(color: Colors.red))),DataColumn(label: Text("Won",style: TextStyle(color: Colors.red)))],
-                rows: [DataRow( selected: false, cells: [DataCell( Container(
-                      padding: EdgeInsets.all(1),
-                      // color: Colors.white,
-                      // decoration: BoxDecoration(border: Border.all(color: Colors.white,width: 0.5)),
-                      width: 30,
-                      height: 20,
-                      child: SvgPicture.asset(
-                        'Jpg/2.svg',
-                        fit: BoxFit.contain,
-                      ),
-                    ),),
-                DataCell(Text("Symbol")),DataCell(Text("Symbol"))]),
-                DataRow( selected: false, cells: [DataCell( Container(
-                      padding: EdgeInsets.all(1),
-                      // color: Colors.white,
-                      width: 30,
-                      height: 20,
-                      child: SvgPicture.asset(
-                        'Jpg/1.svg',
-                        fit: BoxFit.contain,
-                      ),
-                    ),),
-                DataCell(Text("Symbol")),DataCell(Text("Symbol"))]),
-                DataRow( selected: false, cells: [DataCell( Container(
-                      padding: EdgeInsets.all(1),
-                      color: Colors.white,
-                      width: 30,
-                      height: 20,
-                      child: SvgPicture.asset(
-                        'Jpg/3.svg',
-                        fit: BoxFit.contain,
-                      ),
-                    ),),
-                DataCell(Text("Symbol")),DataCell(Text("Symbol"))]),
-                DataRow( selected: false, cells: [DataCell( Container(
-                      padding: EdgeInsets.all(1),
-                      color: Colors.white,
-                      width: 20,
-                      height: 20,
-                      child: SvgPicture.asset(
-                        'Jpg/1.svg',
-                        fit: BoxFit.contain,
-                      ),
-                    ),),
-                DataCell(Text("Symbol")),DataCell(Text("Symbol"))]),
-                DataRow( selected: false, cells: [DataCell( Container(
-                      padding: EdgeInsets.all(1),
-                      color: Colors.white,
-                      width: 20,
-                      height: 20,
-                      child: SvgPicture.asset(
-                        'Jpg/1.svg',
-                        fit: BoxFit.contain,
-                      ),
-                    ),),
-                DataCell(Text("Symbol")),DataCell(Text("Symbol"))]),
-                
-                DataRow(selected: false, cells: [DataCell(Text("Symbol")),DataCell(Text("Symbol")),DataCell(Text("Symbol"))]),DataRow(selected: true, cells: [DataCell(Text("")),DataCell(Text("Rs 20")),DataCell(Text("Rs 100"))
-                
-                ]),
-                
-                ],
-              ),
+              ],
             ),
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: <Widget>[
-              MyBlinkingButton(),
-              SizedBox(width: 4,),
-              Wonorloss(),
-            ],
+          // Row(
+          //   mainAxisAlignment: MainAxisAlignment.center,
+          //   crossAxisAlignment: CrossAxisAlignment.center,
+          //   children: <Widget>[
+          //     MyBlinkingButton(),
+          //     SizedBox(width: 4,),
+          //     Wonorloss(),
+          //   ],
+          // ),
+          Container(
+            width: 80,
+            height: 80,
+            child: Image.asset(
+              wonloss<0?"Jpg/sad.gif":wonloss>0?"Jpg/happy.gif":"Jpg/none.gif",
+              // height: 125.0,
+              // width: 125.0,
+            ),
           ),
-         
-          SizedBox(height: 1,)
+          //   Container(
+          //   width: 80,
+          //   height: 80,
+          //   child: Image.asset(
+          //         "Jpg/sad.gif",
+          //         // height: 125.0,
+          //         // width: 125.0,
+          //       ),
+          // ),
 
+          // Image.network("https://media.giphy.com/media/JlfERQStnPLiM/giphy.gif"),
+
+          SizedBox(
+            height: 1,
+          )
         ],
       ),
     );

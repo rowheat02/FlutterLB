@@ -1,6 +1,11 @@
+import 'dart:async';
+
+import 'package:facebook_audience_network/facebook_audience_network.dart';
 import 'package:flutter/material.dart';
 import 'package:langurb/Provider_data/providers_data.dart';
+import 'package:langurb/Screens/Home_screen/MyBlinkingButton.dart';
 import 'package:langurb/Screens/Home_screen/Playagain.dart';
+import 'package:langurb/Screens/Home_screen/Wonorloss.dart';
 import 'package:langurb/Widgets/Resultcard.dart';
 import 'package:provider/provider.dart';
 
@@ -10,6 +15,8 @@ class Result extends StatelessWidget {
   Widget build(BuildContext context) {
     var provdat = Provider.of<Providersdata>(context);
     var won = provdat.won == 0 ? "Lost" : provdat.won == 1 ? "Won" : "Won=Lost";
+       
+    var wonlosss=provdat.wononly-provdat.betonly;
 
     var balance = provdat.Balance;
     var wonlost = provdat.wonlost;
@@ -57,15 +64,51 @@ class Result extends StatelessWidget {
               Resultcard(provdat.resultdata[6], 0.8),
             ],
           ),
-          Text(
-            "$won RS $wonlost",
-            style: TextStyle(
-                color: provdat.won == 0
-                    ? Colors.red
-                    : provdat.won == 1 ? Colors.green : Colors.white),
+          // Text(
+          //   "$won RS $wonlost",
+          //   style: TextStyle(
+          //       color: provdat.won == 0
+          //           ? Colors.red
+          //           : provdat.won == 1 ? Colors.green : Colors.white),
+          // ),
+           Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: <Widget>[
+              MyBlinkingButton(wonloss: wonlosss,),
+              SizedBox(width: 4,),
+              Wonorloss(),
+            ],
           ),
           FlatButton(
-              onPressed: () => provdat.btctrlresult(),
+              onPressed: () =>{ 
+              
+              provdat.btctrlresult(),
+              provdat.resultlist=[],
+              provdat.betonly=0,
+              provdat.wononly=0,
+              if(provdat.playagainad){
+                 FacebookInterstitialAd.loadInterstitialAd(
+                              placementId: "1042494426115109_1049188492112369",
+                              listener: (result, value) {
+                                if (result == InterstitialAdResult.LOADED)
+                                  FacebookInterstitialAd.showInterstitialAd(
+                                      delay: 10);
+                              },
+                            ),
+                    provdat.playagainad=false,
+                    Timer(Duration(seconds: 25), ()=>{
+                      provdat.playagainad=true
+                    })
+              
+
+
+              },
+            
+              
+                    
+              },
+              
               // child: Text(
               //   "Play Again",
               //   style: TextStyle(fontSize: 30, color: Colors.white),

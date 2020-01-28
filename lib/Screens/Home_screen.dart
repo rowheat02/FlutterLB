@@ -93,7 +93,18 @@ class _Home_screenState extends State<Home_screen> {
                         child: InkWell(
                           onTap: () => {
                             Navigator.pop(context),
-                            provdat.animatedswitcherkey = 0
+                            provdat.animatedswitcherkey = 0,
+                            provdat.betonly = 0,
+                            provdat.wononly = 0,
+                            provdat.wondata={1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0},
+                            provdat.betdata={1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0},
+                            provdat.resultlist=[],
+
+                            provdat.nonzero_bet = [],
+                            provdat.btctrl_result = 0,
+                            provdat.won=0,
+                            provdat.wonlost=0
+
                           },
                           child: FittedBox(
                               fit: BoxFit.scaleDown,

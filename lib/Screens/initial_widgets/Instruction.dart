@@ -92,7 +92,24 @@ class _InstructionState extends State<Instruction> {
                 style: TextStyle(color: Colors.red,fontWeight: FontWeight.bold),
                 children: <TextSpan>[
                   TextSpan(
-                      text: 'Winning amount will be n times of your betting amount(n=number of selected symbol after Rolling)',
+                      text: 'Winning amount will be n times of your betting amount(n=number of betted symbol after Rolling)',
+                      style: TextStyle(fontWeight: FontWeight.w200,color: Colors.white,fontSize: 17)),
+                 
+                ],
+              ),
+            ),
+          ),
+          SizedBox(height: 15,),
+                               Container(
+            decoration: BoxDecoration(border: Border(left:BorderSide(color: Colors.white,width: 1) )),
+            padding: EdgeInsets.only(left: 5),
+            child: RichText(
+              text: TextSpan(
+                text: '',
+                style: TextStyle(color: Colors.red,fontWeight: FontWeight.bold),
+                children: <TextSpan>[
+                  TextSpan(
+                      text: 'Bet on multiple symbol in a similar way',
                       style: TextStyle(fontWeight: FontWeight.w200,color: Colors.white,fontSize: 17)),
                  
                 ],

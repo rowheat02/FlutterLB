@@ -1,12 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:langurb/Provider_data/providers_data.dart';
+import 'package:provider/provider.dart';
 
 class MyBlinkingButton extends StatefulWidget {
+   final int wonloss;
+  
+       const MyBlinkingButton({Key key, this.wonloss}): super(key: key);
+  
   @override
   _MyBlinkingButtonState createState() => _MyBlinkingButtonState();
 }
 
 class _MyBlinkingButtonState extends State<MyBlinkingButton>
     with SingleTickerProviderStateMixin {
+     
   Animation<Color> animation;
   AnimationController controller;
 
@@ -17,7 +24,7 @@ class _MyBlinkingButtonState extends State<MyBlinkingButton>
     final CurvedAnimation curve =
         CurvedAnimation(parent: controller, curve: Curves.linearToEaseOut);
     animation =
-        ColorTween(begin: Colors.white, end: Colors.green).animate(curve);
+        ColorTween(begin: Colors.white, end:widget.wonloss<0?Colors.red:widget.wonloss==0?Colors.yellow: Colors.green).animate(curve);
     animation.addStatusListener((status) {
       if (status == AnimationStatus.completed) {
         controller.reverse();
@@ -31,13 +38,14 @@ class _MyBlinkingButtonState extends State<MyBlinkingButton>
 
   @override
   Widget build(BuildContext context) {
+
     return  Center(
         child: AnimatedBuilder(
           animation: animation,
           builder: (BuildContext context, Widget child) {
             return new Container(
          
-              child: Text('Profit',style: TextStyle(color:animation.value,fontSize: 20 ),),
+              child: Text(widget.wonloss<0?'Loss':widget.wonloss==0?"Equal":"Profit",style: TextStyle(color:animation.value,fontSize: 20 ),),
             );
           },
         ),

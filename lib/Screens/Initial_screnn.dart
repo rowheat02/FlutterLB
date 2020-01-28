@@ -139,7 +139,7 @@ class _InitialState extends State<Initial> {
                               listener: (result, value) {
                                 if (result == InterstitialAdResult.LOADED)
                                   FacebookInterstitialAd.showInterstitialAd(
-                                      delay: 100);
+                                      delay: 10);
                               },
                             ),
                             Navigator.pushNamed(context, '/play')

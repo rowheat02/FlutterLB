@@ -18,6 +18,7 @@ import 'package:audioplayers/audioplayers.dart';
 class Providersdata with ChangeNotifier {
   var betdata = {1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0};
   var resultdata = {1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0};
+  var wondata = {1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0};
   var wonlost = 0;
   var slidervalue = 15.0;
   // var sliderint=slidervalue.round();
@@ -35,6 +36,10 @@ class Providersdata with ChangeNotifier {
   var won = 0;
   var nonzero_bet = [];
   AudioPlayer played;
+  var wononly = 0;
+var betonly=0;
+var resultlist=[];
+var playagainad=true;
   // var minbet=true;
   static AudioCache player = AudioCache();
   load() {
@@ -72,63 +77,54 @@ class Providersdata with ChangeNotifier {
         nonzero_bet.add(i);
         bet = bet + betdata[i];
       }
-   
-      result.add(resultdata[i]);
-    print("aloo"+result.toString());
 
+      result.add(resultdata[i]);
+      print("aloo" + result.toString());
     }
 
     for (var e in nonzero_bet) {
       rcount = result.where((c) => c == e).toList().length;
       // print("ccoo" + rcount.toString());
+      betonly=betonly+betdata[e];
+
+
       if (rcount > 1) {
         wonlost = wonlost + betdata[e] * rcount;
-        won = 1;
-      }
-      else{
-        wonlost=wonlost-betdata[e];
-      }
-           
-    }
-
-    if(wonlost<0){
-      wonlost=-wonlost;
-      won=0;
-    }
-    else if(wonlost>0){
-    
-
-    }
-    else if(wonlost==0){
-      won=2;
-      
-    }
-    var wononly=0;
-     for (var e in nonzero_bet) {
-      rcount = result.where((c) => c == e).toList().length;
-     
-      if (rcount > 1) {
+        wondata[e] = betdata[e] * rcount;
         wononly = wononly + betdata[e] * rcount;
-      
+        won = 1;
+      } else {
+        wonlost = wonlost - betdata[e];
       }
-      }
-      setBalancee1(wononly);
+    }
 
-
+    // if (wonlost < 0) {
+    //   wonlost = -wonlost;
+    //   won = 0;
+    // } else if (wonlost > 0) {
+    // } else if (wonlost == 0) {
+    //   won = 2;
+    // }
     
+    // for (var e in nonzero_bet) {
+    //   rcount = result.where((c) => c == e).toList().length;
+
+    //   if (rcount > 1) {
+        
+    //   }
+    // }
+    setBalancee1(wononly);
+    createresultlist();
+
     // if (wonlost == 0&&won!=true) {
     //   wonlost = bet;
     // }
     // else if(wonlost==0){
     //   won =false;
     // }
-   
-
   }
-  setwonlost1(){
-     
 
-  }
+  setwonlost1() {}
 
   setBalance(int val) {
     Balance = val;
@@ -224,6 +220,7 @@ class Providersdata with ChangeNotifier {
       wonlost = 0;
       won = 0;
       nonzero_bet = [];
+      wondata={1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0};
       // minbet=false;
 
     }
@@ -269,20 +266,22 @@ class Providersdata with ChangeNotifier {
       // notifyListeners();
     } else {
       Flushbar(
-        flushbarPosition: FlushbarPosition.TOP,
-        // title:  "No symbols Selected",
-        forwardAnimationCurve: Curves.fastLinearToSlowEaseIn,
-        messageText: new Text("No symbols Selected",textAlign: TextAlign.center,style: TextStyle(color: Colors.white),),
-        duration: Duration(milliseconds: 1000),
-        // overlayColor:Colors.red,
-        borderColor:Colors.white,
-        // borderRadius: 50,
-        // backgroundColor:Colors.black,
-        flushbarStyle: FlushbarStyle.GROUNDED,
-        boxShadows:[BoxShadow(color:Colors.white )]
-        
-      )..show(context);
-     
+          flushbarPosition: FlushbarPosition.TOP,
+          // title:  "No symbols Selected",
+          forwardAnimationCurve: Curves.fastLinearToSlowEaseIn,
+          messageText: new Text(
+            "No symbols Selected",
+            textAlign: TextAlign.center,
+            style: TextStyle(color: Colors.white),
+          ),
+          duration: Duration(milliseconds: 1000),
+          // overlayColor:Colors.red,
+          borderColor: Colors.white,
+          // borderRadius: 50,
+          // backgroundColor:Colors.black,
+          flushbarStyle: FlushbarStyle.GROUNDED,
+          boxShadows: [BoxShadow(color: Colors.white)])
+        ..show(context);
 
       // Scaffold.of(context).showSnackBar(SnackBar(
       //   content: Text(
@@ -378,4 +377,16 @@ class Providersdata with ChangeNotifier {
     active = activevalue;
     notifyListeners();
   }
+  createresultlist(){
+  for(var e in nonzero_bet){
+    resultlist.add({'symbol':e,'bet':betdata[e],"won":wondata[e]});
+  }
+  // resultlist.add({'symbol':"Total",'bet':betonly,"won":wononly});
+  // print(resultlist.toString()+"afcasfsdfsdgvf ");
+
+
+
 }
+}
+
+

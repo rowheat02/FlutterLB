@@ -25,7 +25,7 @@ class Symbolcard extends StatelessWidget {
             // border: new Border.all(color:id==Provid.active? Colors.green:Colors.white70, width: 1),
             borderRadius: BorderRadius.all(Radius.circular(12)),
           ),
-          margin: new EdgeInsets.only(right: 0, bottom: 0, left: 6, top: 0),
+          // margin: new EdgeInsets.only(right: 0, bottom: 0, left: 6, top: 0),
           // width: MediaQuery.of(context).size.width * 0.2,
           // height: MediaQuery.of(context).size.height * 0.4,
           width: MediaQuery.of(context).size.width * 0.18,
@@ -44,8 +44,9 @@ class Symbolcard extends StatelessWidget {
             children: <Widget>[
               new ClipRRect(
                   borderRadius: new BorderRadius.all(Radius.circular(12)),
+                  
                   child: Container(
-                    margin: EdgeInsets.only(top: 10),
+                    margin: EdgeInsets.only(top: 10,bottom: 2),
                     width: 90,
                     height: 90,
                     child: SvgPicture.asset(

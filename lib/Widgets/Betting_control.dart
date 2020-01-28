@@ -1,3 +1,4 @@
+import 'package:facebook_audience_network/facebook_audience_network.dart';
 import 'package:flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -16,8 +17,7 @@ class BettingControl extends StatefulWidget {
 
 class _BettingControlState extends State<BettingControl> {
   int _count = 0;
-  var added=false;
-
+  var added = false;
 
   @override
   Widget build(BuildContext context) {
@@ -123,11 +123,12 @@ class _BettingControlState extends State<BettingControl> {
           // margin: EdgeInsets.only(top: 12),
           child: Container(
             padding: EdgeInsets.all(4),
-                 decoration: BoxDecoration(
-                      // color: Colors.white,
-                      // borderRadius: BorderRadius.all(Radius.circular(30)),
-                      border: Border(top:BorderSide( color: Colors.white,width: 0.5),bottom:BorderSide( color: Colors.white,width: 0.5)  )
-                      ),
+            decoration: BoxDecoration(
+                // color: Colors.white,
+                // borderRadius: BorderRadius.all(Radius.circular(30)),
+                border: Border(
+                    top: BorderSide(color: Colors.white, width: 0.5),
+                    bottom: BorderSide(color: Colors.white, width: 0.5))),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               crossAxisAlignment: CrossAxisAlignment.end,
@@ -137,11 +138,11 @@ class _BettingControlState extends State<BettingControl> {
                   width: 50,
                   height: 50,
                   decoration: BoxDecoration(
-                      color: active==null?Colors.transparent: Colors.white,
-                      borderRadius: BorderRadius.all(Radius.circular(30))
-                      ),
+                      color: active == null ? Colors.transparent : Colors.white,
+                      borderRadius: BorderRadius.all(Radius.circular(30))),
                   child: InkWell(
-                    child: Icon(Icons.remove, color:active==null? Colors.brown: Colors.red),
+                    child: Icon(Icons.remove,
+                        color: active == null ? Colors.brown : Colors.red),
                     onTap: () => {
                       if (provar.active == null)
                         {
@@ -197,16 +198,18 @@ class _BettingControlState extends State<BettingControl> {
                   width: 50,
                   height: 50,
                   decoration: BoxDecoration(
-                      color: active==null?Colors.transparent: Colors.red,
-                      borderRadius: BorderRadius.all(Radius.circular(30))
-                      ),
+                      color: active == null ? Colors.transparent : Colors.red,
+                      borderRadius: BorderRadius.all(Radius.circular(30))),
                   child: InkWell(
-                    child: Icon(Icons.add, color:active==null? Colors.brown: Colors.white,),
-                    onTap: () =>{
-                      setState((){
-                        added=true;
+                    child: Icon(
+                      Icons.add,
+                      color: active == null ? Colors.brown : Colors.white,
+                    ),
+                    onTap: () => {
+                      setState(() {
+                        added = true;
                       }),
-                       if (provar.active == null)
+                      if (provar.active == null)
                         {
                           Flushbar(
                               flushbarPosition: FlushbarPosition.TOP,
@@ -252,7 +255,6 @@ class _BettingControlState extends State<BettingControl> {
                               boxShadows: [BoxShadow(color: Colors.white)])
                             ..show(context)
                         }
-                    
                     },
                   ),
                   // FlatButton(child: Icon(Icons.remove_circle,color: Colors.orange),onPressed: ()=>{}),
@@ -268,26 +270,36 @@ class _BettingControlState extends State<BettingControl> {
           children: <Widget>[
             // Container(margin: EdgeInsets.all(10),),
             InkWell(
-              onTap: () => { added?provar.btctrlresult():
-               Flushbar(
-                              flushbarPosition: FlushbarPosition.TOP,
-                              // title:  "No symbols Selected",
-                              forwardAnimationCurve:
-                                  Curves.fastLinearToSlowEaseIn,
-                              messageText: new Text(
-                                "Cannot Roll in Zero Bet",
-                                textAlign: TextAlign.center,
-                                style: TextStyle(color: Colors.white),
-                              ),
-                              duration: Duration(milliseconds: 1000),
-                              // overlayColor:Colors.red,
-                              borderColor: Colors.white,
-                              // borderRadius: 50,
-                              // backgroundColor:Colors.black,
-                              flushbarStyle: FlushbarStyle.GROUNDED,
-                              boxShadows: [BoxShadow(color: Colors.white)])
-                            ..show(context) 
-              
+              onTap: () => {
+                added
+                    ? {provar.btctrlresult(),
+            //  FacebookInterstitialAd.loadInterstitialAd(
+            //                   placementId: "1042494426115109_1049188492112369",
+            //                   listener: (result, value) {
+            //                     if (result == InterstitialAdResult.LOADED)
+            //                       FacebookInterstitialAd.showInterstitialAd(
+            //                           delay: 10);
+            //                   },
+            //                 ),
+                           
+                    }
+                    : {Flushbar(
+                        flushbarPosition: FlushbarPosition.TOP,
+                        // title:  "No symbols Selected",
+                        forwardAnimationCurve: Curves.fastLinearToSlowEaseIn,
+                        messageText: new Text(
+                          "Cannot Roll in Zero Bet",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(color: Colors.white),
+                        ),
+                        duration: Duration(milliseconds: 1000),
+                        // overlayColor:Colors.red,
+                        borderColor: Colors.white,
+                        // borderRadius: 50,
+                        // backgroundColor:Colors.black,
+                        flushbarStyle: FlushbarStyle.GROUNDED,
+                        boxShadows: [BoxShadow(color: Colors.white)])
+                  ..show(context)}
               },
               child: Container(
                 margin: EdgeInsets.only(bottom: 6),
@@ -298,25 +310,32 @@ class _BettingControlState extends State<BettingControl> {
                     ),
                 // padding: EdgeInsets.all(15),
                 child: Container(
-                      padding: EdgeInsets.all(2),
-            decoration: BoxDecoration(color: added?Colors.yellow[200]:Colors.grey, border: Border.all(color: Colors.white70.withOpacity(0.6),width: 0.5),
-           boxShadow: [
-          added? BoxShadow(
-            color: Colors.grey,
-            blurRadius: 40.0, // soften the shadow
-            spreadRadius: 0.1, //extend the shadow
-            offset: Offset(
-              5.0, // Move to right 10  horizontally
-              5.0, // Move to bottom 10 Vertically
-            ),
-          ):BoxShadow()
-        ],
-            ),
+                  padding: EdgeInsets.all(2),
+                  decoration: BoxDecoration(
+                    color: added ? Colors.yellow[200] : Colors.grey,
+                    border: Border.all(
+                        color: Colors.white70.withOpacity(0.6), width: 0.5),
+                    boxShadow: [
+                      added
+                          ? BoxShadow(
+                              color: Colors.grey,
+                              blurRadius: 40.0, // soften the shadow
+                              spreadRadius: 0.1, //extend the shadow
+                              offset: Offset(
+                                5.0, // Move to right 10  horizontally
+                                5.0, // Move to bottom 10 Vertically
+                              ),
+                            )
+                          : BoxShadow()
+                    ],
+                  ),
                   child: Text(
                     "Roll",
-                    style: TextStyle(color: added?Colors.red:Colors.white.withOpacity(0.5),fontSize: 35),
+                    style: TextStyle(
+                        color:
+                            added ? Colors.red : Colors.white.withOpacity(0.5),
+                        fontSize: 35),
                     textAlign: TextAlign.center,
-                    
                   ),
                 ),
               ),

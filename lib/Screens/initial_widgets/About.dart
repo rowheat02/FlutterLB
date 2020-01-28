@@ -315,8 +315,8 @@ class _AboutState extends State<About> {
                       SizedBox(
                         height: 15,
                       ),
-                      Text("Thanks for sharing flutter skills",
-                          style: TextStyle(color: Colors.white)),
+                      // Text("Thanks for sharing flutter skills",
+                      //     style: TextStyle(color: Colors.white)),
                       Container(
                         width: 270,
                         child: Row(
