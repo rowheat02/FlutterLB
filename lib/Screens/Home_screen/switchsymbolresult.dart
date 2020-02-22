@@ -45,11 +45,12 @@ class _SwitchresultState extends State<Switchresult> {
     return Column(
       children: <Widget>[
         AnimatedSwitcher(
-          duration: Duration(milliseconds: 500),
+          duration: Duration(milliseconds: 300),
           child: calledWidget,
           transitionBuilder: (Widget child, Animation<double> animation) {
-            // return SizeTransition(child: child,sizeFactor: animation,);
-            return ScaleTransition(child: child, scale: animation);
+            return SizeTransition(child: child,sizeFactor: animation,);
+            // return ScaleTransition(child: child, scale: animation);
+           
           },
         ),
       ],

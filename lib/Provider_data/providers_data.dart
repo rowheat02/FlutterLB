@@ -21,6 +21,7 @@ class Providersdata with ChangeNotifier {
   var wondata = {1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0};
   var wonlost = 0;
   var slidervalue = 15.0;
+  var Returnedbet=0;
   // var sliderint=slidervalue.round();
   var animatedswitcherkey = 0;
   var active = null;
@@ -113,7 +114,6 @@ var playagainad=true;
         
     //   }
     // }
-    setBalancee1(wononly);
     createresultlist();
 
     // if (wonlost == 0&&won!=true) {
@@ -378,11 +378,19 @@ var playagainad=true;
     notifyListeners();
   }
   createresultlist(){
+   int returnedbet=0;
   for(var e in nonzero_bet){
-    resultlist.add({'symbol':e,'bet':betdata[e],"won":wondata[e]});
+   int wonindex=0;
+    if(wondata[e]>0){
+      wonindex=1;
+      returnedbet=returnedbet+betdata[e];
+    }
+    resultlist.add({'symbol':e,'bet':betdata[e],"won":wondata[e],"wonindex":wonindex});
   }
+ betonly=betonly-returnedbet;
   // resultlist.add({'symbol':"Total",'bet':betonly,"won":wononly});
   // print(resultlist.toString()+"afcasfsdfsdgvf ");
+    setBalancee1(wononly+returnedbet);
 
 
 

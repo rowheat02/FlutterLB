@@ -2,6 +2,8 @@
 import 'package:facebook_audience_network/facebook_audience_network.dart';
 import 'package:flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
+import 'package:loading/indicator/ball_spin_fade_loader_indicator.dart';
+import 'package:loading/loading.dart';
 
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:langurb/Provider_data/providers_data.dart';
@@ -19,6 +21,102 @@ class _MoneyState extends State<Money> {
     await prefs.setInt('Balance', Balancee);
   }
 
+  showalertdialogue() {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        // return object of type Dialog
+        return AlertDialog(
+          backgroundColor: _completed?Colors.green:Colors.red, elevation: 10.0,
+          // title: new Text("Alert Dialog title"),
+          content: Container(
+              // color:,
+              child: new Text(
+            !_completed
+                ? "Do you want to watch Ad and get Rs 100"
+                : "You have been awarded with RS 100",
+            style: TextStyle(color: Colors.white),
+          )),
+          actions: <Widget>[
+            !rewarded && !_completed
+                ? InkWell(
+                    onTap: () => {
+                      setState(() {
+                        rewarded = true;
+                      }),
+                      Navigator.of(context).pop(),
+                      showalertdialogue(),
+                      loadrewardedAd1(),
+                    },
+                    child: Container(
+                      color: Colors.green,
+                      padding: EdgeInsets.all(5),
+                      // margin: EdgeInsets.only(right: 30),
+
+                      child: Text("Yes",style: TextStyle(fontSize: 20,color: Colors.white),),
+                    ),
+                  )
+                : rewarded && !_completed
+                    ? Container(
+                        height: 20,
+                        width: 20,
+                        color: Colors.transparent,
+                        child: Center(
+                          child: Loading(
+                              indicator: BallSpinFadeLoaderIndicator(),
+                              size: 50.0,
+                              color: Colors.white),
+                        ),
+                      )
+                    : Container(),
+            // usually buttons at the bottom of the dialog
+           !rewarded?Container(
+              padding: EdgeInsets.all(5),
+              decoration: BoxDecoration(
+                  border: Border.all(color: _completed? Colors.white:Colors.grey, width: 1)),
+              child:  InkWell(
+                child: new Text(
+                  "No",
+                  style: TextStyle(
+                    color: _completed? Colors.white:Colors.grey,
+                  ),
+                ),
+                onTap: () {
+                  setState(() {
+                    rewarded = false;
+                    _completed = false;
+                    // _closed = true;
+                  });
+                  Navigator.of(context).pop();
+                },
+              ),
+            ):Container(),
+            rewarded&&_completed?Container(
+              padding: EdgeInsets.all(5),
+              decoration: BoxDecoration(
+                  border: Border.all(color: _completed? Colors.white:Colors.grey, width: 1)),
+              child:  InkWell(
+                child: new Text(
+                  "Close",
+                  style: TextStyle(
+                    color: _completed? Colors.white:Colors.grey,
+                  ),
+                ),
+                onTap: () {
+                  setState(() {
+                    rewarded = false;
+                    _completed = false;
+                    // _closed = true;
+                  });
+                  Navigator.of(context).pop();
+                },
+              ),):Container()
+          ],
+        );
+      },
+    );
+  }
+
   loadrewardedAd() {
     FacebookRewardedVideoAd.loadRewardedVideoAd(
       placementId: "1042494426115109_1042559516108600",
@@ -26,7 +124,7 @@ class _MoneyState extends State<Money> {
         if (result == RewardedVideoAdResult.LOADED) {
           // FacebookRewardedVideoAd.showRewardedVideoAd();
           setState(() {
-            surveyloaded = true;
+            // surveyloaded = true;
           });
         }
         //   FacebookRewardedVideoAd.showRewardedVideoAd();
@@ -59,28 +157,36 @@ class _MoneyState extends State<Money> {
       placementId: "1042494426115109_1042559516108600",
       listener: (result, value) {
         if (result == RewardedVideoAdResult.LOADED) {
+          print("object");
+          // if (!_closed) {
+          //   FacebookRewardedVideoAd.showRewardedVideoAd();
+          // }
+
           FacebookRewardedVideoAd.showRewardedVideoAd();
         }
         //   FacebookRewardedVideoAd.showRewardedVideoAd();
         if (result == RewardedVideoAdResult.VIDEO_COMPLETE) {
+          Navigator.of(context).pop();
+          showalertdialogue();
+          setState(() {
+            _completed = true;
+          });
+
           rewardMoney();
-          Flushbar(
-              flushbarPosition: FlushbarPosition.TOP,
-              isDismissible: true,
-              // title:  "No symbols Selected",
-              forwardAnimationCurve: Curves.fastLinearToSlowEaseIn,
-              messageText: new Text(
-                "RS 100 Rewarded",
-                textAlign: TextAlign.center,
-                style: TextStyle(color: Colors.white),
-              ),
-              duration: Duration(milliseconds: 2000),
-              // overlayColor:Colors.red,
-              borderColor: Colors.white,
-              // borderRadius: 50,
-              // backgroundColor:Colors.black,
-              flushbarStyle: FlushbarStyle.GROUNDED,
-              boxShadows: [BoxShadow(color: Colors.white)]).show(context);
+        }
+        if (result == RewardedVideoAdResult.VIDEO_CLOSED) {
+          if (!_completed) Navigator.of(context).pop();
+          setState(() {
+            rewarded = false;
+            _completed = false;
+          });
+        }
+        if (result == RewardedVideoAdResult.ERROR) {
+          Navigator.of(context).pop();
+          setState(() {
+            rewarded = false;
+            _completed = false;
+          });
         }
       },
     );
@@ -88,7 +194,8 @@ class _MoneyState extends State<Money> {
 
   bool _completed = false;
   var snak;
-  var surveyloaded = false;
+  var rewarded = false;
+  var _closed = false;
 
   // RewardedVideoAd rewarded;
 
@@ -201,7 +308,6 @@ class _MoneyState extends State<Money> {
                   height: 20,
                 ),
                 InkWell(
-                  
                   onTap: () {
                     // RewardedVideoAd.instance.show().catchError(
                     //     (e) => print("error in showing ad: ${e.toString()}"));
@@ -212,9 +318,12 @@ class _MoneyState extends State<Money> {
                     //   loadrewardedAd();
 
                     // }
-       
-                    loadrewardedAd1();
-                  
+
+                    // loadrewardedAd1();
+                    // setState(() {
+                    //   _closed=false;
+                    // });
+                    showalertdialogue();
                   },
                   child: Container(
                     width: 80,

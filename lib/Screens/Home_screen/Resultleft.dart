@@ -18,6 +18,7 @@ class _ResultleftState extends State<Resultleft> {
     final provdat = Provider.of<Providersdata>(context, listen: true);
     var totalbet=provdat.betonly;
     var totalwon=provdat.wononly;
+  
     var wonloss=totalwon-totalbet;
 
     return Container(
@@ -52,7 +53,7 @@ class _ResultleftState extends State<Resultleft> {
                       flex: 1,
                       fit: FlexFit.tight,
                       child: Text(
-                        "Bet",
+                        "Loss",
                         style: TextStyle(fontStyle: FontStyle.italic),
                       ),
                     ),
@@ -75,7 +76,7 @@ class _ResultleftState extends State<Resultleft> {
                     Flexible(
                       flex: 1,
                       fit: FlexFit.tight,
-                      child: Container(child: Text("Total",style: TextStyle(textBaseline: TextBaseline.alphabetic),textAlign: TextAlign.center,)),
+                      child: Container(child: Text("Total",style: TextStyle(textBaseline: TextBaseline.alphabetic,fontWeight: FontWeight.bold,fontSize: 18),textAlign: TextAlign.center,)),
                     ),
                     Flexible(
                       flex: 1,

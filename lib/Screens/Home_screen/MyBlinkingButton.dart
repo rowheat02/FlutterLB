@@ -45,7 +45,7 @@ class _MyBlinkingButtonState extends State<MyBlinkingButton>
           builder: (BuildContext context, Widget child) {
             return new Container(
          
-              child: Text(widget.wonloss<0?'Loss':widget.wonloss==0?"Equal":"Profit",style: TextStyle(color:animation.value,fontSize: 20 ),),
+              child: Text(widget.wonloss<0?'Loss':widget.wonloss==0?"Equal":"Won",style: TextStyle(color:animation.value,fontSize: 20 ),),
             );
           },
         ),
