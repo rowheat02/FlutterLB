@@ -27,14 +27,66 @@ class _Home_screenState extends State<Home_screen> {
   //   return BannerAd(adUnitId:BannerAd.testAdUnitId ,size: AdSize.smartBanner ,);
   // }
   bool _bannerloaded = false;
+  bool _addtimer=true;
+  var Bannerad;
   @override
   void initState() {
     // _bannerAd=createbannerad()..load()..show();
+    Bannerad = Container(
+      alignment: Alignment(0.5, 1),
+      child: FacebookBannerAd(
+        placementId: "1042494426115109_1042552142776004",
+        bannerSize: BannerSize.STANDARD,
+        listener: (result, value) {
+          switch (result) {
+            case BannerAdResult.ERROR:
+              print("Error: $value");
+              break;
+            case BannerAdResult.LOADED:
+              print("Loaded: $value");
+              adloaded();
+              Timer(Duration(seconds: 30),banneradTimer());
+              break;
+            case BannerAdResult.CLICKED:
+              print("Clicked: $value");
+              break;
+            case BannerAdResult.LOGGING_IMPRESSION:
+              print("Logging Impression: $value");
+              break;
+          }
+        },
+      ),
+    );
   }
+
   @override
   void dispose() {
     super.dispose();
     // _bannerAd.dispose();
+  }
+
+  adloaded() {
+    setState(() {
+      _bannerloaded = true;
+    });
+  }
+
+  banneradTimer() {
+  
+    Timer(Duration(seconds: 30), ()=>{
+        setState(() {
+      // _bannerloaded=false;
+      _addtimer=!_addtimer;
+    }),
+    Timer(Duration(seconds: 1), ()=>{
+      // _bannerloaded=true,
+      _addtimer=!_addtimer
+
+    })
+    });
+  
+    
+  
   }
 
   @override
@@ -51,6 +103,8 @@ class _Home_screenState extends State<Home_screen> {
         body: Container(
       child: Container(
         padding: EdgeInsets.only(top: _bannerloaded ? 5 : 25),
+        // padding: EdgeInsets.only(top: 15),
+
         decoration: BoxDecoration(
             gradient: LinearGradient(
                 begin: Alignment.topRight,
@@ -96,15 +150,27 @@ class _Home_screenState extends State<Home_screen> {
                             provdat.animatedswitcherkey = 0,
                             provdat.betonly = 0,
                             provdat.wononly = 0,
-                            provdat.wondata={1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0},
-                            provdat.betdata={1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0},
-                            provdat.resultlist=[],
-
+                            provdat.wondata = {
+                              1: 0,
+                              2: 0,
+                              3: 0,
+                              4: 0,
+                              5: 0,
+                              6: 0
+                            },
+                            provdat.betdata = {
+                              1: 0,
+                              2: 0,
+                              3: 0,
+                              4: 0,
+                              5: 0,
+                              6: 0
+                            },
+                            provdat.resultlist = [],
                             provdat.nonzero_bet = [],
                             provdat.btctrl_result = 0,
-                            provdat.won=0,
-                            provdat.wonlost=0
-
+                            provdat.won = 0,
+                            provdat.wonlost = 0
                           },
                           child: FittedBox(
                               fit: BoxFit.scaleDown,
@@ -123,32 +189,7 @@ class _Home_screenState extends State<Home_screen> {
                 ),
               ],
             ),
-            Container(
-              alignment: Alignment(0.5, 1),
-              child: FacebookBannerAd(
-                placementId: "1042494426115109_1042552142776004",
-                bannerSize: BannerSize.STANDARD,
-                listener: (result, value) {
-                  switch (result) {
-                    case BannerAdResult.ERROR:
-                      print("Error: $value");
-                      break;
-                    case BannerAdResult.LOADED:
-                      print("Loaded: $value");
-                      setState(() {
-                        _bannerloaded = true;
-                      });
-                      break;
-                    case BannerAdResult.CLICKED:
-                      print("Clicked: $value");
-                      break;
-                    case BannerAdResult.LOGGING_IMPRESSION:
-                      print("Logging Impression: $value");
-                      break;
-                  }
-                },
-              ),
-            )
+           _addtimer? Bannerad:Container()
           ],
         ),
       ),

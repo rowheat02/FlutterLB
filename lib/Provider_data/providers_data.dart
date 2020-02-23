@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:developer';
 import 'dart:math';
+import 'package:facebook_audience_network/facebook_audience_network.dart';
 import 'package:flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -21,7 +22,7 @@ class Providersdata with ChangeNotifier {
   var wondata = {1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0};
   var wonlost = 0;
   var slidervalue = 15.0;
-  var Returnedbet=0;
+  var Returnedbet = 0;
   // var sliderint=slidervalue.round();
   var animatedswitcherkey = 0;
   var active = null;
@@ -38,9 +39,10 @@ class Providersdata with ChangeNotifier {
   var nonzero_bet = [];
   AudioPlayer played;
   var wononly = 0;
-var betonly=0;
-var resultlist=[];
-var playagainad=true;
+  var betonly = 0;
+  var resultlist = [];
+  var playagainad = true;
+  int interstitialadcontroller=3;
   // var minbet=true;
   static AudioCache player = AudioCache();
   load() {
@@ -86,8 +88,7 @@ var playagainad=true;
     for (var e in nonzero_bet) {
       rcount = result.where((c) => c == e).toList().length;
       // print("ccoo" + rcount.toString());
-      betonly=betonly+betdata[e];
-
+      betonly = betonly + betdata[e];
 
       if (rcount > 1) {
         wonlost = wonlost + betdata[e] * rcount;
@@ -106,12 +107,12 @@ var playagainad=true;
     // } else if (wonlost == 0) {
     //   won = 2;
     // }
-    
+
     // for (var e in nonzero_bet) {
     //   rcount = result.where((c) => c == e).toList().length;
 
     //   if (rcount > 1) {
-        
+
     //   }
     // }
     createresultlist();
@@ -220,7 +221,7 @@ var playagainad=true;
       wonlost = 0;
       won = 0;
       nonzero_bet = [];
-      wondata={1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0};
+      wondata = {1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0};
       // minbet=false;
 
     }
@@ -377,24 +378,39 @@ var playagainad=true;
     active = activevalue;
     notifyListeners();
   }
-  createresultlist(){
-   int returnedbet=0;
-  for(var e in nonzero_bet){
-   int wonindex=0;
-    if(wondata[e]>0){
-      wonindex=1;
-      returnedbet=returnedbet+betdata[e];
+
+  createresultlist() {
+    int returnedbet = 0;
+    for (var e in nonzero_bet) {
+      int wonindex = 0;
+      if (wondata[e] > 0) {
+        wonindex = 1;
+        returnedbet = returnedbet + betdata[e];
+      }
+      resultlist.add({
+        'symbol': e,
+        'bet': betdata[e],
+        "won": wondata[e],
+        "wonindex": wonindex
+      });
     }
-    resultlist.add({'symbol':e,'bet':betdata[e],"won":wondata[e],"wonindex":wonindex});
+    betonly = betonly - returnedbet;
+    // resultlist.add({'symbol':"Total",'bet':betonly,"won":wononly});
+    // print(resultlist.toString()+"afcasfsdfsdgvf ");
+    setBalancee1(wononly + returnedbet);
   }
- betonly=betonly-returnedbet;
-  // resultlist.add({'symbol':"Total",'bet':betonly,"won":wononly});
-  // print(resultlist.toString()+"afcasfsdfsdgvf ");
-    setBalancee1(wononly+returnedbet);
 
+  callInterstitialads() {
 
-
+    if(interstitialadcontroller%4==0){
+    FacebookInterstitialAd.loadInterstitialAd(
+      placementId: "1042494426115109_1042553582775860",
+      listener: (result, value) {
+        if (result == InterstitialAdResult.LOADED)
+          FacebookInterstitialAd.showInterstitialAd();
+      },
+    );
+    }
+    interstitialadcontroller++;
+  }
 }
-}
-
-

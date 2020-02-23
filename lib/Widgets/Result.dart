@@ -87,23 +87,11 @@ class Result extends StatelessWidget {
               provdat.resultlist=[],
               provdat.betonly=0,
               provdat.wononly=0,
-              if(provdat.playagainad){
-                 FacebookInterstitialAd.loadInterstitialAd(
-                              placementId: "1042494426115109_1049188492112369",
-                              listener: (result, value) {
-                                if (result == InterstitialAdResult.LOADED)
-                                  FacebookInterstitialAd.showInterstitialAd(
-                                      delay: 10);
-                              },
-                            ),
-                    provdat.playagainad=false,
-                    Timer(Duration(seconds: 25), ()=>{
-                      provdat.playagainad=true
-                    })
+              provdat.callInterstitialads()
+             
+
+
               
-
-
-              },
             
               
                     

@@ -134,14 +134,15 @@ class _InitialState extends State<Initial> {
                             //     // horizontalCenterOffset: 0.0,
                             //   ).catchError((e)=>print("error code"+e)),
                             //   myInterstitial.dispose(),
-                            FacebookInterstitialAd.loadInterstitialAd(
-                              placementId: "1042494426115109_1042553582775860",
-                              listener: (result, value) {
-                                if (result == InterstitialAdResult.LOADED)
-                                  FacebookInterstitialAd.showInterstitialAd(
-                                      delay: 10);
-                              },
-                            ),
+                            // FacebookInterstitialAd.loadInterstitialAd(
+                            //   placementId: "1042494426115109_1042553582775860",
+                            //   listener: (result, value) {
+                            //     if (result == InterstitialAdResult.LOADED)
+                            //       FacebookInterstitialAd.showInterstitialAd(
+                            //           delay: 10);
+                            //   },
+                            // ),
+                            provdat.callInterstitialads(),
                             Navigator.pushNamed(context, '/play')
                           },
                           child: Container(
