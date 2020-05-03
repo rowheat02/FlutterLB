@@ -244,7 +244,7 @@ class Providersdata with ChangeNotifier {
                       betdata[5] = 0,
                       betdata[6] = 0,
                       btctrl_result = 0,
-                      print("sakyo")
+                     
                     },
               notifyListeners()
             });

@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:langurb/Provider_data/providers_data.dart';
 import 'package:langurb/Screens/initial_widgets/Money.dart';
 import 'package:langurb/Widgets/Betting_control.dart';
+import 'package:langurb/Widgets/NewRoll.dart';
 import 'package:langurb/Widgets/Result.dart';
 import 'package:langurb/Widgets/Rolling.dart';
 import 'package:langurb/Widgets/Symbolcarddecoration.dart';
@@ -123,7 +124,7 @@ class _Home_screenState extends State<Home_screen> {
                     // Text("Balance:$bls",style: TextStyle(color: Colors.red)),
                     ctrl_rslt == 0
                         ? BettingControl()
-                        : ctrl_rslt == 2 ? Rolling() : Result()
+                        : ctrl_rslt == 2 ? Roll() : Result()
                     // BettingControl()
                   ],
                 ),
