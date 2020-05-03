@@ -10,13 +10,12 @@ import 'package:langurb/Widgets/Resultcard.dart';
 import 'package:provider/provider.dart';
 
 class Result extends StatelessWidget {
-  
   @override
   Widget build(BuildContext context) {
     var provdat = Provider.of<Providersdata>(context);
     var won = provdat.won == 0 ? "Lost" : provdat.won == 1 ? "Won" : "Won=Lost";
-       
-    var wonlosss=provdat.wononly-provdat.betonly;
+
+    var wonlosss = provdat.wononly - provdat.betonly;
 
     var balance = provdat.Balance;
     var wonlost = provdat.wonlost;
@@ -71,40 +70,38 @@ class Result extends StatelessWidget {
           //           ? Colors.red
           //           : provdat.won == 1 ? Colors.green : Colors.white),
           // ),
-           Row(
+          Row(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
-              MyBlinkingButton(wonloss: wonlosss,),
-              SizedBox(width: 4,),
+              MyBlinkingButton(
+                wonloss: wonlosss,
+              ),
+              SizedBox(
+                width: 4,
+              ),
               Wonorloss(),
             ],
           ),
           FlatButton(
-              onPressed: () =>{ 
-              
+            onPressed: () => {
+              provdat.callInterstitialads(),
+              Timer(Duration(seconds: 1), () {
+                provdat.betonly = 0;
+                provdat.wononly = 0;
+              }),
+              provdat.resultlist = [],
               provdat.btctrlresult(),
-              provdat.resultlist=[],
-              provdat.betonly=0,
-              provdat.wononly=0,
-              provdat.callInterstitialads()
-             
+            },
 
-
-              
-            
-              
-                    
-              },
-              
-              // child: Text(
-              //   "Play Again",
-              //   style: TextStyle(fontSize: 30, color: Colors.white),
-              //   textAlign: TextAlign.center,
-              // ),
-              child: Playagain(),
-            ),
-            // Playagain()
+            // child: Text(
+            //   "Play Again",
+            //   style: TextStyle(fontSize: 30, color: Colors.white),
+            //   textAlign: TextAlign.center,
+            // ),
+            child: Playagain(),
+          ),
+          // Playagain()
         ],
       ),
     );

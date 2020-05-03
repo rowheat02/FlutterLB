@@ -1,4 +1,6 @@
 // import 'package:firebase_admob/firebase_admob.dart';
+import 'dart:developer';
+
 import 'package:facebook_audience_network/ad/ad_banner.dart';
 import 'package:facebook_audience_network/facebook_audience_network.dart';
 import 'package:flutter/material.dart';
@@ -35,14 +37,14 @@ class _InitialState extends State<Initial> {
     // TODO: implement initState
     super.initState();
 
-// myInterstitial
-//   ..load()
-//   ..show(
-//     anchorType: AnchorType.bottom,
-//     anchorOffset: 0.0,
-//     // horizontalCenterOffset: 0.0,
-//   );
+    Future.delayed(Duration(seconds: 2), () {
+      final provdata = Provider.of<Providersdata>(context);
+      provdata.setBalanceeinitial();
+      print("Balanace set hai");
+    });
   }
+
+
 
   @override
   void dispose() {
@@ -53,13 +55,22 @@ class _InitialState extends State<Initial> {
   @override
   Widget build(BuildContext context) {
     final provdat = Provider.of<Providersdata>(context, listen: true);
-
-    provdat.setBalanceeinitial();
+    //  provdat.setBalanceeinitial();
+    if(provdat.Balance==null){
+      print("null");
+        provdat.setBalanceeinitial();
+     
+  
+    }
+    else{
+      print("Not Null");
+     
+    }
 
     return Scaffold(
       body: Container(
         decoration: BoxDecoration(
-            border: Border.all(color: Colors.white, width: 0.4),
+            // border: Border.all(color: Colors.white, width: 0.4),
             gradient: LinearGradient(
                 begin: Alignment.topRight,
                 end: Alignment.bottomLeft,
@@ -116,7 +127,7 @@ class _InitialState extends State<Initial> {
                       children: <Widget>[
                         InkWell(
                           onTap: () => {
-                            provdat.active = null,
+                            provdat.active = 10,
                             provdat.betdata = {
                               1: 0,
                               2: 0,

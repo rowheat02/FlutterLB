@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:webview_flutter/webview_flutter.dart';
+// import 'package:webview_flutter/webview_flutter.dart';
 import 'dart:async';
 
 class Licence extends StatefulWidget {
@@ -8,8 +8,8 @@ class Licence extends StatefulWidget {
 }
 
 class _LicenceState extends State<Licence> {
-  final Completer<WebViewController> _controller =
-      Completer<WebViewController>();
+  // final Completer<WebViewController> _controller =
+  //     Completer<WebViewController>();
 
   @override
   Widget build(BuildContext context) {
@@ -22,13 +22,13 @@ class _LicenceState extends State<Licence> {
             width: 500,
             height: 300,
             padding: EdgeInsets.only(bottom: 30),
-            child: WebView(
-              initialUrl: 'https://google.com',
-              javascriptMode: JavascriptMode.unrestricted,
-              onWebViewCreated: (WebViewController webViewController) {
-                _controller.complete(webViewController);
-              },
-            )),
+            // child: WebView(
+            //   initialUrl: 'https://google.com',
+            //   javascriptMode: JavascriptMode.unrestricted,
+            //   onWebViewCreated: (WebViewController webViewController) {
+            //     _controller.complete(webViewController);
+            //   },
+            ),
       ),
     );
   }

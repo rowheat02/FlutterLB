@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:webview_flutter/webview_flutter.dart';
+// import 'package:webview_flutter/webview_flutter.dart';
 // import 'package:webview_flutter/webview_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -16,8 +16,8 @@ class _AboutState extends State<About> {
   var licence = false;
   var webwidth = 310.0;
   var webheight = 220.0;
-  final Completer<WebViewController> _controller =
-      Completer<WebViewController>();
+  // final Completer<WebViewController> _controller =
+  //     Completer<WebViewController>();
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -46,7 +46,8 @@ class _AboutState extends State<About> {
               curve: Curves.fastOutSlowIn,
               child: Container(
                 margin: EdgeInsets.only(bottom: 10),
-                decoration: BoxDecoration(border: Border.all(width: 0.5,color: Colors.white)),
+                decoration: BoxDecoration(
+                    border: Border.all(width: 0.5, color: Colors.white)),
                 child: SingleChildScrollView(
                   // reverse: true,
                   padding: EdgeInsets.all(5),
@@ -489,40 +490,55 @@ class _AboutState extends State<About> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   InkWell(
-                      onTap: () {
-                        setState(
-                          () {
-                            selected = !selected;
-                            // licence = !licence;
-                            if (licence) {
-                              licence = false;
-                            } else {
-                              Timer(
-                                  Duration(seconds: 1),
-                                  () => setState(() {
-                                        licence = true;
-                                      }));
-                            }
+                      // onTap: () {
+                      //   setState(
+                      //     () {
+                      //       selected = !selected;
+                      //       // licence = !licence;
+                      //       if (licence) {
+                      //         licence = false;
+                      //       } else {
+                      //         Timer(
+                      //             Duration(seconds: 1),
+                      //             () => setState(() {
+                      //                   licence = true;
+                      //                 }));
+                      //       }
 
-                            // if (webheight == 10.0 && webwidth == 10.0) {
-                            //   Timer(Duration(milliseconds: 1000), () {
-                            //     setState(() {
-                            //       webwidth = 350.0;
-                            //     webheight = 220.0;
-                            //     });
+                      //       // if (webheight == 10.0 && webwidth == 10.0) {
+                      //       //   Timer(Duration(milliseconds: 1000), () {
+                      //       //     setState(() {
+                      //       //       webwidth = 350.0;
+                      //       //     webheight = 220.0;
+                      //       //     });
 
-                            //   });
-                            // } else {
-                            //   setState(() {
-                            //   webwidth = 10.0;
-                            //   webheight = 10.0;
+                      //       //   });
+                      //       // } else {
+                      //       //   setState(() {
+                      //       //   webwidth = 10.0;
+                      //       //   webheight = 10.0;
 
-                            //   });
+                      //       //   });
 
-                            // }
-                          },
-                        );
-                        //  Navigator.pushNamed(context, '/licence');
+                      //       // }
+                      //     },
+                      //   );
+                      //   //  Navigator.pushNamed(context, '/licence');
+                      // },
+                      onTap: () async {
+                        setState(() {
+                          selected = false;
+                        });
+                        const url =
+                            'https://rowheat02.github.io/khorkhoreprivacypolicy/';
+                        if (await canLaunch(url)) {
+                          await launch(url);
+                        } else {
+                          throw 'Could not launch $url';
+                        }
+                        setState(() {
+                          selected = true;
+                        });
                       },
                       child: Container(
                         height: 50,
@@ -537,28 +553,7 @@ class _AboutState extends State<About> {
                           ),
                         ),
                       )),
-                  licence
-                      ? Container(
-                          //  duration: Duration(milliseconds: selected ?500:1200),
-                          padding: EdgeInsets.only(top: 5),
-                          width: webwidth,
-                          height: webheight,
-                          color: Colors.transparent,
-
-                          // duration: Duration(seconds: 1),
-                          // curve: Curves.fastOutSlowIn,
-
-                          // padding: EdgeInsets.only(bottom: 30),
-                          child: WebView(
-                            initialUrl:
-                                'https://rowheat02.github.io/khorkhoreprivacypolicy/',
-                            javascriptMode: JavascriptMode.unrestricted,
-                            // onWebViewCreated:
-                            //     (WebViewController webViewController) {
-                            //   _controller.complete(webViewController);
-                            // },
-                          ))
-                      : Container(),
+                  Container(),
                 ],
               ),
             ),

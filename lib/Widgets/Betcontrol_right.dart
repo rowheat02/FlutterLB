@@ -12,7 +12,7 @@ class Betcontrol_right extends StatelessWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: <Widget>[
-       provar.active != null
+       provar.active != 10
             ? Card(
                 child: Container(
                   width: MediaQuery.of(context).size.width * 0.08,
@@ -24,7 +24,7 @@ class Betcontrol_right extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            provar.active == null
+            provar.active == 10
                 ? Text(
                     "No Symbol Selected",
                     style: TextStyle(color: Colors.white),

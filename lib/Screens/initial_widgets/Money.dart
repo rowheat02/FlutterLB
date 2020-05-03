@@ -264,7 +264,7 @@ class _MoneyState extends State<Money> {
     var balance = provdat.Balance;
     return Container(
         decoration: BoxDecoration(color: Colors.transparent),
-        height: MediaQuery.of(context).size.height * 0.90,
+        height: MediaQuery.of(context).size.height * 0.81,
         width: 400,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -275,7 +275,7 @@ class _MoneyState extends State<Money> {
             Container(
               padding: EdgeInsets.all(2),
               margin: EdgeInsets.only(top: 5),
-              width: 150,
+              width: 50,
               decoration: BoxDecoration(
                   border: Border.all(
                 width: 0,

@@ -21,7 +21,7 @@ class _BettingControlState extends State<BettingControl> {
 
   @override
   Widget build(BuildContext context) {
-    var provar = Provider.of<Providersdata>(context);
+    var provar = Provider.of<Providersdata>(context,listen: true);
     var activebals = provar.betdata[provar.active];
     var active = provar.active;
     var balance = provar.Balance;
@@ -67,7 +67,7 @@ class _BettingControlState extends State<BettingControl> {
             )
           ],
         ),
-        provar.active != null
+        provar.active != 10
             ? Card(
                 child: Container(
                   decoration: BoxDecoration(color: Colors.yellow),
@@ -88,7 +88,7 @@ class _BettingControlState extends State<BettingControl> {
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            provar.active == null
+            provar.active == 10
                 ? Text(
                     "No Symbol Selected",
                     style: TextStyle(color: Colors.white),
@@ -138,13 +138,13 @@ class _BettingControlState extends State<BettingControl> {
                   width: 50,
                   height: 50,
                   decoration: BoxDecoration(
-                      color: active == null ? Colors.transparent : Colors.white,
+                      color: active == 10 ? Colors.transparent : Colors.white,
                       borderRadius: BorderRadius.all(Radius.circular(30))),
                   child: InkWell(
                     child: Icon(Icons.remove,
-                        color: active == null ? Colors.brown : Colors.red),
+                        color: active == 10 ? Colors.brown : Colors.red),
                     onTap: () => {
-                      if (provar.active == null)
+                      if (provar.active == 10)
                         {
                           Flushbar(
                               flushbarPosition: FlushbarPosition.TOP,
@@ -198,18 +198,18 @@ class _BettingControlState extends State<BettingControl> {
                   width: 50,
                   height: 50,
                   decoration: BoxDecoration(
-                      color: active == null ? Colors.transparent : Colors.red,
+                      color: active == 10 ? Colors.transparent : Colors.red,
                       borderRadius: BorderRadius.all(Radius.circular(30))),
                   child: InkWell(
                     child: Icon(
                       Icons.add,
-                      color: active == null ? Colors.brown : Colors.white,
+                      color: active == 10 ? Colors.brown : Colors.white,
                     ),
                     onTap: () => {
                       setState(() {
                         added = true;
                       }),
-                      if (provar.active == null)
+                      if (provar.active == 10)
                         {
                           Flushbar(
                               flushbarPosition: FlushbarPosition.TOP,

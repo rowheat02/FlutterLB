@@ -25,7 +25,7 @@ class Providersdata with ChangeNotifier {
   var Returnedbet = 0;
   // var sliderint=slidervalue.round();
   var animatedswitcherkey = 0;
-  var active = null;
+  var active = 10;
   int add_subtract = 1;
   int btctrl_result = 0;
   int Rand17 = 1;
@@ -42,7 +42,7 @@ class Providersdata with ChangeNotifier {
   var betonly = 0;
   var resultlist = [];
   var playagainad = true;
-  int interstitialadcontroller=3;
+  int interstitialadcontroller=4;
   // var minbet=true;
   static AudioCache player = AudioCache();
   load() {
@@ -184,7 +184,7 @@ class Providersdata with ChangeNotifier {
   btctrlresult() {
     if (btctrl_result == 0) {
       play();
-      print("0aayo");
+  
 
       var rand = new Random();
       Rand17 = 1 + rand.nextInt(7);
@@ -217,12 +217,13 @@ class Providersdata with ChangeNotifier {
       setwonlost();
     }
     if (btctrl_result == 1) {
-      print('1aayo');
+
       wonlost = 0;
       won = 0;
       nonzero_bet = [];
       wondata = {1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0};
       // minbet=false;
+
 
     }
     print("rnd" + Rand17.toString());
@@ -232,7 +233,7 @@ class Providersdata with ChangeNotifier {
         () => {
               btctrl_result == 0
                   ? {
-                      active = null,
+                      active = 10,
                       btctrl_result = 2,
                     }
                   : {
@@ -254,7 +255,7 @@ class Providersdata with ChangeNotifier {
   }
 
   addsub(val, context) async {
-    if (active != null) {
+    if (active != 10) {
       betdata[active] = val == 0
           ? betdata[active] + slidervalue.round()
           : betdata[active] - slidervalue.round();
@@ -298,7 +299,7 @@ class Providersdata with ChangeNotifier {
   }
 
   increaseval(val, context) async {
-    if (active != null) {
+    if (active != 10) {
       betdata[active] = betdata[active] + val;
       await setBalancee2(val);
       //  int Bls = await (prefs.getInt('Balance'))-val;
@@ -317,7 +318,7 @@ class Providersdata with ChangeNotifier {
   }
 
   decreaseval(val, context) {
-    if (active != null) {
+    if (active != 10) {
       betdata[active] = betdata[active] - val;
       setBalancee1(val);
     } else {
@@ -332,10 +333,12 @@ class Providersdata with ChangeNotifier {
   }
 
   setBalanceeinitial() async {
+    // print("BHitra");
     SharedPreferences prefs = await SharedPreferences.getInstance();
     int Balancee = (prefs.getInt('Balance') ?? 1000);
     await prefs.setInt('Balance', Balancee);
     Balance = Balancee;
+    // print(Balance);
     notifyListeners();
   }
 

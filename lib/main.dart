@@ -94,7 +94,7 @@ class _MyAppState extends State<MyApp> {
         ),
       ],
       child: MaterialApp(
-        title: 'Flutter Demo',
+        title: 'Langur Burja',
         theme: ThemeData(
           fontFamily: 'jos',
         ),

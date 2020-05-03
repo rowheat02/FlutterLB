@@ -4,6 +4,7 @@ import 'dart:async';
 import 'package:facebook_audience_network/facebook_audience_network.dart';
 import 'package:flutter/material.dart';
 import 'package:langurb/Provider_data/providers_data.dart';
+import 'package:langurb/Screens/initial_widgets/Money.dart';
 import 'package:langurb/Widgets/Betting_control.dart';
 import 'package:langurb/Widgets/Result.dart';
 import 'package:langurb/Widgets/Rolling.dart';
@@ -27,7 +28,7 @@ class _Home_screenState extends State<Home_screen> {
   //   return BannerAd(adUnitId:BannerAd.testAdUnitId ,size: AdSize.smartBanner ,);
   // }
   bool _bannerloaded = false;
-  bool _addtimer=true;
+  bool _addtimer = true;
   var Bannerad;
   @override
   void initState() {
@@ -45,7 +46,7 @@ class _Home_screenState extends State<Home_screen> {
             case BannerAdResult.LOADED:
               print("Loaded: $value");
               adloaded();
-              Timer(Duration(seconds: 30),banneradTimer());
+              Timer(Duration(seconds: 40), banneradTimer());
               break;
             case BannerAdResult.CLICKED:
               print("Clicked: $value");
@@ -72,21 +73,20 @@ class _Home_screenState extends State<Home_screen> {
   }
 
   banneradTimer() {
-  
-    Timer(Duration(seconds: 30), ()=>{
-        setState(() {
-      // _bannerloaded=false;
-      _addtimer=!_addtimer;
-    }),
-    Timer(Duration(seconds: 1), ()=>{
-      // _bannerloaded=true,
-      _addtimer=!_addtimer
-
-    })
-    });
-  
-    
-  
+    Timer(
+        Duration(seconds: 30),
+        () => {
+              setState(() {
+                // _bannerloaded=false;
+                _addtimer = !_addtimer;
+              }),
+              Timer(
+                  Duration(seconds: 1),
+                  () => {
+                        // _bannerloaded=true,
+                        _addtimer = !_addtimer
+                      })
+            });
   }
 
   @override
@@ -184,12 +184,66 @@ class _Home_screenState extends State<Home_screen> {
                               ),
                         ),
                       ),
+                      Container(
+                        padding: EdgeInsets.all(3),
+                        margin: EdgeInsets.only(bottom: 10),
+                        width: MediaQuery.of(context).size.width * 0.045,
+                        height: MediaQuery.of(context).size.width * 0.045,
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: new BorderRadius.only(
+                              bottomRight: Radius.circular(15),
+                              topLeft: Radius.circular(15)),
+                        ),
+                        child: InkWell(
+                          onTap: () => {
+                            provdat.callInterstitialads(),
+                            showDialog(
+                                context: context,
+                                builder: (BuildContext context) {
+                                  // return object of type Dialog
+                                  return AlertDialog(
+                                      backgroundColor: Colors.indigo,
+                                      // title: new Text("Alert Dialog title"),
+
+                                      actions: <Widget>[
+                                        Stack(
+                                          alignment: Alignment.topRight,
+                                          children: <Widget>[
+                                            Money(),
+                                            InkWell(
+                                              onTap: (){
+                                                Navigator.of(context).pop();
+                                              },
+                                                child: Container(
+                                                  margin:EdgeInsets.only(top: 7),
+                                                  color: Colors.grey,
+                                              child: Icon(Icons.close,
+                                                  color: Colors.white),
+                                            )),
+                                          ],
+                                        ),
+                                      ]);
+                                })
+                          },
+                          child: FittedBox(
+                              fit: BoxFit.scaleDown,
+                              child: Icon(Icons.account_balance)
+                              // Text(
+                              //   "HOME",
+                              //   style: TextStyle(
+                              //     color: Colors.black,
+                              //   ),
+                              // )
+                              ),
+                        ),
+                      ),
                     ],
                   ),
                 ),
               ],
             ),
-           _addtimer? Bannerad:Container()
+            _addtimer ? Bannerad : Container()
           ],
         ),
       ),
