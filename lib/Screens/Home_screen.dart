@@ -8,7 +8,7 @@ import 'package:langurb/Screens/initial_widgets/Money.dart';
 import 'package:langurb/Widgets/Betting_control.dart';
 import 'package:langurb/Widgets/NewRoll.dart';
 import 'package:langurb/Widgets/Result.dart';
-import 'package:langurb/Widgets/Rolling.dart';
+
 import 'package:langurb/Widgets/Symbolcarddecoration.dart';
 import 'package:provider/provider.dart';
 import 'package:langurb/Functions/Allfunc.dart';
